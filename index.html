@@ -106,6 +106,9 @@
     text-transform: uppercase;
     color: var(--gray-500);
     margin-bottom: 2rem;
+    opacity: 0;
+    transform: translateY(12px);
+    animation: fadeUp 0.7s ease 0.1s forwards;
   }
 
   .hero-headline {
@@ -114,8 +117,41 @@
     line-height: 1.0;
     letter-spacing: -0.04em;
     color: var(--black);
+    opacity: 0;
+    transform: translateY(16px);
+    animation: fadeUp 0.7s ease 0.25s forwards;
   }
 
+  .hero-sub {
+    font-size: clamp(1rem, 2vw, 1.25rem);
+    color: var(--gray-500);
+    margin-top: 2rem;
+    max-width: 520px;
+    font-weight: 400;
+    line-height: 1.65;
+    opacity: 0;
+    transform: translateY(12px);
+    animation: fadeUp 0.7s ease 0.45s forwards;
+  }
+
+  .hero-sub strong { color: var(--black); font-weight: 500; }
+
+  .hero-actions {
+    display: flex;
+    gap: 1rem;
+    margin-top: 3rem;
+    align-items: center;
+    flex-wrap: wrap;
+    opacity: 0;
+    transform: translateY(12px);
+    animation: fadeUp 0.7s ease 0.6s forwards;
+  }
+
+  @keyframes fadeUp {
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* FLIP */
   .flip-word-wrapper {
     display: inline-block;
     overflow: hidden;
@@ -134,13 +170,8 @@
     transform-origin: center top;
   }
 
-  .flip-word.exit {
-    animation: flipOut 0.25s ease-in forwards;
-  }
-
-  .flip-word.enter {
-    animation: flipIn 0.3s ease-out forwards;
-  }
+  .flip-word.exit { animation: flipOut 0.25s ease-in forwards; }
+  .flip-word.enter { animation: flipIn 0.3s ease-out forwards; }
 
   @keyframes flipOut {
     0%   { transform: rotateX(0deg); opacity: 1; }
@@ -152,29 +183,7 @@
     100% { transform: rotateX(0deg); opacity: 1; }
   }
 
-  @media (prefers-reduced-motion: reduce) {
-    .flip-word.exit, .flip-word.enter { animation: none; }
-  }
-
-  .hero-sub {
-    font-size: clamp(1rem, 2vw, 1.25rem);
-    color: var(--gray-500);
-    margin-top: 2rem;
-    max-width: 520px;
-    font-weight: 400;
-    line-height: 1.65;
-  }
-
-  .hero-sub strong { color: var(--black); font-weight: 500; }
-
-  .hero-actions {
-    display: flex;
-    gap: 1rem;
-    margin-top: 3rem;
-    align-items: center;
-    flex-wrap: wrap;
-  }
-
+  /* BUTTONS */
   .btn-primary {
     background: var(--black);
     color: var(--white);
@@ -211,13 +220,14 @@
   .btn-ghost:hover .arrow { transform: translateX(3px); }
   .arrow { transition: transform 0.2s; }
 
-  /* DIVIDERS & SECTIONS */
+  /* DIVIDER */
   .divider {
     width: 100%;
     border: none;
     border-top: 1px solid var(--gray-300);
   }
 
+  /* SECTION BASE */
   .section-inner {
     max-width: 1100px;
     margin: 0 auto;
@@ -233,49 +243,193 @@
     font-weight: 500;
   }
 
+  /* SCROLL REVEAL BASE */
+  .reveal {
+    opacity: 0;
+    transform: translateY(32px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
   /* MISSION */
   .mission-text {
-    font-size: clamp(1.5rem, 3.5vw, 2.5rem);
-    font-weight: 700;
-    line-height: 1.2;
-    letter-spacing: -0.025em;
+    font-size: clamp(1.75rem, 4vw, 3rem);
+    font-weight: 800;
+    line-height: 1.15;
+    letter-spacing: -0.03em;
     color: var(--black);
     max-width: 820px;
   }
 
   .mission-text em {
     font-style: normal;
-    color: var(--gray-500);
+    color: var(--gray-400);
   }
 
-  /* HOW IT WORKS */
-  .how-grid {
+  /* SCROLL STORY — HOW IT WORKS */
+  .story-outer {
+    position: relative;
+  }
+
+  .story-sticky-wrap {
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    pointer-events: none;
+  }
+
+  .story-sticky-inner {
+    max-width: 1100px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 0 3rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+  }
+
+  .story-left {
+    position: relative;
+    height: 260px;
+  }
+
+  .story-num {
+    position: absolute;
+    top: 0; left: 0;
+    font-size: clamp(6rem, 14vw, 10rem);
+    font-weight: 900;
+    letter-spacing: -0.06em;
+    line-height: 1;
+    color: var(--gray-100);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+    opacity: 0;
+    transform: translateY(20px);
+    user-select: none;
+  }
+
+  .story-num.active {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .story-right {
+    position: relative;
+    height: 180px;
+  }
+
+  .story-step {
+    position: absolute;
+    top: 0; left: 0;
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+    pointer-events: none;
+  }
+
+  .story-step.active {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+  }
+
+  .story-step-tag {
+    font-size: 0.75rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--gray-500);
+    font-weight: 500;
+    margin-bottom: 1rem;
+  }
+
+  .story-step-title {
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 900;
+    letter-spacing: -0.04em;
+    line-height: 1.05;
+    color: var(--black);
+    margin-bottom: 1rem;
+  }
+
+  .story-step-desc {
+    font-size: 1rem;
+    color: var(--gray-500);
+    line-height: 1.65;
+    max-width: 400px;
+  }
+
+  /* scroll triggers — invisible spacers */
+  .story-steps-scroll {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .story-trigger {
+    height: 100vh;
+  }
+
+  /* progress dots */
+  .story-dots {
+    position: absolute;
+    right: 3rem;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .story-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--gray-300);
+    transition: background 0.3s, transform 0.3s;
+  }
+
+  .story-dot.active {
+    background: var(--black);
+    transform: scale(1.4);
+  }
+
+  /* VALUES */
+  .values-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 1.25rem;
   }
 
-  .how-card {
+  .value-card {
     padding: 2rem;
     background: var(--white);
     box-shadow: 0 2px 8px rgba(0,0,0,0.06), 0 8px 24px rgba(0,0,0,0.06);
-    transition: box-shadow 0.25s ease, transform 0.25s ease;
+    transition: box-shadow 0.25s ease, transform 0.25s ease, opacity 0.6s ease;
+    opacity: 0;
+    transform: translateY(28px);
   }
 
-  .how-card:hover {
+  .value-card.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .value-card:hover {
     box-shadow: 0 4px 16px rgba(0,0,0,0.09), 0 16px 40px rgba(0,0,0,0.08);
     transform: translateY(-2px);
   }
 
-  .how-num {
-    font-size: 0.75rem;
-    color: var(--gray-500);
-    font-weight: 500;
-    margin-bottom: 1.5rem;
-    font-variant-numeric: tabular-nums;
+  .value-card.visible:hover {
+    transform: translateY(-2px);
   }
 
-  .how-title {
+  .value-title {
     font-size: 1rem;
     font-weight: 700;
     color: var(--black);
@@ -283,7 +437,7 @@
     letter-spacing: -0.01em;
   }
 
-  .how-desc {
+  .value-desc {
     font-size: 0.875rem;
     color: var(--gray-500);
     line-height: 1.65;
@@ -365,15 +519,34 @@
   }
 
   /* MOBILE */
+  @media (prefers-reduced-motion: reduce) {
+    .reveal, .value-card, .hero-label, .hero-headline, .hero-sub, .hero-actions {
+      opacity: 1; transform: none; animation: none;
+    }
+    .flip-word.exit, .flip-word.enter { animation: none; }
+  }
+
   @media (max-width: 768px) {
     nav { padding: 1.25rem 1.5rem; }
     .nav-links { display: none; }
     .hero { padding: 7rem 1.5rem 3rem; }
     .section-inner { padding: 4rem 1.5rem; }
-    .how-grid { grid-template-columns: 1fr; gap: 1rem; }
-    .how-card { }
     .contact-cta { padding: 4rem 1.5rem; }
     .footer-inner { flex-direction: column; gap: 1rem; text-align: center; padding: 2rem 1.5rem; }
+    .values-grid { grid-template-columns: 1fr 1fr; }
+
+    /* story becomes simple stacked on mobile */
+    .story-sticky-wrap { position: static; height: auto; padding: 4rem 0 2rem; }
+    .story-sticky-inner { grid-template-columns: 1fr; gap: 0; padding: 0 1.5rem; }
+    .story-left { display: none; }
+    .story-right { position: static; height: auto; }
+    .story-step { position: static; opacity: 1; transform: none; margin-bottom: 3rem; }
+    .story-trigger { display: none; }
+    .story-dots { display: none; }
+  }
+
+  @media (max-width: 480px) {
+    .values-grid { grid-template-columns: 1fr; }
   }
 </style>
 </head>
@@ -419,62 +592,90 @@
 
   <!-- MISSION -->
   <div class="section-inner" id="mission">
-    <p class="section-tag">Misión</p>
-    <p class="mission-text">
+    <p class="section-tag reveal">Misión</p>
+    <p class="mission-text reveal" style="transition-delay: 0.1s;">
       Resolver problemas reales creando <em>herramientas brutalmente simples.</em>
     </p>
   </div>
 
   <hr class="divider">
 
-  <!-- HOW IT WORKS -->
-  <div class="section-inner" id="how">
-    <p class="section-tag">Cómo funciona</p>
-    <div class="how-grid">
-      <div class="how-card">
-        <p class="how-num">01</p>
-        <p class="how-title">Identificamos</p>
-        <p class="how-desc">Entendemos el problema real. No el síntoma, no la suposición. El dolor verdadero que frena el negocio.</p>
-      </div>
-      <div class="how-card">
-        <p class="how-num">02</p>
-        <p class="how-title">Proponemos</p>
-        <p class="how-desc">Diseñamos la solución más simple posible. Sin capas innecesarias, sin tecnología por tecnología.</p>
-      </div>
-      <div class="how-card">
-        <p class="how-num">03</p>
-        <p class="how-title">Iteramos</p>
-        <p class="how-desc">Lanzamos rápido y aprendemos con uso real. Cada ciclo acerca la herramienta a lo que el negocio necesita.</p>
-      </div>
-      <div class="how-card">
-        <p class="how-num">04</p>
-        <p class="how-title">Ajustamos</p>
-        <p class="how-desc">La solución evoluciona con el negocio. No es un proyecto cerrado, es un organismo vivo.</p>
+  <!-- HOW IT WORKS — SCROLL STORY -->
+  <section id="how" class="story-outer">
+
+    <div class="story-sticky-wrap">
+      <div class="story-sticky-inner">
+
+        <div class="story-left">
+          <div class="story-num" id="num-0">01</div>
+          <div class="story-num" id="num-1">02</div>
+          <div class="story-num" id="num-2">03</div>
+          <div class="story-num" id="num-3">04</div>
+        </div>
+
+        <div class="story-right">
+          <div class="story-step" id="step-0">
+            <p class="story-step-tag">Cómo funciona</p>
+            <p class="story-step-title">Identificamos</p>
+            <p class="story-step-desc">Entendemos el problema real. No el síntoma, no la suposición. El dolor verdadero que frena el negocio.</p>
+          </div>
+          <div class="story-step" id="step-1">
+            <p class="story-step-tag">Cómo funciona</p>
+            <p class="story-step-title">Proponemos</p>
+            <p class="story-step-desc">Diseñamos la solución más simple posible. Sin capas innecesarias, sin tecnología por tecnología.</p>
+          </div>
+          <div class="story-step" id="step-2">
+            <p class="story-step-tag">Cómo funciona</p>
+            <p class="story-step-title">Iteramos</p>
+            <p class="story-step-desc">Lanzamos rápido y aprendemos con uso real. Cada ciclo acerca la herramienta a lo que el negocio necesita.</p>
+          </div>
+          <div class="story-step" id="step-3">
+            <p class="story-step-tag">Cómo funciona</p>
+            <p class="story-step-title">Ajustamos</p>
+            <p class="story-step-desc">La solución evoluciona con el negocio. No es un proyecto cerrado, es un organismo vivo.</p>
+          </div>
+        </div>
+
+        <div class="story-dots">
+          <div class="story-dot" id="dot-0"></div>
+          <div class="story-dot" id="dot-1"></div>
+          <div class="story-dot" id="dot-2"></div>
+          <div class="story-dot" id="dot-3"></div>
+        </div>
+
       </div>
     </div>
-  </div>
+
+    <div class="story-steps-scroll">
+      <div class="story-trigger" data-step="0"></div>
+      <div class="story-trigger" data-step="1"></div>
+      <div class="story-trigger" data-step="2"></div>
+      <div class="story-trigger" data-step="3"></div>
+    </div>
+
+  </section>
 
   <hr class="divider">
 
   <!-- VALUES -->
   <div class="section-inner" id="values">
-    <p class="section-tag">Nuestros valores</p>
-    <div class="how-grid">
-      <div class="how-card">
-        <p class="how-title">Cero burocracia</p>
-        <p class="how-desc">Diagnóstico directo al problema. Sin reuniones infinitas ni procesos que ralentizan la solución.</p>
+    <p class="section-tag reveal">Nuestros valores</p>
+    <div class="values-grid">
+      <div class="value-card" data-delay="0">
+        <p class="value-title">Cero burocracia</p>
+        <p class="value-desc">Diagnóstico directo al problema. Sin reuniones infinitas ni procesos que ralentizan la solución.</p>
       </div>
-      <div class="how-card">
-        <p class="how-title">Skin in the game</p>
-        <p class="how-desc">Nos involucramos de verdad. Tu problema es nuestro problema. El éxito es compartido.</p>
+      <div class="value-card" data-delay="1">
+        <p class="value-title">Skin in the game</p>
+        <p class="value-desc">Nos involucramos de verdad. Tu problema es nuestro problema. El éxito es compartido.</p>
       </div>
-      <div class="how-card">
-        <p class="how-title">Simplicidad radical</p>
-        <p class="how-desc">La solución más simple que funciona. Sin complejidad innecesaria. Diseñado para que cualquiera lo use.</p>
+      <div class="value-card" data-delay="2">
+        <p class="value-title">Simplicidad radical</p>
+        <p class="value-desc">La solución más simple que funciona. Sin complejidad innecesaria. Diseñado para que cualquiera lo use.</p>
       </div>
-      <div class="how-card">
-        <p class="how-title">Tecnología robusta</p>
-        <p class="how-desc">Construimos para durar y escalar. Solidez técnica al servicio de la simplicidad, no al revés.</p>
+      <div class="value-card" data-delay="3">
+        <p class="value-title">Tecnología robusta</p>
+        <p class="value-desc">Construimos para durar y escalar. Solidez técnica al servicio de la simplicidad, no al revés.</p>
       </div>
     </div>
   </div>
@@ -483,8 +684,8 @@
 
   <!-- CASES -->
   <div class="section-inner" id="cases">
-    <p class="section-tag">Casos de éxito</p>
-    <div class="cases-placeholder">
+    <p class="section-tag reveal">Casos de éxito</p>
+    <div class="cases-placeholder reveal" style="transition-delay: 0.1s;">
       <span class="cases-diamond">◇</span>
       <p>Los primeros casos de éxito llegan pronto.</p>
     </div>
@@ -494,8 +695,8 @@
 
   <!-- CONTACT -->
   <div class="contact-cta" id="contact">
-    <p class="contact-headline">¿Tienes un<br>problema real?</p>
-    <a class="contact-btn" href="mailto:hola@tudominio.com">
+    <p class="contact-headline reveal">¿Tienes un<br>problema real?</p>
+    <a class="contact-btn reveal" style="transition-delay: 0.15s;" href="mailto:hola@tudominio.com">
       Cuéntanoslo
       <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
         <path d="M3 8h10M9 4l4 4-4 4" stroke="#FFFFFF" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -513,7 +714,7 @@
 </footer>
 
 <script>
-  // Navbar scroll border
+  // Navbar
   const navbar = document.getElementById('navbar');
   window.addEventListener('scroll', () => {
     navbar.classList.toggle('scrolled', window.scrollY > 10);
@@ -522,20 +723,17 @@
   // Flip animation
   const words = ["efectivo.", "ágil.", "poderoso.", "robusto.", "escalable.", "humano."];
   let current = 0;
-  const el = document.getElementById("flip-word");
+  const flipEl = document.getElementById("flip-word");
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   function flipTo(nextWord) {
-    if (reducedMotion) {
-      el.textContent = nextWord;
-      return;
-    }
-    el.classList.remove("enter");
-    el.classList.add("exit");
+    if (reducedMotion) { flipEl.textContent = nextWord; return; }
+    flipEl.classList.remove("enter");
+    flipEl.classList.add("exit");
     setTimeout(() => {
-      el.textContent = nextWord;
-      el.classList.remove("exit");
-      el.classList.add("enter");
+      flipEl.textContent = nextWord;
+      flipEl.classList.remove("exit");
+      flipEl.classList.add("enter");
     }, 260);
   }
 
@@ -543,6 +741,69 @@
     current = (current + 1) % words.length;
     flipTo(words[current]);
   }, 2200);
+
+  // Generic scroll reveal
+  const revealEls = document.querySelectorAll('.reveal');
+  const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        revealObserver.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.15 });
+
+  revealEls.forEach(el => revealObserver.observe(el));
+
+  // Value cards stagger
+  const valueCards = document.querySelectorAll('.value-card');
+  const valueObserver = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        const delay = parseInt(e.target.dataset.delay) * 100;
+        setTimeout(() => e.target.classList.add('visible'), delay);
+        valueObserver.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1 });
+
+  valueCards.forEach(el => valueObserver.observe(el));
+
+  // Scroll story — how it works
+  const storyOuter   = document.querySelector('.story-outer');
+  const triggers     = document.querySelectorAll('.story-trigger');
+  const steps        = document.querySelectorAll('.story-step');
+  const nums         = document.querySelectorAll('.story-num');
+  const dots         = document.querySelectorAll('.story-dot');
+  let activeStep     = -1;
+
+  function activateStep(index) {
+    if (index === activeStep) return;
+    activeStep = index;
+    steps.forEach((s, i) => s.classList.toggle('active', i === index));
+    nums.forEach((n, i)  => n.classList.toggle('active', i === index));
+    dots.forEach((d, i)  => d.classList.toggle('active', i === index));
+  }
+
+  function onScroll() {
+    if (!storyOuter) return;
+    const outerRect = storyOuter.getBoundingClientRect();
+    const outerH    = storyOuter.offsetHeight;
+    const scrolled  = -outerRect.top;
+    const progress  = scrolled / (outerH - window.innerHeight);
+
+    if (progress < 0 || progress > 1) return;
+
+    const stepIndex = Math.min(
+      Math.floor(progress * triggers.length),
+      triggers.length - 1
+    );
+    activateStep(stepIndex);
+  }
+
+  activateStep(0);
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
 </script>
 
 </body>
