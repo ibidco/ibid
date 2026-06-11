@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Soluciones digitales que resuelven el mayor dolor de tu negocio. Tecnología robusta, sin burocracia y con skin in the game.">
+<title>Simple, pero...</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700;800;900&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --black: #0A0A0A;
+    --white: #FFFFFF;
+    --gray-100: #F5F5F5;
+    --gray-300: #D4D4D4;
+    --gray-500: #737373;
+    --gray-700: #404040;
+  }
+
+  html { font-size: 16px; scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--white);
+    color: var(--black);
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem 3rem;
+    background: rgba(255,255,255,0.92);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.3s;
+  }
+
+  nav.scrolled { border-bottom-color: var(--gray-300); }
+
+  .logo {
+    font-size: 1.125rem;
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    color: var(--black);
+    text-decoration: none;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-size: 0.875rem;
+    color: var(--gray-500);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--black); }
+
+  .nav-cta {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--black);
+    text-decoration: none;
+    border: 1px solid var(--black);
+    padding: 0.5rem 1.25rem;
+    border-radius: 100px;
+    transition: background 0.2s, color 0.2s;
+  }
+
+  .nav-cta:hover {
+    background: var(--black);
+    color: var(--white);
+  }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 8rem 3rem 4rem;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .hero-label {
+    font-size: 0.8125rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--gray-500);
+    margin-bottom: 2rem;
+  }
+
+  .hero-headline {
+    font-size: clamp(3.5rem, 8vw, 7rem);
+    font-weight: 900;
+    line-height: 1.0;
+    letter-spacing: -0.04em;
+    color: var(--black);
+  }
+
+  .flip-word-wrapper {
+    display: inline-block;
+    overflow: hidden;
+    vertical-align: bottom;
+    height: 1.05em;
+    perspective: 600px;
+  }
+
+  .flip-word {
+    display: block;
+    font-size: inherit;
+    font-weight: 900;
+    letter-spacing: -0.04em;
+    line-height: 1.05;
+    color: var(--black);
+    transform-origin: center top;
+  }
+
+  .flip-word.exit {
+    animation: flipOut 0.25s ease-in forwards;
+  }
+
+  .flip-word.enter {
+    animation: flipIn 0.3s ease-out forwards;
+  }
+
+  @keyframes flipOut {
+    0%   { transform: rotateX(0deg); opacity: 1; }
+    100% { transform: rotateX(-90deg); opacity: 0; }
+  }
+
+  @keyframes flipIn {
+    0%   { transform: rotateX(90deg); opacity: 0; }
+    100% { transform: rotateX(0deg); opacity: 1; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .flip-word.exit, .flip-word.enter { animation: none; }
+  }
+
+  .hero-sub {
+    font-size: clamp(1rem, 2vw, 1.25rem);
+    color: var(--gray-500);
+    margin-top: 2rem;
+    max-width: 520px;
+    font-weight: 400;
+    line-height: 1.65;
+  }
+
+  .hero-sub strong { color: var(--black); font-weight: 500; }
+
+  .hero-actions {
+    display: flex;
+    gap: 1rem;
+    margin-top: 3rem;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+
+  .btn-primary {
+    background: var(--black);
+    color: var(--white);
+    border: none;
+    padding: 0.875rem 2rem;
+    border-radius: 100px;
+    font-size: 0.9375rem;
+    font-weight: 500;
+    cursor: pointer;
+    text-decoration: none;
+    transition: opacity 0.2s;
+    font-family: 'Inter', sans-serif;
+  }
+
+  .btn-primary:hover { opacity: 0.72; }
+
+  .btn-ghost {
+    background: transparent;
+    color: var(--gray-700);
+    border: none;
+    padding: 0.875rem 0;
+    font-size: 0.9375rem;
+    font-weight: 400;
+    cursor: pointer;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 0.375rem;
+    transition: color 0.2s;
+    font-family: 'Inter', sans-serif;
+  }
+
+  .btn-ghost:hover { color: var(--black); }
+  .btn-ghost:hover .arrow { transform: translateX(3px); }
+  .arrow { transition: transform 0.2s; }
+
+  /* DIVIDERS & SECTIONS */
+  .divider {
+    width: 100%;
+    border: none;
+    border-top: 1px solid var(--gray-300);
+  }
+
+  .section-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 6rem 3rem;
+  }
+
+  .section-tag {
+    font-size: 0.75rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--gray-500);
+    margin-bottom: 3rem;
+    font-weight: 500;
+  }
+
+  /* MISSION */
+  .mission-text {
+    font-size: clamp(1.5rem, 3.5vw, 2.5rem);
+    font-weight: 700;
+    line-height: 1.2;
+    letter-spacing: -0.025em;
+    color: var(--black);
+    max-width: 820px;
+  }
+
+  .mission-text em {
+    font-style: normal;
+    color: var(--gray-500);
+  }
+
+  /* HOW IT WORKS */
+  .how-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.25rem;
+  }
+
+  .how-card {
+    padding: 2rem;
+    background: var(--white);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06), 0 8px 24px rgba(0,0,0,0.06);
+    transition: box-shadow 0.25s ease, transform 0.25s ease;
+  }
+
+  .how-card:hover {
+    box-shadow: 0 4px 16px rgba(0,0,0,0.09), 0 16px 40px rgba(0,0,0,0.08);
+    transform: translateY(-2px);
+  }
+
+  .how-num {
+    font-size: 0.75rem;
+    color: var(--gray-500);
+    font-weight: 500;
+    margin-bottom: 1.5rem;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .how-title {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--black);
+    margin-bottom: 0.5rem;
+    letter-spacing: -0.01em;
+  }
+
+  .how-desc {
+    font-size: 0.875rem;
+    color: var(--gray-500);
+    line-height: 1.65;
+  }
+
+  /* CASES */
+  .cases-placeholder {
+    padding: 5rem 2rem;
+    border: 1px dashed var(--gray-300);
+    text-align: center;
+    border-radius: 4px;
+  }
+
+  .cases-diamond {
+    font-size: 1.25rem;
+    display: block;
+    margin-bottom: 1rem;
+    color: var(--gray-300);
+  }
+
+  .cases-placeholder p {
+    color: var(--gray-500);
+    font-size: 0.9375rem;
+  }
+
+  /* CONTACT CTA */
+  .contact-cta {
+    padding: 6rem 3rem;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .contact-headline {
+    font-size: clamp(2rem, 5vw, 3.75rem);
+    font-weight: 900;
+    letter-spacing: -0.04em;
+    line-height: 1.05;
+    color: var(--black);
+    margin-bottom: 2.5rem;
+  }
+
+  .contact-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: var(--black);
+    color: var(--white);
+    text-decoration: none;
+    padding: 1rem 2.25rem;
+    border-radius: 100px;
+    font-size: 1rem;
+    font-weight: 500;
+    transition: opacity 0.2s;
+  }
+
+  .contact-btn:hover { opacity: 0.72; }
+
+  /* FOOTER */
+  footer { border-top: 1px solid var(--gray-300); }
+
+  .footer-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 2.5rem 3rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .footer-logo {
+    font-size: 1.125rem;
+    font-weight: 800;
+    letter-spacing: -0.03em;
+  }
+
+  .footer-right {
+    font-size: 0.8125rem;
+    color: var(--gray-500);
+  }
+
+  /* MOBILE */
+  @media (max-width: 768px) {
+    nav { padding: 1.25rem 1.5rem; }
+    .nav-links { display: none; }
+    .hero { padding: 7rem 1.5rem 3rem; }
+    .section-inner { padding: 4rem 1.5rem; }
+    .how-grid { grid-template-columns: 1fr; gap: 1rem; }
+    .how-card { }
+    .contact-cta { padding: 4rem 1.5rem; }
+    .footer-inner { flex-direction: column; gap: 1rem; text-align: center; padding: 2rem 1.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<nav id="navbar">
+  <a class="logo" href="#">sb.</a>
+  <ul class="nav-links">
+    <li><a href="#mission">Misión</a></li>
+    <li><a href="#how">Cómo funciona</a></li>
+    <li><a href="#values">Valores</a></li>
+    <li><a href="#cases">Casos</a></li>
+  </ul>
+  <a class="nav-cta" href="#contact">Hablemos</a>
+</nav>
+
+<main>
+
+  <!-- HERO -->
+  <div class="hero">
+    <p class="hero-label">Digital solutions portfolio</p>
+    <h1 class="hero-headline">
+      Simple, pero<br>
+      <span class="flip-word-wrapper" aria-live="polite">
+        <span class="flip-word" id="flip-word">efectivo.</span>
+      </span>
+    </h1>
+    <p class="hero-sub">
+      Construimos <strong>soluciones como organismos vivos</strong> que resuelven el mayor dolor de tu negocio. Tecnología robusta, sin burocracia y con skin in the game.
+    </p>
+    <div class="hero-actions">
+      <a class="btn-primary" href="#cases">Ver casos de éxito</a>
+      <a class="btn-ghost" href="#how">
+        Cómo funciona
+        <svg class="arrow" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+          <path d="M3 8h10M9 4l4 4-4 4" stroke="#0A0A0A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </a>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- MISSION -->
+  <div class="section-inner" id="mission">
+    <p class="section-tag">Misión</p>
+    <p class="mission-text">
+      Resolver problemas reales creando <em>herramientas brutalmente simples.</em>
+    </p>
+  </div>
+
+  <hr class="divider">
+
+  <!-- HOW IT WORKS -->
+  <div class="section-inner" id="how">
+    <p class="section-tag">Cómo funciona</p>
+    <div class="how-grid">
+      <div class="how-card">
+        <p class="how-num">01</p>
+        <p class="how-title">Identificamos</p>
+        <p class="how-desc">Entendemos el problema real. No el síntoma, no la suposición. El dolor verdadero que frena el negocio.</p>
+      </div>
+      <div class="how-card">
+        <p class="how-num">02</p>
+        <p class="how-title">Proponemos</p>
+        <p class="how-desc">Diseñamos la solución más simple posible. Sin capas innecesarias, sin tecnología por tecnología.</p>
+      </div>
+      <div class="how-card">
+        <p class="how-num">03</p>
+        <p class="how-title">Iteramos</p>
+        <p class="how-desc">Lanzamos rápido y aprendemos con uso real. Cada ciclo acerca la herramienta a lo que el negocio necesita.</p>
+      </div>
+      <div class="how-card">
+        <p class="how-num">04</p>
+        <p class="how-title">Ajustamos</p>
+        <p class="how-desc">La solución evoluciona con el negocio. No es un proyecto cerrado, es un organismo vivo.</p>
+      </div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- VALUES -->
+  <div class="section-inner" id="values">
+    <p class="section-tag">Nuestros valores</p>
+    <div class="how-grid">
+      <div class="how-card">
+        <p class="how-title">Cero burocracia</p>
+        <p class="how-desc">Diagnóstico directo al problema. Sin reuniones infinitas ni procesos que ralentizan la solución.</p>
+      </div>
+      <div class="how-card">
+        <p class="how-title">Skin in the game</p>
+        <p class="how-desc">Nos involucramos de verdad. Tu problema es nuestro problema. El éxito es compartido.</p>
+      </div>
+      <div class="how-card">
+        <p class="how-title">Simplicidad radical</p>
+        <p class="how-desc">La solución más simple que funciona. Sin complejidad innecesaria. Diseñado para que cualquiera lo use.</p>
+      </div>
+      <div class="how-card">
+        <p class="how-title">Tecnología robusta</p>
+        <p class="how-desc">Construimos para durar y escalar. Solidez técnica al servicio de la simplicidad, no al revés.</p>
+      </div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- CASES -->
+  <div class="section-inner" id="cases">
+    <p class="section-tag">Casos de éxito</p>
+    <div class="cases-placeholder">
+      <span class="cases-diamond">◇</span>
+      <p>Los primeros casos de éxito llegan pronto.</p>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- CONTACT -->
+  <div class="contact-cta" id="contact">
+    <p class="contact-headline">¿Tienes un<br>problema real?</p>
+    <a class="contact-btn" href="mailto:hola@tudominio.com">
+      Cuéntanoslo
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+        <path d="M3 8h10M9 4l4 4-4 4" stroke="#FFFFFF" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </a>
+  </div>
+
+</main>
+
+<footer>
+  <div class="footer-inner">
+    <span class="footer-logo">sb.</span>
+    <span class="footer-right">© 2025. Simple, pero poderoso.</span>
+  </div>
+</footer>
+
+<script>
+  // Navbar scroll border
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    navbar.classList.toggle('scrolled', window.scrollY > 10);
+  }, { passive: true });
+
+  // Flip animation
+  const words = ["efectivo.", "ágil.", "poderoso.", "robusto.", "escalable.", "humano."];
+  let current = 0;
+  const el = document.getElementById("flip-word");
+  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function flipTo(nextWord) {
+    if (reducedMotion) {
+      el.textContent = nextWord;
+      return;
+    }
+    el.classList.remove("enter");
+    el.classList.add("exit");
+    setTimeout(() => {
+      el.textContent = nextWord;
+      el.classList.remove("exit");
+      el.classList.add("enter");
+    }, 260);
+  }
+
+  setInterval(() => {
+    current = (current + 1) % words.length;
+    flipTo(words[current]);
+  }, 2200);
+</script>
+
+</body>
+</html>
