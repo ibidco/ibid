@@ -7,58 +7,59 @@
 <title>Simple, pero...</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700;800;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
   :root {
-    --black: #0A0A0A;
-    --white: #FFFFFF;
-    --gray-100: #F5F5F5;
-    --gray-300: #D4D4D4;
-    --gray-500: #737373;
-    --gray-700: #404040;
+    --bg:        #EFEFEF;
+    --surface:   #FFFFFF;
+    --black:     #0A0A0A;
+    --gray-400:  #9CA3AF;
+    --gray-500:  #6B7280;
+    --gray-600:  #4B5563;
+    --gray-200:  #E5E7EB;
+    --shadow-sm: 0 1px 3px rgba(0,0,0,0.07), 0 4px 12px rgba(0,0,0,0.05);
+    --shadow-md: 0 2px 8px rgba(0,0,0,0.07), 0 12px 32px rgba(0,0,0,0.08);
+    --shadow-lg: 0 4px 16px rgba(0,0,0,0.08), 0 24px 56px rgba(0,0,0,0.10);
+    --radius:    12px;
   }
 
   html { font-size: 16px; scroll-behavior: smooth; }
 
-  /* GRADIENT BACKGROUND */
-  #gradient-canvas {
-    position: fixed;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
-    z-index: -1;
-    pointer-events: none;
-  }
-
   body {
     font-family: 'Inter', sans-serif;
-    background: transparent;
+    background: var(--bg);
     color: var(--black);
     line-height: 1.6;
     overflow-x: hidden;
   }
 
-  /* NAV */
+  /* ── NAV ── */
   nav {
     position: fixed;
-    top: 0; left: 0; right: 0;
-    z-index: 100;
+    top: 1rem; left: 50%;
+    transform: translateX(-50%);
+    z-index: 200;
+    width: calc(100% - 3rem);
+    max-width: 1020px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 1.5rem 3rem;
-    background: rgba(255,255,255,0.6);
+    padding: 0.75rem 1.25rem;
+    background: rgba(255,255,255,0.85);
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
-    border-bottom: 1px solid transparent;
-    transition: border-color 0.3s;
+    border: 1px solid rgba(0,0,0,0.08);
+    border-radius: 100px;
+    box-shadow: var(--shadow-sm);
+    transition: box-shadow 0.3s;
   }
 
-  nav.scrolled { border-bottom-color: var(--gray-300); }
+  nav.scrolled { box-shadow: var(--shadow-md); }
 
   .logo {
-    font-size: 1.125rem;
+    font-size: 1rem;
     font-weight: 800;
     letter-spacing: -0.03em;
     color: var(--black);
@@ -67,7 +68,7 @@
 
   .nav-links {
     display: flex;
-    gap: 2rem;
+    gap: 0.25rem;
     list-style: none;
   }
 
@@ -75,92 +76,88 @@
     font-size: 0.875rem;
     color: var(--gray-500);
     text-decoration: none;
-    transition: color 0.2s;
+    padding: 0.375rem 0.75rem;
+    border-radius: 100px;
+    transition: background 0.15s, color 0.15s;
   }
 
-  .nav-links a:hover { color: var(--black); }
+  .nav-links a:hover {
+    background: var(--gray-200);
+    color: var(--black);
+  }
 
   .nav-cta {
     font-size: 0.875rem;
-    font-weight: 500;
-    color: var(--black);
-    text-decoration: none;
-    border: 1px solid var(--black);
-    padding: 0.5rem 1.25rem;
-    border-radius: 100px;
-    transition: background 0.2s, color 0.2s;
-  }
-
-  .nav-cta:hover {
+    font-weight: 600;
+    color: var(--surface);
     background: var(--black);
-    color: var(--white);
+    text-decoration: none;
+    padding: 0.5rem 1.125rem;
+    border-radius: 100px;
+    display: flex;
+    align-items: center;
+    gap: 0.375rem;
+    transition: opacity 0.2s;
   }
 
-  /* HERO */
+  .nav-cta:hover { opacity: 0.75; }
+
+  /* ── HERO ── */
   .hero {
     min-height: 100vh;
     display: flex;
     flex-direction: column;
+    align-items: center;
     justify-content: center;
-    align-items: flex-start;
-    padding: 8rem 3rem 4rem;
-    max-width: 1100px;
-    margin: 0 auto;
+    text-align: center;
+    padding: 9rem 1.5rem 4rem;
   }
 
-  .hero-label {
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: var(--surface);
+    border: 1px solid var(--gray-200);
+    border-radius: 100px;
+    padding: 0.3rem 0.875rem 0.3rem 0.4rem;
     font-size: 0.8125rem;
-    font-weight: 500;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--gray-500);
+    color: var(--gray-600);
     margin-bottom: 2rem;
+    box-shadow: var(--shadow-sm);
     opacity: 0;
-    transform: translateY(12px);
-    animation: fadeUp 0.7s ease 0.1s forwards;
+    animation: fadeUp 0.6s ease 0.1s forwards;
+  }
+
+  .badge-dot {
+    width: 20px; height: 20px;
+    background: var(--black);
+    border-radius: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .badge-dot span {
+    font-size: 0.625rem;
+    font-weight: 700;
+    color: var(--surface);
+    letter-spacing: 0.02em;
   }
 
   .hero-headline {
-    font-size: clamp(3.5rem, 8vw, 7rem);
+    font-size: clamp(3rem, 8vw, 6rem);
     font-weight: 900;
     line-height: 1.0;
     letter-spacing: -0.04em;
     color: var(--black);
+    max-width: 800px;
+    margin-bottom: 0;
     opacity: 0;
-    transform: translateY(16px);
-    animation: fadeUp 0.7s ease 0.25s forwards;
+    animation: fadeUp 0.7s ease 0.2s forwards;
   }
 
-  .hero-sub {
-    font-size: clamp(1rem, 2vw, 1.25rem);
-    color: var(--gray-500);
-    margin-top: 2rem;
-    max-width: 520px;
-    font-weight: 400;
-    line-height: 1.65;
-    opacity: 0;
-    transform: translateY(12px);
-    animation: fadeUp 0.7s ease 0.45s forwards;
-  }
-
-  .hero-sub strong { color: var(--black); font-weight: 500; }
-
-  .hero-actions {
-    display: flex;
-    gap: 1rem;
-    margin-top: 3rem;
-    align-items: center;
-    flex-wrap: wrap;
-    opacity: 0;
-    transform: translateY(12px);
-    animation: fadeUp 0.7s ease 0.6s forwards;
-  }
-
-  @keyframes fadeUp {
-    to { opacity: 1; transform: translateY(0); }
-  }
-
-  /* FLIP */
   .flip-word-wrapper {
     display: inline-block;
     overflow: visible;
@@ -169,7 +166,7 @@
   }
 
   .flip-word {
-    display: block;
+    display: inline-block;
     font-size: inherit;
     font-weight: 900;
     letter-spacing: -0.04em;
@@ -185,92 +182,269 @@
     0%   { transform: rotateX(0deg); opacity: 1; }
     100% { transform: rotateX(-90deg); opacity: 0; }
   }
-
   @keyframes flipIn {
     0%   { transform: rotateX(90deg); opacity: 0; }
     100% { transform: rotateX(0deg); opacity: 1; }
   }
 
-  /* BUTTONS */
-  .btn-primary {
-    background: var(--black);
-    color: var(--white);
-    border: none;
-    padding: 0.875rem 2rem;
-    border-radius: 100px;
-    font-size: 0.9375rem;
-    font-weight: 500;
-    cursor: pointer;
-    text-decoration: none;
-    transition: opacity 0.2s;
-    font-family: 'Inter', sans-serif;
+  .hero-sub {
+    font-size: clamp(1rem, 2vw, 1.125rem);
+    color: var(--gray-500);
+    margin-top: 1.5rem;
+    max-width: 480px;
+    font-weight: 400;
+    line-height: 1.65;
+    opacity: 0;
+    animation: fadeUp 0.7s ease 0.35s forwards;
   }
 
-  .btn-primary:hover { opacity: 0.72; }
+  .hero-sub strong { color: var(--black); font-weight: 600; }
 
-  .btn-ghost {
-    background: transparent;
-    color: var(--gray-700);
+  .hero-actions {
+    display: flex;
+    gap: 0.75rem;
+    margin-top: 2.25rem;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: center;
+    opacity: 0;
+    animation: fadeUp 0.7s ease 0.5s forwards;
+  }
+
+  .btn-primary {
+    background: var(--black);
+    color: var(--surface);
     border: none;
-    padding: 0.875rem 0;
+    padding: 0.75rem 1.5rem;
+    border-radius: 100px;
     font-size: 0.9375rem;
-    font-weight: 400;
+    font-weight: 600;
     cursor: pointer;
     text-decoration: none;
     display: flex;
     align-items: center;
     gap: 0.375rem;
-    transition: color 0.2s;
+    transition: opacity 0.2s;
     font-family: 'Inter', sans-serif;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.2), 0 4px 12px rgba(0,0,0,0.12);
   }
 
-  .btn-ghost:hover { color: var(--black); }
-  .btn-ghost:hover .arrow { transform: translateX(3px); }
-  .arrow { transition: transform 0.2s; }
+  .btn-primary:hover { opacity: 0.78; }
 
-  /* DIVIDER */
-  .divider {
+  .btn-secondary {
+    background: var(--surface);
+    color: var(--black);
+    border: 1px solid var(--gray-200);
+    padding: 0.75rem 1.5rem;
+    border-radius: 100px;
+    font-size: 0.9375rem;
+    font-weight: 500;
+    cursor: pointer;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 0.375rem;
+    transition: box-shadow 0.2s, border-color 0.2s;
+    font-family: 'Inter', sans-serif;
+    box-shadow: var(--shadow-sm);
+  }
+
+  .btn-secondary:hover {
+    box-shadow: var(--shadow-md);
+    border-color: rgba(0,0,0,0.15);
+  }
+
+  /* HERO MOCK */
+  .hero-mock {
+    margin-top: 4rem;
     width: 100%;
-    border: none;
-    border-top: 1px solid var(--gray-300);
+    max-width: 860px;
+    background: var(--surface);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-lg);
+    border: 1px solid rgba(0,0,0,0.06);
+    overflow: hidden;
+    opacity: 0;
+    transform: translateY(24px);
+    animation: fadeUp 0.9s ease 0.65s forwards;
   }
 
-  /* SECTION BASE */
-  .section-inner {
-    max-width: 1100px;
+  .mock-bar {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.875rem 1.25rem;
+    border-bottom: 1px solid var(--gray-200);
+    background: var(--bg);
+  }
+
+  .mock-dot {
+    width: 10px; height: 10px;
+    border-radius: 50%;
+  }
+
+  .mock-dot.red   { background: #FF5F57; }
+  .mock-dot.amber { background: #FFBD2E; }
+  .mock-dot.green { background: #28C840; }
+
+  .mock-body {
+    padding: 2rem;
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: 1.5rem;
+    min-height: 240px;
+  }
+
+  .mock-sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 0.375rem;
+  }
+
+  .mock-menu-item {
+    padding: 0.5rem 0.75rem;
+    border-radius: 8px;
+    font-size: 0.8125rem;
+    color: var(--gray-500);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .mock-menu-item.active {
+    background: var(--bg);
+    color: var(--black);
+    font-weight: 600;
+  }
+
+  .mock-icon {
+    width: 14px; height: 14px;
+    border-radius: 3px;
+    background: var(--gray-200);
+    flex-shrink: 0;
+  }
+
+  .mock-menu-item.active .mock-icon { background: var(--black); }
+
+  .mock-content {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .mock-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.75rem;
+  }
+
+  .mock-stat {
+    background: var(--bg);
+    border-radius: 8px;
+    padding: 0.875rem;
+  }
+
+  .mock-stat-label {
+    font-size: 0.6875rem;
+    color: var(--gray-400);
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin-bottom: 0.25rem;
+  }
+
+  .mock-stat-value {
+    font-size: 1.25rem;
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    color: var(--black);
+  }
+
+  .mock-stat-delta {
+    font-size: 0.6875rem;
+    color: #16A34A;
+    font-weight: 600;
+    margin-top: 0.125rem;
+  }
+
+  .mock-chart {
+    background: var(--bg);
+    border-radius: 8px;
+    padding: 1rem;
+    display: flex;
+    align-items: flex-end;
+    gap: 6px;
+    height: 80px;
+  }
+
+  .mock-bar-item {
+    flex: 1;
+    background: var(--gray-200);
+    border-radius: 3px;
+    transition: background 0.2s;
+  }
+
+  .mock-bar-item.hi { background: var(--black); }
+
+  @keyframes fadeUp {
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ── SECTIONS ── */
+  .section-wrap {
+    max-width: 1020px;
     margin: 0 auto;
-    padding: 6rem 3rem;
+    padding: 5rem 1.5rem;
   }
 
   .section-tag {
     font-size: 0.75rem;
-    letter-spacing: 0.14em;
+    letter-spacing: 0.12em;
     text-transform: uppercase;
-    color: var(--gray-500);
-    margin-bottom: 3rem;
-    font-weight: 500;
+    color: var(--gray-400);
+    font-weight: 600;
+    text-align: center;
+    margin-bottom: 1rem;
   }
 
-  /* SCROLL REVEAL BASE */
-  .reveal {
-    opacity: 0;
-    transform: translateY(32px);
-    transition: opacity 0.7s ease, transform 0.7s ease;
-  }
-
-  .reveal.visible {
-    opacity: 1;
-    transform: translateY(0);
-  }
-
-  /* MISSION */
-  .mission-text {
-    font-size: clamp(1.75rem, 4vw, 3rem);
+  .section-title {
+    font-size: clamp(2rem, 4vw, 3rem);
     font-weight: 800;
-    line-height: 1.15;
-    letter-spacing: -0.03em;
+    letter-spacing: -0.035em;
+    line-height: 1.1;
     color: var(--black);
-    max-width: 820px;
+    text-align: center;
+    max-width: 600px;
+    margin: 0 auto 1rem;
+  }
+
+  .section-sub {
+    font-size: 1rem;
+    color: var(--gray-500);
+    text-align: center;
+    max-width: 460px;
+    margin: 0 auto 3rem;
+    line-height: 1.65;
+  }
+
+  /* ── MISSION ── */
+  .mission-card {
+    background: var(--surface);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-md);
+    border: 1px solid rgba(0,0,0,0.05);
+    padding: 3.5rem;
+    text-align: center;
+  }
+
+  .mission-text {
+    font-size: clamp(1.75rem, 4vw, 2.75rem);
+    font-weight: 800;
+    letter-spacing: -0.035em;
+    line-height: 1.15;
+    color: var(--black);
+    max-width: 640px;
+    margin: 0 auto;
   }
 
   .mission-text em {
@@ -278,10 +452,8 @@
     color: var(--gray-400);
   }
 
-  /* SCROLL STORY — HOW IT WORKS */
-  .story-outer {
-    position: relative;
-  }
+  /* ── HOW IT WORKS — SCROLL STORY ── */
+  .story-outer { position: relative; }
 
   .story-sticky-wrap {
     position: sticky;
@@ -294,50 +466,41 @@
   }
 
   .story-sticky-inner {
-    max-width: 1100px;
+    max-width: 1020px;
     width: 100%;
     margin: 0 auto;
-    padding: 0 3rem;
+    padding: 0 1.5rem;
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 4rem;
+    gap: 5rem;
     align-items: center;
   }
 
-  .story-left {
-    position: relative;
-    height: 260px;
-  }
+  .story-left { position: relative; height: 220px; }
 
   .story-num {
     position: absolute;
     top: 0; left: 0;
-    font-size: clamp(6rem, 14vw, 10rem);
+    font-size: clamp(7rem, 16vw, 11rem);
     font-weight: 900;
     letter-spacing: -0.06em;
     line-height: 1;
-    color: var(--gray-100);
+    color: var(--gray-200);
     transition: opacity 0.5s ease, transform 0.5s ease;
     opacity: 0;
     transform: translateY(20px);
     user-select: none;
   }
 
-  .story-num.active {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  .story-num.active { opacity: 1; transform: translateY(0); }
 
-  .story-right {
-    position: relative;
-    height: 180px;
-  }
+  .story-right { position: relative; height: 200px; }
 
   .story-step {
     position: absolute;
     top: 0; left: 0;
     opacity: 0;
-    transform: translateY(24px);
+    transform: translateY(20px);
     transition: opacity 0.5s ease, transform 0.5s ease;
     pointer-events: none;
   }
@@ -348,13 +511,18 @@
     pointer-events: auto;
   }
 
-  .story-step-tag {
+  .story-step-badge {
+    display: inline-flex;
+    align-items: center;
+    background: var(--surface);
+    border: 1px solid var(--gray-200);
+    border-radius: 100px;
+    padding: 0.25rem 0.75rem;
     font-size: 0.75rem;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
+    font-weight: 600;
     color: var(--gray-500);
-    font-weight: 500;
-    margin-bottom: 1rem;
+    margin-bottom: 1.25rem;
+    box-shadow: var(--shadow-sm);
   }
 
   .story-step-title {
@@ -370,23 +538,15 @@
     font-size: 1rem;
     color: var(--gray-500);
     line-height: 1.65;
-    max-width: 400px;
+    max-width: 380px;
   }
 
-  /* scroll triggers — invisible spacers */
-  .story-steps-scroll {
-    display: flex;
-    flex-direction: column;
-  }
+  .story-steps-scroll { display: flex; flex-direction: column; }
+  .story-trigger { height: 100vh; }
 
-  .story-trigger {
-    height: 100vh;
-  }
-
-  /* progress dots */
   .story-dots {
     position: absolute;
-    right: 3rem;
+    right: 1.5rem;
     top: 50%;
     transform: translateY(-50%);
     display: flex;
@@ -395,229 +555,324 @@
   }
 
   .story-dot {
-    width: 6px;
-    height: 6px;
+    width: 6px; height: 6px;
     border-radius: 50%;
-    background: var(--gray-300);
+    background: var(--gray-200);
     transition: background 0.3s, transform 0.3s;
   }
 
   .story-dot.active {
     background: var(--black);
-    transform: scale(1.4);
+    transform: scale(1.5);
   }
 
-  /* VALUES */
+  /* ── VALUES ── */
   .values-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 1.25rem;
+    gap: 1rem;
   }
 
   .value-card {
-    padding: 2rem;
-    background: rgba(255,255,255,0.55);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    box-shadow: 0 2px 8px rgba(0,0,0,0.06), 0 8px 24px rgba(0,0,0,0.05);
-    transition: box-shadow 0.25s ease, transform 0.25s ease, opacity 0.6s ease;
+    background: var(--surface);
+    border-radius: var(--radius);
+    border: 1px solid rgba(0,0,0,0.05);
+    box-shadow: var(--shadow-sm);
+    padding: 1.75rem;
     opacity: 0;
-    transform: translateY(28px);
+    transform: translateY(24px);
+    transition: opacity 0.6s ease, transform 0.6s ease, box-shadow 0.25s ease;
   }
 
-  .value-card.visible {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  .value-card.visible { opacity: 1; transform: translateY(0); }
 
   .value-card:hover {
-    box-shadow: 0 4px 16px rgba(0,0,0,0.09), 0 16px 40px rgba(0,0,0,0.08);
-    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+    transform: translateY(-3px);
   }
 
-  .value-card.visible:hover {
-    transform: translateY(-2px);
+  .value-card.visible:hover { transform: translateY(-3px); }
+
+  .value-icon {
+    width: 36px; height: 36px;
+    background: var(--bg);
+    border-radius: 8px;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
   }
 
   .value-title {
-    font-size: 1rem;
+    font-size: 0.9375rem;
     font-weight: 700;
     color: var(--black);
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.375rem;
     letter-spacing: -0.01em;
   }
 
   .value-desc {
-    font-size: 0.875rem;
+    font-size: 0.8125rem;
     color: var(--gray-500);
     line-height: 1.65;
   }
 
-  /* CASES */
-  .cases-placeholder {
-    padding: 5rem 2rem;
-    border: 1px dashed var(--gray-300);
+  /* ── CASES ── */
+  .cases-card {
+    background: var(--surface);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-sm);
+    border: 1px solid rgba(0,0,0,0.05);
+    padding: 4rem 2rem;
     text-align: center;
-    border-radius: 4px;
-    background: rgba(255,255,255,0.4);
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
   }
 
-  .cases-diamond {
-    font-size: 1.25rem;
-    display: block;
-    margin-bottom: 1rem;
-    color: var(--gray-300);
+  .cases-card p { color: var(--gray-400); font-size: 0.9375rem; }
+  .cases-diamond { display: block; font-size: 1.25rem; color: var(--gray-200); margin-bottom: 0.75rem; }
+
+  /* ── CONTACT ── */
+  .contact-card {
+    background: var(--black);
+    border-radius: var(--radius);
+    padding: 4rem 3rem;
+    text-align: center;
+    overflow: hidden;
+    position: relative;
   }
 
-  .cases-placeholder p {
-    color: var(--gray-500);
-    font-size: 0.9375rem;
-  }
-
-  /* CONTACT CTA */
-  .contact-cta {
-    padding: 6rem 3rem;
-    max-width: 1100px;
-    margin: 0 auto;
+  .contact-card::before {
+    content: '';
+    position: absolute;
+    top: -60%; left: 50%;
+    transform: translateX(-50%);
+    width: 600px; height: 400px;
+    background: radial-gradient(ellipse, rgba(255,255,255,0.06) 0%, transparent 70%);
+    pointer-events: none;
   }
 
   .contact-headline {
-    font-size: clamp(2rem, 5vw, 3.75rem);
+    font-size: clamp(2rem, 5vw, 3.5rem);
     font-weight: 900;
     letter-spacing: -0.04em;
     line-height: 1.05;
-    color: var(--black);
-    margin-bottom: 2.5rem;
+    color: var(--surface);
+    margin-bottom: 0.75rem;
+  }
+
+  .contact-sub {
+    color: rgba(255,255,255,0.5);
+    font-size: 1rem;
+    margin-bottom: 2rem;
   }
 
   .contact-btn {
     display: inline-flex;
     align-items: center;
     gap: 0.5rem;
-    background: var(--black);
-    color: var(--white);
+    background: var(--surface);
+    color: var(--black);
     text-decoration: none;
-    padding: 1rem 2.25rem;
+    padding: 0.875rem 2rem;
     border-radius: 100px;
     font-size: 1rem;
-    font-weight: 500;
+    font-weight: 600;
     transition: opacity 0.2s;
+    box-shadow: 0 2px 12px rgba(255,255,255,0.15);
   }
 
-  .contact-btn:hover { opacity: 0.72; }
+  .contact-btn:hover { opacity: 0.85; }
 
-  /* FOOTER */
-  footer { border-top: 1px solid var(--gray-300); }
-
-  .footer-inner {
-    max-width: 1100px;
+  /* ── FOOTER ── */
+  footer {
+    max-width: 1020px;
     margin: 0 auto;
-    padding: 2.5rem 3rem;
+    padding: 2rem 1.5rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    border-top: 1px solid var(--gray-200);
   }
 
-  .footer-logo {
-    font-size: 1.125rem;
-    font-weight: 800;
-    letter-spacing: -0.03em;
+  .footer-logo { font-size: 1rem; font-weight: 800; letter-spacing: -0.03em; }
+  .footer-right { font-size: 0.8125rem; color: var(--gray-400); }
+
+  /* ── REVEAL ── */
+  .reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
   }
 
-  .footer-right {
-    font-size: 0.8125rem;
-    color: var(--gray-500);
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  /* ── DIVIDER ── */
+  .divider {
+    max-width: 1020px;
+    margin: 0 auto;
+    border: none;
+    border-top: 1px solid var(--gray-200);
   }
 
-  /* MOBILE */
+  /* ── MOBILE ── */
   @media (prefers-reduced-motion: reduce) {
-    .reveal, .value-card, .hero-label, .hero-headline, .hero-sub, .hero-actions {
-      opacity: 1; transform: none; animation: none;
-    }
+    .reveal, .value-card { opacity: 1; transform: none; transition: none; }
+    .hero-badge, .hero-headline, .hero-sub, .hero-actions, .hero-mock { opacity: 1; transform: none; animation: none; }
     .flip-word.exit, .flip-word.enter { animation: none; }
   }
 
   @media (max-width: 768px) {
-    nav { padding: 1.25rem 1.5rem; }
+    nav { width: calc(100% - 2rem); }
     .nav-links { display: none; }
-    .hero { padding: 7rem 1.5rem 3rem; }
-    .section-inner { padding: 4rem 1.5rem; }
-    .contact-cta { padding: 4rem 1.5rem; }
-    .footer-inner { flex-direction: column; gap: 1rem; text-align: center; padding: 2rem 1.5rem; }
+    .mock-body { grid-template-columns: 1fr; }
+    .mock-sidebar { display: none; }
     .values-grid { grid-template-columns: 1fr 1fr; }
-
-    /* story becomes simple stacked on mobile */
-    .story-sticky-wrap { position: static; height: auto; padding: 4rem 0 2rem; }
-    .story-sticky-inner { grid-template-columns: 1fr; gap: 0; padding: 0 1.5rem; }
+    .story-sticky-wrap { position: static; height: auto; padding: 4rem 0 0; }
+    .story-sticky-inner { grid-template-columns: 1fr; gap: 0; }
     .story-left { display: none; }
     .story-right { position: static; height: auto; }
-    .story-step { position: static; opacity: 1; transform: none; margin-bottom: 3rem; }
+    .story-step { position: static; opacity: 1; transform: none; margin-bottom: 2.5rem; }
     .story-trigger { display: none; }
     .story-dots { display: none; }
+    .contact-card { padding: 3rem 1.5rem; }
   }
 
   @media (max-width: 480px) {
     .values-grid { grid-template-columns: 1fr; }
+    .mock-stats { grid-template-columns: 1fr 1fr; }
   }
 </style>
 </head>
 <body>
 
-<canvas id="gradient-canvas"></canvas>
-
+<!-- NAV -->
 <nav id="navbar">
   <a class="logo" href="#">sb.</a>
   <ul class="nav-links">
     <li><a href="#mission">Misión</a></li>
-    <li><a href="#how">Cómo funciona</a></li>
+    <li><a href="#how">Proceso</a></li>
     <li><a href="#values">Valores</a></li>
     <li><a href="#cases">Casos</a></li>
   </ul>
-  <a class="nav-cta" href="#contact">Hablemos</a>
+  <a class="nav-cta" href="#contact">
+    Hablemos
+    <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+      <path d="M2.5 7h9M8 3.5l3.5 3.5L8 10.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </a>
 </nav>
 
 <main>
 
   <!-- HERO -->
   <div class="hero">
-    <p class="hero-label">Digital solutions portfolio</p>
+
+    <div class="hero-badge">
+      <div class="badge-dot"><span>sb.</span></div>
+      Portafolio de soluciones digitales
+    </div>
+
     <h1 class="hero-headline">
       Simple, pero<br>
       <span class="flip-word-wrapper" aria-live="polite">
         <span class="flip-word" id="flip-word">efectivo.</span>
       </span>
     </h1>
+
     <p class="hero-sub">
       Construimos <strong>soluciones como organismos vivos</strong> que resuelven el mayor dolor de tu negocio. Tecnología robusta, sin burocracia y con skin in the game.
     </p>
+
     <div class="hero-actions">
-      <a class="btn-primary" href="#cases">Ver casos de éxito</a>
-      <a class="btn-ghost" href="#how">
+      <a class="btn-primary" href="#cases">
+        Ver casos de éxito
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+          <path d="M2.5 7h9M8 3.5l3.5 3.5L8 10.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </a>
+      <a class="btn-secondary" href="#how">
         Cómo funciona
-        <svg class="arrow" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-          <path d="M3 8h10M9 4l4 4-4 4" stroke="#0A0A0A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+          <path d="M2.5 7h9M8 3.5l3.5 3.5L8 10.5" stroke="#6B7280" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
         </svg>
       </a>
     </div>
-  </div>
 
-  <hr class="divider">
+    <!-- PRODUCT MOCK -->
+    <div class="hero-mock">
+      <div class="mock-bar">
+        <div class="mock-dot red"></div>
+        <div class="mock-dot amber"></div>
+        <div class="mock-dot green"></div>
+      </div>
+      <div class="mock-body">
+        <div class="mock-sidebar">
+          <div class="mock-menu-item active">
+            <div class="mock-icon"></div> Panel
+          </div>
+          <div class="mock-menu-item">
+            <div class="mock-icon"></div> Clientes
+          </div>
+          <div class="mock-menu-item">
+            <div class="mock-icon"></div> Análisis
+          </div>
+          <div class="mock-menu-item">
+            <div class="mock-icon"></div> Reportes
+          </div>
+          <div class="mock-menu-item">
+            <div class="mock-icon"></div> Ajustes
+          </div>
+        </div>
+        <div class="mock-content">
+          <div class="mock-stats">
+            <div class="mock-stat">
+              <div class="mock-stat-label">Ingresos</div>
+              <div class="mock-stat-value">$48.2K</div>
+              <div class="mock-stat-delta">+12.4%</div>
+            </div>
+            <div class="mock-stat">
+              <div class="mock-stat-label">Clientes</div>
+              <div class="mock-stat-value">1,284</div>
+              <div class="mock-stat-delta">+8.1%</div>
+            </div>
+            <div class="mock-stat">
+              <div class="mock-stat-label">Retención</div>
+              <div class="mock-stat-value">94.7%</div>
+              <div class="mock-stat-delta">+2.3%</div>
+            </div>
+          </div>
+          <div class="mock-chart">
+            <div class="mock-bar-item" style="height:40%"></div>
+            <div class="mock-bar-item" style="height:55%"></div>
+            <div class="mock-bar-item" style="height:45%"></div>
+            <div class="mock-bar-item" style="height:70%"></div>
+            <div class="mock-bar-item hi" style="height:60%"></div>
+            <div class="mock-bar-item" style="height:80%"></div>
+            <div class="mock-bar-item hi" style="height:90%"></div>
+            <div class="mock-bar-item" style="height:75%"></div>
+            <div class="mock-bar-item hi" style="height:95%"></div>
+            <div class="mock-bar-item" style="height:65%"></div>
+            <div class="mock-bar-item" style="height:85%"></div>
+            <div class="mock-bar-item hi" style="height:100%"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
 
   <!-- MISSION -->
-  <div class="section-inner" id="mission">
-    <p class="section-tag reveal">Misión</p>
-    <p class="mission-text reveal" style="transition-delay: 0.1s;">
-      Resolver problemas reales creando <em>herramientas brutalmente simples.</em>
-    </p>
+  <div class="section-wrap" id="mission">
+    <div class="mission-card reveal">
+      <p class="section-tag" style="margin-bottom:1.5rem;">Misión</p>
+      <p class="mission-text">
+        Resolver problemas reales creando <em>herramientas brutalmente simples.</em>
+      </p>
+    </div>
   </div>
 
-  <hr class="divider">
-
-  <!-- HOW IT WORKS — SCROLL STORY -->
+  <!-- HOW IT WORKS -->
   <section id="how" class="story-outer">
-
     <div class="story-sticky-wrap">
       <div class="story-sticky-inner">
 
@@ -630,22 +885,22 @@
 
         <div class="story-right">
           <div class="story-step" id="step-0">
-            <p class="story-step-tag">Cómo funciona</p>
+            <div class="story-step-badge">Proceso</div>
             <p class="story-step-title">Identificamos</p>
             <p class="story-step-desc">Entendemos el problema real. No el síntoma, no la suposición. El dolor verdadero que frena el negocio.</p>
           </div>
           <div class="story-step" id="step-1">
-            <p class="story-step-tag">Cómo funciona</p>
+            <div class="story-step-badge">Proceso</div>
             <p class="story-step-title">Proponemos</p>
             <p class="story-step-desc">Diseñamos la solución más simple posible. Sin capas innecesarias, sin tecnología por tecnología.</p>
           </div>
           <div class="story-step" id="step-2">
-            <p class="story-step-tag">Cómo funciona</p>
+            <div class="story-step-badge">Proceso</div>
             <p class="story-step-title">Iteramos</p>
             <p class="story-step-desc">Lanzamos rápido y aprendemos con uso real. Cada ciclo acerca la herramienta a lo que el negocio necesita.</p>
           </div>
           <div class="story-step" id="step-3">
-            <p class="story-step-tag">Cómo funciona</p>
+            <div class="story-step-badge">Proceso</div>
             <p class="story-step-title">Ajustamos</p>
             <p class="story-step-desc">La solución evoluciona con el negocio. No es un proyecto cerrado, es un organismo vivo.</p>
           </div>
@@ -660,79 +915,80 @@
 
       </div>
     </div>
-
     <div class="story-steps-scroll">
       <div class="story-trigger" data-step="0"></div>
       <div class="story-trigger" data-step="1"></div>
       <div class="story-trigger" data-step="2"></div>
       <div class="story-trigger" data-step="3"></div>
     </div>
-
   </section>
 
-  <hr class="divider">
-
   <!-- VALUES -->
-  <div class="section-inner" id="values">
+  <div class="section-wrap" id="values">
     <p class="section-tag reveal">Nuestros valores</p>
+    <h2 class="section-title reveal" style="transition-delay:0.1s;">Lo que nos define</h2>
+    <p class="section-sub reveal" style="transition-delay:0.2s;">Cuatro principios que guían cada decisión, cada línea de código y cada conversación con un cliente.</p>
     <div class="values-grid">
       <div class="value-card" data-delay="0">
+        <div class="value-icon">◯</div>
         <p class="value-title">Cero burocracia</p>
         <p class="value-desc">Diagnóstico directo al problema. Sin reuniones infinitas ni procesos que ralentizan la solución.</p>
       </div>
       <div class="value-card" data-delay="1">
+        <div class="value-icon">◈</div>
         <p class="value-title">Skin in the game</p>
         <p class="value-desc">Nos involucramos de verdad. Tu problema es nuestro problema. El éxito es compartido.</p>
       </div>
       <div class="value-card" data-delay="2">
+        <div class="value-icon">◇</div>
         <p class="value-title">Simplicidad radical</p>
         <p class="value-desc">La solución más simple que funciona. Sin complejidad innecesaria. Diseñado para que cualquiera lo use.</p>
       </div>
       <div class="value-card" data-delay="3">
+        <div class="value-icon">△</div>
         <p class="value-title">Tecnología robusta</p>
         <p class="value-desc">Construimos para durar y escalar. Solidez técnica al servicio de la simplicidad, no al revés.</p>
       </div>
     </div>
   </div>
 
-  <hr class="divider">
-
   <!-- CASES -->
-  <div class="section-inner" id="cases">
+  <div class="section-wrap" id="cases">
     <p class="section-tag reveal">Casos de éxito</p>
-    <div class="cases-placeholder reveal" style="transition-delay: 0.1s;">
+    <h2 class="section-title reveal" style="transition-delay:0.1s;">Resultados reales</h2>
+    <p class="section-sub reveal" style="transition-delay:0.2s;">Pronto compartiremos las historias de los negocios que hemos transformado.</p>
+    <div class="cases-card reveal" style="transition-delay:0.3s;">
       <span class="cases-diamond">◇</span>
       <p>Los primeros casos de éxito llegan pronto.</p>
     </div>
   </div>
 
-  <hr class="divider">
-
   <!-- CONTACT -->
-  <div class="contact-cta" id="contact">
-    <p class="contact-headline reveal">¿Tienes un<br>problema real?</p>
-    <a class="contact-btn reveal" style="transition-delay: 0.15s;" href="mailto:hola@tudominio.com">
-      Cuéntanoslo
-      <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-        <path d="M3 8h10M9 4l4 4-4 4" stroke="#FFFFFF" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-      </svg>
-    </a>
+  <div class="section-wrap" id="contact" style="padding-bottom:3rem;">
+    <div class="contact-card reveal">
+      <p class="contact-headline">¿Tienes un<br>problema real?</p>
+      <p class="contact-sub">Cuéntanos qué te frena. Lo resolvemos.</p>
+      <a class="contact-btn" href="mailto:hola@tudominio.com">
+        Escribenos
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+          <path d="M2.5 7h9M8 3.5l3.5 3.5L8 10.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </a>
+    </div>
   </div>
 
 </main>
 
 <footer>
-  <div class="footer-inner">
-    <span class="footer-logo">sb.</span>
-    <span class="footer-right">© 2025. Simple, pero poderoso.</span>
-  </div>
+  <span class="footer-logo">sb.</span>
+  <span class="footer-right">© 2025. Simple, pero poderoso.</span>
 </footer>
 
 <script>
   // Navbar
   const navbar = document.getElementById('navbar');
   window.addEventListener('scroll', () => {
-    navbar.classList.toggle('scrolled', window.scrollY > 10);
+    navbar.classList.toggle('scrolled', window.scrollY > 20);
   }, { passive: true });
 
   // Flip animation
@@ -757,130 +1013,35 @@
     flipTo(words[current]);
   }, 2200);
 
-  // Generic scroll reveal
+  // Scroll reveal
   const revealEls = document.querySelectorAll('.reveal');
-  const revealObserver = new IntersectionObserver((entries) => {
+  const revealObs = new IntersectionObserver((entries) => {
     entries.forEach(e => {
-      if (e.isIntersecting) {
-        e.target.classList.add('visible');
-        revealObserver.unobserve(e.target);
-      }
+      if (e.isIntersecting) { e.target.classList.add('visible'); revealObs.unobserve(e.target); }
     });
-  }, { threshold: 0.15 });
-
-  revealEls.forEach(el => revealObserver.observe(el));
+  }, { threshold: 0.12 });
+  revealEls.forEach(el => revealObs.observe(el));
 
   // Value cards stagger
   const valueCards = document.querySelectorAll('.value-card');
-  const valueObserver = new IntersectionObserver((entries) => {
+  const valueObs = new IntersectionObserver((entries) => {
     entries.forEach(e => {
       if (e.isIntersecting) {
-        const delay = parseInt(e.target.dataset.delay) * 100;
+        const delay = parseInt(e.target.dataset.delay) * 110;
         setTimeout(() => e.target.classList.add('visible'), delay);
-        valueObserver.unobserve(e.target);
+        valueObs.unobserve(e.target);
       }
     });
   }, { threshold: 0.1 });
+  valueCards.forEach(el => valueObs.observe(el));
 
-  valueCards.forEach(el => valueObserver.observe(el));
-
-  // GRADIENT CANVAS — mouse-reactive aurora
-  (function() {
-    const canvas = document.getElementById('gradient-canvas');
-    const ctx    = canvas.getContext('2d');
-
-    let W, H;
-    function resize() {
-      W = canvas.width  = window.innerWidth;
-      H = canvas.height = window.innerHeight;
-    }
-    resize();
-    window.addEventListener('resize', resize, { passive: true });
-
-    // Mouse position with inertia
-    let mouseX = W * 0.5, mouseY = H * 0.4;
-    let targetX = mouseX, targetY = mouseY;
-
-    window.addEventListener('mousemove', e => {
-      targetX = e.clientX;
-      targetY = e.clientY;
-    }, { passive: true });
-
-    // Color orbs — lavanda, menta, durazno, azul cielo
-    const orbs = [
-      { ox: 0.25, oy: 0.30, r: 0.65, color: [210, 190, 255] }, // lavanda
-      { ox: 0.72, oy: 0.60, r: 0.55, color: [180, 245, 220] }, // menta
-      { ox: 0.50, oy: 0.80, r: 0.50, color: [255, 210, 185] }, // durazno
-      { ox: 0.80, oy: 0.20, r: 0.45, color: [185, 225, 255] }, // azul cielo
-    ];
-
-    // Each orb floats gently on its own
-    const drifts = orbs.map(() => ({
-      angle: Math.random() * Math.PI * 2,
-      speed: 0.0003 + Math.random() * 0.0002,
-      radius: 0.04 + Math.random() * 0.04,
-    }));
-
-    let frame = 0;
-
-    function lerp(a, b, t) { return a + (b - a) * t; }
-
-    function draw(ts) {
-      frame = ts;
-      // Inertia
-      mouseX = lerp(mouseX, targetX, 0.04);
-      mouseY = lerp(mouseY, targetY, 0.04);
-
-      ctx.clearRect(0, 0, W, H);
-
-      // Base white
-      ctx.fillStyle = '#FFFFFF';
-      ctx.fillRect(0, 0, W, H);
-
-      // Draw each orb
-      orbs.forEach((orb, i) => {
-        const d = drifts[i];
-        d.angle += d.speed;
-
-        // Orb center: base position + drift + mouse influence
-        const mx = (mouseX / W - 0.5) * 0.18;
-        const my = (mouseY / H - 0.5) * 0.18;
-        const cx = (orb.ox + Math.cos(d.angle) * d.radius + mx * (1 - i * 0.15)) * W;
-        const cy = (orb.oy + Math.sin(d.angle) * d.radius + my * (1 - i * 0.15)) * H;
-        const r  = orb.r * Math.max(W, H);
-
-        const grad = ctx.createRadialGradient(cx, cy, 0, cx, cy, r);
-        const [rc, gc, bc] = orb.color;
-        grad.addColorStop(0,   `rgba(${rc},${gc},${bc},0.55)`);
-        grad.addColorStop(0.5, `rgba(${rc},${gc},${bc},0.18)`);
-        grad.addColorStop(1,   `rgba(${rc},${gc},${bc},0)`);
-
-        ctx.globalCompositeOperation = 'multiply';
-        ctx.fillStyle = grad;
-        ctx.fillRect(0, 0, W, H);
-      });
-
-      // Soft white vignette to keep edges clean
-      ctx.globalCompositeOperation = 'source-over';
-      const vig = ctx.createRadialGradient(W/2, H/2, H*0.2, W/2, H/2, H*0.9);
-      vig.addColorStop(0, 'rgba(255,255,255,0)');
-      vig.addColorStop(1, 'rgba(255,255,255,0.45)');
-      ctx.fillStyle = vig;
-      ctx.fillRect(0, 0, W, H);
-
-      requestAnimationFrame(draw);
-    }
-
-    requestAnimationFrame(draw);
-  })();
-
-
-  const storyOuter   = document.querySelector('.story-outer');
-  const triggers     = document.querySelectorAll('.story-trigger');
-  const steps        = document.querySelectorAll('.story-step');
-  const nums         = document.querySelectorAll('.story-num');
-  const dots         = document.querySelectorAll('.story-dot');
-  let activeStep     = -1;
+  // Scroll story
+  const storyOuter = document.querySelector('.story-outer');
+  const triggers   = document.querySelectorAll('.story-trigger');
+  const steps      = document.querySelectorAll('.story-step');
+  const nums       = document.querySelectorAll('.story-num');
+  const dots       = document.querySelectorAll('.story-dot');
+  let activeStep   = -1;
 
   function activateStep(index) {
     if (index === activeStep) return;
@@ -892,18 +1053,13 @@
 
   function onScroll() {
     if (!storyOuter) return;
-    const outerRect = storyOuter.getBoundingClientRect();
-    const outerH    = storyOuter.offsetHeight;
-    const scrolled  = -outerRect.top;
-    const progress  = scrolled / (outerH - window.innerHeight);
-
+    const rect     = storyOuter.getBoundingClientRect();
+    const outerH   = storyOuter.offsetHeight;
+    const scrolled = -rect.top;
+    const progress = scrolled / (outerH - window.innerHeight);
     if (progress < 0 || progress > 1) return;
-
-    const stepIndex = Math.min(
-      Math.floor(progress * triggers.length),
-      triggers.length - 1
-    );
-    activateStep(stepIndex);
+    const idx = Math.min(Math.floor(progress * triggers.length), triggers.length - 1);
+    activateStep(idx);
   }
 
   activateStep(0);
