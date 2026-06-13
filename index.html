@@ -29,11 +29,18 @@
 
   body {
     font-family: 'Inter', sans-serif;
-    background: radial-gradient(ellipse 80% 60% at 50% 0%, #FFFFFF 0%, #E8E8E8 55%, #D4D4D4 100%);
-    background-attachment: fixed;
+    background: #F0F0F0;
     color: var(--black);
     line-height: 1.6;
     overflow-x: hidden;
+  }
+
+  #aurora-canvas {
+    position: fixed;
+    inset: 0;
+    width: 100%; height: 100%;
+    z-index: -1;
+    pointer-events: none;
   }
 
   /* ── NAV ── */
@@ -606,6 +613,8 @@
 </head>
 <body>
 
+<canvas id="aurora-canvas"></canvas>
+
 <!-- NAV -->
 <nav id="navbar">
   <a class="logo" href="#">sb.</a>
@@ -873,6 +882,84 @@
   activateStep(0);
   window.addEventListener('scroll', onScroll, { passive: true });
   onScroll();
+
+  // AURORA — gray & white canvas background
+  (function() {
+    const canvas = document.getElementById('aurora-canvas');
+    const ctx    = canvas.getContext('2d');
+    let W, H;
+
+    function resize() {
+      W = canvas.width  = window.innerWidth;
+      H = canvas.height = window.innerHeight;
+    }
+    resize();
+    window.addEventListener('resize', resize, { passive: true });
+
+    let mx = W * 0.5, my = H * 0.3;
+    let tx = mx, ty = my;
+
+    window.addEventListener('mousemove', e => {
+      tx = e.clientX;
+      ty = e.clientY;
+    }, { passive: true });
+
+    // Orbs: all grays and whites, neutral tones only
+    const orbs = [
+      { ox: 0.20, oy: 0.15, r: 0.70, color: [255, 255, 255] }, // pure white
+      { ox: 0.75, oy: 0.30, r: 0.60, color: [220, 220, 220] }, // light gray
+      { ox: 0.50, oy: 0.70, r: 0.55, color: [235, 235, 235] }, // off-white
+      { ox: 0.10, oy: 0.65, r: 0.50, color: [200, 200, 200] }, // mid gray
+      { ox: 0.85, oy: 0.75, r: 0.45, color: [245, 245, 245] }, // near white
+    ];
+
+    const drifts = orbs.map(() => ({
+      angle: Math.random() * Math.PI * 2,
+      speed: 0.00025 + Math.random() * 0.00015,
+      radius: 0.05 + Math.random() * 0.05,
+    }));
+
+    function lerp(a, b, t) { return a + (b - a) * t; }
+
+    function draw(ts) {
+      mx = lerp(mx, tx, 0.03);
+      my = lerp(my, ty, 0.03);
+
+      // Base: light gray
+      ctx.fillStyle = '#E4E4E4';
+      ctx.fillRect(0, 0, W, H);
+
+      orbs.forEach((orb, i) => {
+        const d = drifts[i];
+        d.angle += d.speed;
+
+        const mfx = (mx / W - 0.5) * 0.14 * (1 - i * 0.1);
+        const mfy = (my / H - 0.5) * 0.14 * (1 - i * 0.1);
+        const cx  = (orb.ox + Math.cos(d.angle) * d.radius + mfx) * W;
+        const cy  = (orb.oy + Math.sin(d.angle) * d.radius + mfy) * H;
+        const r   = orb.r * Math.max(W, H);
+
+        const [rc, gc, bc] = orb.color;
+        const grad = ctx.createRadialGradient(cx, cy, 0, cx, cy, r);
+        grad.addColorStop(0,   `rgba(${rc},${gc},${bc},0.9)`);
+        grad.addColorStop(0.4, `rgba(${rc},${gc},${bc},0.4)`);
+        grad.addColorStop(1,   `rgba(${rc},${gc},${bc},0)`);
+
+        ctx.globalCompositeOperation = 'lighter';
+        ctx.fillStyle = grad;
+        ctx.fillRect(0, 0, W, H);
+      });
+
+      // Clamp brightness — overlay a semi-transparent gray to keep neutral
+      ctx.globalCompositeOperation = 'source-over';
+      ctx.fillStyle = 'rgba(210,210,210,0.18)';
+      ctx.fillRect(0, 0, W, H);
+
+      requestAnimationFrame(draw);
+    }
+
+    requestAnimationFrame(draw);
+  })();
 </script>
 
 </body>
