@@ -171,8 +171,11 @@
     font-weight: 900;
     letter-spacing: -0.04em;
     line-height: 1.05;
-    color: var(--black);
     transform-origin: center top;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-image: linear-gradient(135deg, #6366F1, #A855F7);
   }
 
   .flip-word.exit { animation: flipOut 0.25s ease-in forwards; }
@@ -593,17 +596,6 @@
 
   .value-card.visible:hover { transform: translateY(-3px); }
 
-  .value-icon {
-    width: 36px; height: 36px;
-    background: var(--bg);
-    border-radius: 8px;
-    margin-bottom: 1rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1rem;
-  }
-
   .value-title {
     font-size: 0.9375rem;
     font-weight: 700;
@@ -930,22 +922,18 @@
     <p class="section-sub reveal" style="transition-delay:0.2s;">Cuatro principios que guían cada decisión, cada línea de código y cada conversación con un cliente.</p>
     <div class="values-grid">
       <div class="value-card" data-delay="0">
-        <div class="value-icon">◯</div>
         <p class="value-title">Cero burocracia</p>
         <p class="value-desc">Diagnóstico directo al problema. Sin reuniones infinitas ni procesos que ralentizan la solución.</p>
       </div>
       <div class="value-card" data-delay="1">
-        <div class="value-icon">◈</div>
         <p class="value-title">Skin in the game</p>
         <p class="value-desc">Nos involucramos de verdad. Tu problema es nuestro problema. El éxito es compartido.</p>
       </div>
       <div class="value-card" data-delay="2">
-        <div class="value-icon">◇</div>
         <p class="value-title">Simplicidad radical</p>
         <p class="value-desc">La solución más simple que funciona. Sin complejidad innecesaria. Diseñado para que cualquiera lo use.</p>
       </div>
       <div class="value-card" data-delay="3">
-        <div class="value-icon">△</div>
         <p class="value-title">Tecnología robusta</p>
         <p class="value-desc">Construimos para durar y escalar. Solidez técnica al servicio de la simplicidad, no al revés.</p>
       </div>
@@ -992,17 +980,29 @@
   }, { passive: true });
 
   // Flip animation
-  const words = ["efectivo.", "ágil.", "poderoso.", "robusto.", "escalable.", "humano."];
+  const words = [
+    { text: "efectivo.",  gradient: "linear-gradient(135deg, #6366F1, #A855F7)" },
+    { text: "ágil.",      gradient: "linear-gradient(135deg, #F59E0B, #EF4444)" },
+    { text: "poderoso.",  gradient: "linear-gradient(135deg, #10B981, #3B82F6)" },
+    { text: "robusto.",   gradient: "linear-gradient(135deg, #EC4899, #8B5CF6)" },
+    { text: "escalable.", gradient: "linear-gradient(135deg, #F97316, #EAB308)" },
+    { text: "humano.",    gradient: "linear-gradient(135deg, #14B8A6, #6366F1)" },
+  ];
   let current = 0;
   const flipEl = document.getElementById("flip-word");
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  function flipTo(nextWord) {
-    if (reducedMotion) { flipEl.textContent = nextWord; return; }
+  function flipTo(next) {
+    if (reducedMotion) {
+      flipEl.textContent = next.text;
+      flipEl.style.backgroundImage = next.gradient;
+      return;
+    }
     flipEl.classList.remove("enter");
     flipEl.classList.add("exit");
     setTimeout(() => {
-      flipEl.textContent = nextWord;
+      flipEl.textContent = next.text;
+      flipEl.style.backgroundImage = next.gradient;
       flipEl.classList.remove("exit");
       flipEl.classList.add("enter");
     }, 260);
