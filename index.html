@@ -307,6 +307,39 @@
   .karaoke .w { display: inline-block; margin-right: .22em; color: rgba(0,0,0,.14); transition: color .35s; }
   .karaoke .w.lit { color: var(--ink); }
 
+  /* ── PROCESS BG SVG ── */
+  .proc-bg {
+    position: absolute;
+    right: -8%;
+    top: 50%;
+    transform: translateY(-50%);
+    width: min(52vw, 600px);
+    aspect-ratio: 1;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .pb-spin-cw  { animation: pbspin 28s linear infinite;         transform-origin: 50% 50%; transform-box: fill-box; }
+  .pb-spin-ccw { animation: pbspin 20s linear infinite reverse; transform-origin: 50% 50%; transform-box: fill-box; }
+  .pb-spin-sl  { animation: pbspin 55s linear infinite;         transform-origin: 50% 50%; transform-box: fill-box; }
+
+  @keyframes pbspin { to { transform: rotate(360deg); } }
+
+  .pb-pulse { animation: pbpulse 3s ease-in-out infinite; transform-origin: 50% 50%; transform-box: fill-box; }
+  @keyframes pbpulse { 0%,100%{opacity:.5} 50%{opacity:1} }
+
+  .pb-sat {
+    transition: fill .4s, opacity .4s;
+    fill: rgba(255,255,255,.18);
+    opacity: .5;
+  }
+  .pb-sat.active { fill: var(--blue); opacity: 1; filter: drop-shadow(0 0 4px rgba(26,53,255,.8)); }
+
+  .pb-line { stroke: rgba(255,255,255,.1); stroke-width: .8; fill: none; }
+  .pb-arc  { stroke: rgba(255,255,255,.14); stroke-width: .6; fill: none; }
+  .pb-dot  { fill: rgba(255,255,255,.35); }
+  .pb-center { fill: rgba(26,53,255,.6); animation: pbpulse 2.5s ease-in-out infinite; }
+
   /* ── PROCESS ── */
   .story-outer { position: relative; }
 
@@ -329,7 +362,7 @@
     font-family: 'Barlow Condensed', sans-serif;
     font-size: clamp(8rem,18vw,13rem); font-weight: 900;
     letter-spacing: -.04em; line-height: 1;
-    color: rgba(255,255,255,.05);
+    color: rgba(255,255,255,.22);
     opacity: 0; transform: translateY(20px);
     transition: opacity .5s, transform .5s;
     user-select: none;
@@ -438,40 +471,6 @@
   .foot-item { font-size: .8125rem; color: rgba(255,255,255,.3); }
   .foot-item strong { color: rgba(255,255,255,.65); font-weight: 600; }
 
-  /* ── CONTACT ── */
-  .contact-inner {
-    max-width: 1080px; margin: 0 auto; padding: 8rem 1.5rem;
-    text-align: center; position: relative;
-  }
-
-  .contact-inner::before {
-    content: '';
-    position: absolute; top: 25%; left: 50%; transform: translateX(-50%);
-    width: 700px; height: 350px;
-    background: radial-gradient(ellipse, rgba(255,255,255,.1) 0%, transparent 70%);
-    pointer-events: none;
-  }
-
-  .contact-h {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: clamp(3rem,8vw,7rem); font-weight: 900;
-    letter-spacing: -.01em; text-transform: uppercase;
-    line-height: .9; color: var(--white); margin-bottom: 1rem; position: relative;
-  }
-
-  .contact-s { color: rgba(255,255,255,.55); font-size: 1rem; margin-bottom: 2.5rem; }
-
-  .contact-btn {
-    display: inline-flex; align-items: center; gap: .5rem;
-    background: var(--white); color: var(--blue);
-    text-decoration: none; padding: 1rem 2.25rem; border-radius: 100px;
-    font-size: 1rem; font-weight: 700;
-    box-shadow: 0 4px 32px rgba(0,0,0,.2);
-    transition: opacity .2s, transform .2s;
-  }
-
-  .contact-btn:hover { opacity: .9; transform: translateY(-1px); }
-
   /* ── FOOTER ── */
   footer { border-top: 1px solid rgba(255,255,255,.06); }
 
@@ -511,8 +510,8 @@
     .case-l       { border-right: none; border-bottom: 1px solid rgba(255,255,255,.08); padding: 2rem; }
     .case-r       { padding: 2rem; }
     .case-foot    { padding: 1.25rem 2rem; }
-    .contact-inner { padding: 5rem 1.5rem; }
     #net          { display: none; }
+    .proc-bg      { display: none; }
   }
 
   @media (max-width: 480px) {
@@ -561,7 +560,7 @@
     <li><a href="#values">Valores</a></li>
     <li><a href="#cases">Casos</a></li>
   </ul>
-  <a class="nav-cta" href="#contact">
+  <a class="nav-cta" href="mailto:hola@ibid.co">
     Hablemos
     <svg width="13" height="13" viewBox="0 0 13 13" fill="none" aria-hidden="true">
       <path d="M2 6.5h9M8 3l3.5 3.5L8 10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -615,6 +614,37 @@
   <section id="how" class="story-outer s-dark">
     <div class="story-header"><p class="sec-label reveal">Proceso</p></div>
     <div class="story-sticky">
+
+      <!-- Animated background diagram -->
+      <svg class="proc-bg" viewBox="0 0 400 400" fill="none" aria-hidden="true">
+        <!-- outer dashed ring -->
+        <circle class="pb-arc pb-spin-sl" cx="200" cy="200" r="185" stroke-dasharray="6 10"/>
+        <!-- mid ring -->
+        <circle class="pb-arc pb-spin-ccw" cx="200" cy="200" r="130" stroke-dasharray="3 14" stroke="rgba(255,255,255,.1)"/>
+        <!-- inner ring -->
+        <circle class="pb-arc pb-spin-cw"  cx="200" cy="200" r="75"  stroke-dasharray="2 8"  stroke="rgba(255,255,255,.08)"/>
+        <!-- crosshairs -->
+        <line class="pb-line" x1="200" y1="15"  x2="200" y2="385"/>
+        <line class="pb-line" x1="15"  y1="200" x2="385" y2="200"/>
+        <!-- diagonal tick marks on outer ring -->
+        <line class="pb-line" x1="200" y1="15" x2="200" y2="35" stroke="rgba(255,255,255,.25)" stroke-width="1.5"/>
+        <line class="pb-line" x1="200" y1="365" x2="200" y2="385" stroke="rgba(255,255,255,.25)" stroke-width="1.5"/>
+        <line class="pb-line" x1="15"  y1="200" x2="35"  y2="200" stroke="rgba(255,255,255,.25)" stroke-width="1.5"/>
+        <line class="pb-line" x1="365" y1="200" x2="385" y2="200" stroke="rgba(255,255,255,.25)" stroke-width="1.5"/>
+        <!-- arc segment that spins -->
+        <path class="pb-spin-cw" d="M200 70 A130 130 0 0 1 330 200" stroke="rgba(26,53,255,.5)" stroke-width="1.2" fill="none"/>
+        <!-- 4 satellites on mid ring: top, right, bottom, left -->
+        <circle id="ps0" class="pb-sat" cx="200" cy="70"  r="6"/>
+        <circle id="ps1" class="pb-sat" cx="330" cy="200" r="6"/>
+        <circle id="ps2" class="pb-sat" cx="200" cy="330" r="6"/>
+        <circle id="ps3" class="pb-sat" cx="70"  cy="200" r="6"/>
+        <!-- small orbit dot -->
+        <circle class="pb-dot pb-spin-cw" cx="200" cy="70" r="3" transform-origin="200 200" transform-box="fill-box"/>
+        <!-- center -->
+        <circle class="pb-center" cx="200" cy="200" r="5"/>
+        <circle cx="200" cy="200" r="12" stroke="rgba(26,53,255,.3)" stroke-width=".8" fill="none" class="pb-pulse"/>
+      </svg>
+
       <div class="story-inner">
         <div class="story-left">
           <div class="story-num" id="num-0">01</div>
@@ -635,7 +665,7 @@
           <div class="sdot" id="dot-3"></div>
         </div>
       </div>
-    </div>
+    </div><!-- end story-sticky -->
     <div class="story-scroll">
       <div class="story-trg" data-step="0"></div>
       <div class="story-trg" data-step="1"></div>
@@ -695,14 +725,6 @@
     </div>
   </div>
 
-  <!-- CONTACT: blue -->
-  <div class="s-blue" id="contact">
-    <div class="contact-inner reveal">
-      <p class="contact-h">¿Tienes un<br>problema real?</p>
-      <p class="contact-s">Cuéntanos qué te frena. Lo resolvemos.</p>
-      <a class="contact-btn" href="mailto:hola@ibid.co">Escríbenos <svg width="13" height="13" viewBox="0 0 13 13" fill="none"><path d="M2 6.5h9M8 3l3.5 3.5L8 10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
-    </div>
-  </div>
 
 </main>
 
@@ -765,11 +787,13 @@ const steps   = document.querySelectorAll(".story-step");
 const nums    = document.querySelectorAll(".story-num");
 const dots    = document.querySelectorAll(".sdot");
 let   active  = -1;
+const sats = [0,1,2,3].map(i => document.getElementById("ps"+i));
 function setStep(i) {
   if(i===active) return; active=i;
   steps.forEach((s,j) => s.classList.toggle("on",j===i));
   nums.forEach((n,j)  => n.classList.toggle("on",j===i));
   dots.forEach((d,j)  => d.classList.toggle("on",j===i));
+  sats.forEach((s,j)  => s && s.classList.toggle("active",j===i));
 }
 function onStory() {
   if(!storyEl) return;
@@ -811,19 +835,16 @@ if(svg && !rm) {
   });
   const nodes = nodeIds.map(id => document.getElementById(id));
   const lightS = document.querySelectorAll(".s-white,.s-gray");
-  const blueS  = document.querySelectorAll(".s-blue");
 
   function updateNet() {
     const total = document.documentElement.scrollHeight - window.innerHeight;
     const p = total > 0 ? window.scrollY / total : 0;
 
     // section-aware palette
-    let lt=false, bl=false;
+    let lt=false;
     const mid = window.innerHeight*.5;
     lightS.forEach(el => { const r=el.getBoundingClientRect(); if(r.top<mid&&r.bottom>mid) lt=true; });
-    blueS.forEach( el => { const r=el.getBoundingClientRect(); if(r.top<mid&&r.bottom>mid) bl=true; });
-    svg.classList.toggle("lt",  lt&&!bl);
-    svg.classList.toggle("off", bl);
+    svg.classList.toggle("lt", lt);
 
     // edges
     edges.forEach(({el,len},i) => {
