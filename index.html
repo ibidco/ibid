@@ -377,11 +377,7 @@
   .step-row {
     padding: 1.75rem 0;
     border-top: 1px solid rgba(8,8,15,0.10);
-    opacity: 0;
-    transform: translateY(22px);
-    transition: opacity .6s ease, transform .6s ease;
   }
-  .step-row.on { opacity: 1; transform: translateY(0); }
   .step-row:last-child { border-bottom: 1px solid rgba(8,8,15,0.10); }
 
   .step-inner {
@@ -1123,15 +1119,6 @@ karaoke();
 const revObs = new IntersectionObserver(es => es.forEach(e => { if(e.isIntersecting){ e.target.classList.add("on"); revObs.unobserve(e.target); } }), { threshold:.12 });
 document.querySelectorAll(".reveal").forEach(el => revObs.observe(el));
 
-// ── STEP ROWS — each row observed individually ──
-const stepObs = new IntersectionObserver(es => {
-  es.forEach(e => {
-    if (!e.isIntersecting) return;
-    e.target.classList.add('on');
-    stepObs.unobserve(e.target);
-  });
-}, { threshold: 0.2 });
-document.querySelectorAll('.step-row').forEach(row => stepObs.observe(row));
 
 // ── VALUE CARDS ──
 const valObs = new IntersectionObserver(es => es.forEach(e => { if(e.isIntersecting){ setTimeout(()=>e.target.classList.add("on"), +e.target.dataset.d*100); valObs.unobserve(e.target); } }), { threshold:.1 });
