@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Holding de soluciones tecnológicas que resuelven problemas reales. Sin burocracia, con skin in the game.">
-<title>Simple, pero...</title>
+<meta name="description" content="Labnormally — soluciones tecnológicas extremadamente robustas, pero elegantemente simples. Sin burocracia, con skin in the game.">
+<title>Labnormally</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -214,6 +214,18 @@
     margin-top: 2rem; max-width: 460px;
     line-height: 1.65;
     opacity: 0; animation: fadeUp .7s ease .4s forwards;
+    position: relative; z-index: 1;
+  }
+
+  .hero-lead {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: clamp(1.5rem, 3.5vw, 2.25rem);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: .06em;
+    color: rgba(255,255,255,.45);
+    margin-top: 1.25rem;
+    opacity: 0; animation: fadeUp .7s ease .38s forwards;
     position: relative; z-index: 1;
   }
 
@@ -553,7 +565,7 @@
 
 <!-- NAV -->
 <nav id="nav">
-  <a class="logo" href="#">sb.</a>
+  <a class="logo" href="#">Labnormally</a>
   <ul class="nav-links">
     <li><a href="#mission">Misión</a></li>
     <li><a href="#how">Proceso</a></li>
@@ -572,12 +584,9 @@
 
   <!-- HERO: dark -->
   <div class="hero s-dark">
-    <div class="hero-badge"><span class="badge-pill">Nuevo</span> Portafolio de soluciones digitales</div>
-    <h1 class="hero-headline">
-      Simple, pero<br>
-      <span class="flip-wrap" aria-live="polite"><span class="flip-word" id="fw">efectivo.</span></span>
-    </h1>
-    <p class="hero-sub">Construimos <strong>soluciones como organismos vivos</strong> que resuelven el mayor dolor de tu negocio. Tecnología robusta, sin burocracia y con skin in the game.</p>
+    <h1 class="hero-headline">¿Suena raro?</h1>
+    <p class="hero-lead">Lo sé. Pero la idea es sencilla.</p>
+    <p class="hero-sub">Quiero crear soluciones <strong>extremadamente robustas</strong>, pero elegantemente simples.</p>
     <div class="hero-actions">
       <a class="btn-p" href="#cases">Ver casos de éxito <svg width="13" height="13" viewBox="0 0 13 13" fill="none"><path d="M2 6.5h9M8 3l3.5 3.5L8 10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
       <a class="btn-s" href="#how">Cómo funciona <svg width="13" height="13" viewBox="0 0 13 13" fill="none"><path d="M2 6.5h9M8 3l3.5 3.5L8 10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
@@ -730,31 +739,13 @@
 
 <footer class="s-dark">
   <div class="foot-inner">
-    <span class="foot-logo">sb.</span>
-    <span class="foot-cr">© 2025. Simple, pero poderoso.</span>
+    <span class="foot-logo">Labnormally</span>
+    <span class="foot-cr">© 2025 Labnormally.</span>
   </div>
 </footer>
 
 <script>
-// ── FLIP ──
-const WORDS = [
-  { t:"efectivo.",  g:"linear-gradient(135deg,#FFE04B,#FFB830)" },
-  { t:"ágil.",      g:"linear-gradient(135deg,#FF6B6B,#FF8E53)" },
-  { t:"poderoso.",  g:"linear-gradient(135deg,#A8FF78,#78FFD6)" },
-  { t:"robusto.",   g:"linear-gradient(135deg,#FF9DE2,#C8B6FF)" },
-  { t:"escalable.", g:"linear-gradient(135deg,#FFE04B,#FF6B6B)" },
-  { t:"humano.",    g:"linear-gradient(135deg,#78FFD6,#A8FF78)" },
-];
-let ci = 0;
-const fw = document.getElementById("fw");
 const rm = window.matchMedia("(prefers-reduced-motion:reduce)").matches;
-
-function flipTo(w) {
-  if (rm) { fw.textContent = w.t; fw.style.backgroundImage = w.g; return; }
-  fw.classList.remove("enter"); fw.classList.add("exit");
-  setTimeout(() => { fw.textContent = w.t; fw.style.backgroundImage = w.g; fw.classList.remove("exit"); fw.classList.add("enter"); }, 230);
-}
-setInterval(() => { ci = (ci+1)%WORDS.length; flipTo(WORDS[ci]); }, 2200);
 
 // ── KARAOKE ──
 const txt = "Resolver problemas reales creando herramientas brutalmente simples.";
