@@ -367,6 +367,9 @@
     pointer-events: none; z-index: 0;
   }
 
+  /* ── STEP LIST SECTION ── */
+  .steps-section { padding: 0; }
+
   /* ── STEP LIST ── */
   .step-list {
     max-width: 760px; margin: 3rem auto 0;
@@ -740,12 +743,10 @@
     </div>
   </div>
 
-  <!-- MARQUEE: dark -->
-  <!-- PROCESS: white -->
+  <!-- PROCESS DIAGRAM: white -->
   <section id="how" class="s-white proc-section">
 
     <canvas id="proc-canvas" aria-hidden="true"></canvas>
-
 
     <div class="proc-header">
       <p class="sec-label reveal">Proceso</p>
@@ -819,7 +820,10 @@
       </svg>
     </div>
 
-    <!-- Step list — wipe reveal -->
+  </section>
+
+  <!-- STEP LIST: gray -->
+  <section class="s-gray steps-section">
     <div class="step-list">
       <div class="step-row">
         <div class="step-inner">
