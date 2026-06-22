@@ -849,114 +849,129 @@
 <script>
 const rm = window.matchMedia("(prefers-reduced-motion:reduce)").matches;
 
-/* ── PROCESS SECTION — Particle network parallax ── */
+/* ── PROCESS SECTION — Neuron firefly effect: static dots, yellow flashes ── */
 (function () {
   const canvas = document.getElementById('proc-canvas');
   if (!canvas) return;
   const ctx = canvas.getContext('2d');
   const section = canvas.parentElement;
 
-  const COUNT      = 90;
-  const MAX_DIST   = 140;
-  const PARALLAX   = 22;   // px shift at canvas edge
-  const DOT_COLOR  = '26,53,255';
-  const LINE_ALPHA = 0.13;
-  const DOT_ALPHA  = 0.38;
+  const COUNT       = 110;
+  const CONNECT     = 95;   // px — connection radius
+  const FIRE_PROB   = 0.0012; // chance per particle per frame to fire
+  const FIRE_FRAMES = 50;    // duration of a single fire event
 
-  let W, H;
-  const mouse   = { x: -9999, y: -9999 };
-  const offset  = { x: 0, y: 0 };
-  const particles = [];
+  let W = 1, H = 1, tick = 0;
+  const pts = []; // { px, py, phase, r, fire, fireMax }
 
   function resize () {
     const r = section.getBoundingClientRect();
-    W = canvas.width  = r.width  || window.innerWidth;
-    H = canvas.height = r.height || window.innerHeight;
+    W = canvas.width  = Math.round(r.width)  || window.innerWidth;
+    H = canvas.height = Math.round(r.height) || 600;
   }
-
-  function Particle () {
-    this.x  = Math.random() * (W || window.innerWidth);
-    this.y  = Math.random() * (H || window.innerHeight);
-    this.vx = (Math.random() - 0.5) * 0.35;
-    this.vy = (Math.random() - 0.5) * 0.35;
-    this.r  = Math.random() * 1.8 + 1.2;
-  }
-
-  Particle.prototype.update = function () {
-    if (!W || !H) return;
-    this.x += this.vx;
-    this.y += this.vy;
-    if (this.x < -20)    this.x = W + 20;
-    if (this.x > W + 20) this.x = -20;
-    if (this.y < -20)    this.y = H + 20;
-    if (this.y > H + 20) this.y = -20;
-  };
 
   function init () {
     resize();
-    particles.length = 0;
-    for (let i = 0; i < COUNT; i++) particles.push(new Particle());
+    pts.length = 0;
+    for (let i = 0; i < COUNT; i++) {
+      pts.push({
+        px:      Math.random(),          // fractional 0-1
+        py:      Math.random(),
+        phase:   Math.random() * Math.PI * 2,
+        r:       Math.random() * 1.4 + 0.9,
+        fire:    0,
+        fireMax: 0
+      });
+    }
   }
 
   function loop () {
     requestAnimationFrame(loop);
+    if (!W || !H) return;
     ctx.clearRect(0, 0, W, H);
+    tick++;
 
-    // Smooth parallax: offset toward mouse-from-center
-    const rect = section.getBoundingClientRect();
-    const isVisible = rect.bottom > 0 && rect.top < window.innerHeight;
-    if (isVisible) {
-      const cx = rect.left + W / 2;
-      const cy = rect.top  + H / 2;
-      const tx = ((mouse.x - cx) / W) * PARALLAX;
-      const ty = ((mouse.y - cy) / H) * PARALLAX;
-      offset.x += (tx - offset.x) * 0.06;
-      offset.y += (ty - offset.y) * 0.06;
+    // Compute pixel coords
+    const x = pts.map(p => p.px * W);
+    const y = pts.map(p => p.py * H);
+
+    // Update fire states + cascade: a firing particle can ignite neighbors
+    for (let i = 0; i < COUNT; i++) {
+      const p = pts[i];
+      if (p.fire > 0) {
+        p.fire--;
+        // At peak brightness, small chance to cascade to a close neighbor
+        if (p.fire === Math.round(p.fireMax * 0.6)) {
+          for (let j = 0; j < COUNT; j++) {
+            if (j === i || pts[j].fire > 0) continue;
+            const dx = x[i] - x[j], dy = y[i] - y[j];
+            if (dx*dx + dy*dy < CONNECT*CONNECT && Math.random() < 0.25) {
+              pts[j].fire = pts[j].fireMax = FIRE_FRAMES - 10 + Math.floor(Math.random() * 15);
+            }
+          }
+        }
+      } else if (Math.random() < FIRE_PROB) {
+        p.fireMax = FIRE_FRAMES + Math.floor(Math.random() * 20);
+        p.fire    = p.fireMax;
+      }
     }
 
-    ctx.save();
-    ctx.translate(offset.x, offset.y);
-
-    // Lines
+    // Connections
     for (let i = 0; i < COUNT; i++) {
       for (let j = i + 1; j < COUNT; j++) {
-        const dx   = particles[i].x - particles[j].x;
-        const dy   = particles[i].y - particles[j].y;
-        const dist = Math.sqrt(dx * dx + dy * dy);
-        if (dist < MAX_DIST) {
-          const a = LINE_ALPHA * (1 - dist / MAX_DIST);
+        const dx = x[i]-x[j], dy = y[i]-y[j];
+        const d2 = dx*dx + dy*dy;
+        if (d2 < CONNECT*CONNECT) {
+          const fFire = (pts[i].fire > 0 || pts[j].fire > 0);
+          const a = fFire
+            ? 0.18 * (1 - Math.sqrt(d2)/CONNECT)
+            : 0.07  * (1 - Math.sqrt(d2)/CONNECT);
           ctx.beginPath();
-          ctx.strokeStyle = `rgba(${DOT_COLOR},${a.toFixed(3)})`;
-          ctx.lineWidth   = 0.55;
-          ctx.moveTo(particles[i].x, particles[i].y);
-          ctx.lineTo(particles[j].x, particles[j].y);
+          ctx.strokeStyle = fFire ? `rgba(220,180,0,${a})` : `rgba(8,8,15,${a})`;
+          ctx.lineWidth   = fFire ? 0.7 : 0.45;
+          ctx.moveTo(x[i], y[i]);
+          ctx.lineTo(x[j], y[j]);
           ctx.stroke();
         }
       }
     }
 
     // Dots
-    ctx.fillStyle = `rgba(${DOT_COLOR},${DOT_ALPHA})`;
-    for (const p of particles) {
-      p.update();
-      ctx.beginPath();
-      ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-      ctx.fill();
+    for (let i = 0; i < COUNT; i++) {
+      const p = pts[i];
+      if (p.fire > 0) {
+        // Easing: fade in → hold → fade out
+        const prog = 1 - p.fire / p.fireMax;
+        const a = prog < 0.25 ? prog/0.25 : prog > 0.65 ? (1-prog)/0.35 : 1;
+        // Core yellow dot
+        ctx.beginPath();
+        ctx.fillStyle = `rgba(255,220,40,${(a * 0.95).toFixed(3)})`;
+        ctx.arc(x[i], y[i], p.r * 2, 0, Math.PI * 2);
+        ctx.fill();
+        // Soft glow halo
+        const g = ctx.createRadialGradient(x[i], y[i], 0, x[i], y[i], p.r * 8);
+        g.addColorStop(0, `rgba(255,220,40,${(a * 0.22).toFixed(3)})`);
+        g.addColorStop(1, 'rgba(255,220,40,0)');
+        ctx.beginPath();
+        ctx.fillStyle = g;
+        ctx.arc(x[i], y[i], p.r * 8, 0, Math.PI * 2);
+        ctx.fill();
+      } else {
+        // Idle: soft gray with slow personal pulse
+        const pulse = 0.5 + 0.5 * Math.sin(tick * 0.018 + p.phase);
+        const a = (0.07 + pulse * 0.07).toFixed(3);
+        ctx.beginPath();
+        ctx.fillStyle = `rgba(8,8,15,${a})`;
+        ctx.arc(x[i], y[i], p.r, 0, Math.PI * 2);
+        ctx.fill();
+      }
     }
-
-    ctx.restore();
   }
 
-  window.addEventListener('mousemove', e => { mouse.x = e.clientX; mouse.y = e.clientY; });
-
-  // ResizeObserver re-inits when section gets its real dimensions (e.g. after fonts load on mobile)
   if (window.ResizeObserver) {
-    new ResizeObserver(() => init()).observe(section);
-  } else {
-    window.addEventListener('resize', () => init());
+    new ResizeObserver(() => resize()).observe(section);
   }
 
-  // Defer first init one frame so layout is stable
   requestAnimationFrame(() => { init(); if (!rm) loop(); });
 })();
 
