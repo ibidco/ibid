@@ -906,9 +906,12 @@ const rm = window.matchMedia("(prefers-reduced-motion:reduce)").matches;
 
   function typeLine1 (i) {
     if (i > LINE1.length) {
-      // Pause so user reads line 1, then start line 2
-      cursor.style.background = 'rgba(255,255,255,.45)';
-      setTimeout(() => typeLine2(0), 750);
+      // Move cursor to end of sub line, then start typing line 2
+      setTimeout(() => {
+        sub.appendChild(cursor);
+        cursor.style.background = '';
+        typeLine2(0);
+      }, 750);
       return;
     }
     el.textContent = LINE1.slice(0, i);
