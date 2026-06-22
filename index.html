@@ -223,10 +223,21 @@
     font-weight: 700;
     letter-spacing: .02em;
     text-transform: uppercase;
-    color: rgba(255,255,255,.55);
     margin-top: 1.5rem;
-    opacity: 0; animation: fadeUp .7s ease .38s forwards;
+    opacity: 0;
+    animation: fadeUp .7s ease .38s forwards, auroraShift 5s ease infinite .38s;
     position: relative; z-index: 1;
+    background: linear-gradient(120deg, #1A35FF, #8B5CF6, #06B6D4, #10B981, #F472B6, #818CF8, #1A35FF);
+    background-size: 300% 300%;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  @keyframes auroraShift {
+    0%   { background-position: 0% 50%; }
+    50%  { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
   }
 
   /* ── CTA SECTION ── */
