@@ -615,9 +615,17 @@
     text-transform: uppercase; color: #fff;
     line-height: 1;
   }
+  #intro-sub {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: clamp(1.25rem, 3vw, 2.5rem);
+    font-weight: 400; letter-spacing: .04em;
+    color: rgba(255,255,255,.55);
+    margin-top: .6rem; line-height: 1;
+    min-height: 1.2em;
+  }
   #intro-cursor {
     display: inline-block;
-    width: .08em; height: .9em;
+    width: .08em; height: .85em;
     background: #fff; margin-left: .06em;
     vertical-align: middle;
     animation: cur .65s step-end infinite;
@@ -629,7 +637,10 @@
 
 <!-- INTRO TYPEWRITER -->
 <div id="intro" aria-hidden="true">
-  <p id="intro-line"><span id="intro-txt"></span><span id="intro-cursor"></span></p>
+  <div>
+    <p id="intro-line"><span id="intro-txt"></span><span id="intro-cursor"></span></p>
+    <p id="intro-sub"><span id="intro-sub-txt"></span></p>
+  </div>
 </div>
 
 <!-- SVG NETWORK -->
@@ -870,32 +881,44 @@ const rm = window.matchMedia("(prefers-reduced-motion:reduce)").matches;
 (function () {
   const overlay = document.getElementById('intro');
   const el      = document.getElementById('intro-txt');
+  const sub     = document.getElementById('intro-sub-txt');
+  const cursor  = document.getElementById('intro-cursor');
   if (!overlay || !el) return;
 
-  // Prevent scroll while intro plays
   document.body.style.overflow = 'hidden';
 
-  const PHRASE   = 'Labnormally.';
-  const SPEED    = 75;   // ms per character (base)
-  const HOLD     = 1000; // ms after typing before fade
+  const LINE1  = 'Labnormally.';
+  const LINE2  = 'De las ideas a la realidad.';
+  const SPEED  = 72;
+  const HOLD   = 1100;
 
   function dismiss () {
     overlay.classList.add('out');
     document.body.style.overflow = '';
-    setTimeout(() => { overlay.style.display = 'none'; }, 800);
+    setTimeout(() => { overlay.style.display = 'none'; }, 820);
   }
 
-  function type (i) {
-    if (i > PHRASE.length) { setTimeout(dismiss, HOLD); return; }
-    el.textContent = PHRASE.slice(0, i);
-    setTimeout(() => type(i + 1), SPEED + Math.random() * 40);
+  function typeLine2 (i) {
+    if (i > LINE2.length) { setTimeout(dismiss, HOLD); return; }
+    sub.textContent = LINE2.slice(0, i);
+    setTimeout(() => typeLine2(i + 1), SPEED + Math.random() * 35);
+  }
+
+  function typeLine1 (i) {
+    if (i > LINE1.length) {
+      // Move cursor to sub line
+      cursor.style.background = 'rgba(255,255,255,.45)';
+      setTimeout(() => typeLine2(0), 320);
+      return;
+    }
+    el.textContent = LINE1.slice(0, i);
+    setTimeout(() => typeLine1(i + 1), SPEED + Math.random() * 40);
   }
 
   if (rm) { dismiss(); return; }
 
-  // Wait for Barlow Condensed to load so there's no font swap mid-type
   (document.fonts ? document.fonts.ready : Promise.resolve())
-    .then(() => setTimeout(() => type(0), 200));
+    .then(() => setTimeout(() => typeLine1(0), 200));
 })();
 
 /* ── PROCESS SECTION — Neuron firefly effect: static dots, yellow flashes ── */
