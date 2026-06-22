@@ -369,50 +369,50 @@
 
   /* ── STEP LIST ── */
   .step-list {
-    max-width: 780px; margin: 2.5rem auto 0;
+    max-width: 760px; margin: 3rem auto 0;
     padding: 0 1.5rem;
     position: relative; z-index: 1;
   }
 
   .step-row {
-    padding: 2.25rem 0;
-    border-top: 1px solid rgba(8,8,15,0.09);
+    padding: 1.75rem 0;
+    border-top: 1px solid rgba(8,8,15,0.10);
+    opacity: 0;
+    transform: translateY(22px);
+    transition: opacity .6s ease, transform .6s ease;
   }
-  .step-row:last-child { border-bottom: 1px solid rgba(8,8,15,0.09); }
+  .step-row.on { opacity: 1; transform: translateY(0); }
+  .step-row:last-child { border-bottom: 1px solid rgba(8,8,15,0.10); }
 
   .step-inner {
     display: grid;
-    grid-template-columns: 5.5rem 1fr;
-    gap: 0 1.75rem;
-    align-items: start;
-    opacity: 0;
-    transform: translateY(18px);
-    transition: opacity .55s ease, transform .55s ease;
+    grid-template-columns: 4rem 1fr;
+    gap: 0 2rem;
+    align-items: center;
   }
-  .step-row.on .step-inner { opacity: 1; transform: translateY(0); }
 
   .step-num-big {
     font-family: 'Barlow Condensed', sans-serif;
-    font-size: 4.5rem; font-weight: 900; line-height: 1;
-    color: var(--blue); opacity: .2;
-    padding-top: .05rem;
+    font-size: 2.8rem; font-weight: 900; line-height: 1;
+    color: var(--blue); opacity: .25;
   }
 
-  .step-body { padding-top: .2rem; }
+  .step-body { }
   .step-ttl {
     font-family: 'Barlow Condensed', sans-serif;
-    font-size: 1.5rem; font-weight: 700;
-    text-transform: uppercase; letter-spacing: .05em;
-    color: var(--ink); margin-bottom: .45rem;
+    font-size: 1.35rem; font-weight: 700;
+    text-transform: uppercase; letter-spacing: .06em;
+    color: var(--ink); margin: 0 0 .3rem;
   }
   .step-dsc {
-    font-size: .9rem; line-height: 1.75; color: rgba(8,8,15,.52);
+    font-size: .875rem; line-height: 1.7; color: rgba(8,8,15,.5);
+    margin: 0;
   }
 
   @media (max-width: 480px) {
     .step-list { padding: 0 1rem; }
-    .step-num-big { font-size: 3rem; }
-    .step-inner { grid-template-columns: 3.5rem 1fr; gap: 0 1rem; }
+    .step-num-big { font-size: 2rem; }
+    .step-inner { grid-template-columns: 3rem 1fr; gap: 0 1.25rem; }
     .proc-diagram { padding: 0 1rem; }
   }
 
@@ -1123,19 +1123,15 @@ karaoke();
 const revObs = new IntersectionObserver(es => es.forEach(e => { if(e.isIntersecting){ e.target.classList.add("on"); revObs.unobserve(e.target); } }), { threshold:.12 });
 document.querySelectorAll(".reveal").forEach(el => revObs.observe(el));
 
-// ── STEP ROWS — staggered fade-up reveal ──
+// ── STEP ROWS — each row observed individually ──
 const stepObs = new IntersectionObserver(es => {
   es.forEach(e => {
     if (!e.isIntersecting) return;
-    const rows = e.target.querySelectorAll('.step-row');
-    rows.forEach((row, i) => {
-      setTimeout(() => requestAnimationFrame(() => row.classList.add('on')), 80 + i * 130);
-    });
+    e.target.classList.add('on');
     stepObs.unobserve(e.target);
   });
-}, { threshold: 0.05 });
-const stepList = document.querySelector('.step-list');
-if (stepList) stepObs.observe(stepList);
+}, { threshold: 0.2 });
+document.querySelectorAll('.step-row').forEach(row => stepObs.observe(row));
 
 // ── VALUE CARDS ──
 const valObs = new IntersectionObserver(es => es.forEach(e => { if(e.isIntersecting){ setTimeout(()=>e.target.classList.add("on"), +e.target.dataset.d*100); valObs.unobserve(e.target); } }), { threshold:.1 });
