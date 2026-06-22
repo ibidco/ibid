@@ -358,15 +358,15 @@
 
   .proc-steps {
     display: grid; grid-template-columns: repeat(2,1fr);
-    gap: 1px; background: rgba(255,255,255,0.06);
-    border-top: 1px solid rgba(255,255,255,0.06);
-    border-bottom: 1px solid rgba(255,255,255,0.06);
+    gap: 1px; background: rgba(255,255,255,0.15);
+    border-top: 1px solid rgba(255,255,255,0.15);
+    border-bottom: 1px solid rgba(255,255,255,0.15);
     max-width: 640px; margin: 3.5rem auto 0;
   }
 
-  .proc-step { padding: 1.75rem; background: var(--ink); }
-  .proc-step-num { font-family: 'Barlow Condensed', sans-serif; font-size: .75rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: rgba(255,255,255,.35); margin-bottom: .5rem; }
-  .proc-step-desc { font-size: .875rem; color: rgba(255,255,255,.42); line-height: 1.7; }
+  .proc-step { padding: 1.75rem; background: rgba(0,0,0,.18); }
+  .proc-step-num { font-family: 'Barlow Condensed', sans-serif; font-size: .75rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: #FFE033; margin-bottom: .5rem; }
+  .proc-step-desc { font-size: .875rem; color: rgba(255,255,255,.7); line-height: 1.7; }
 
   @media (max-width: 480px) {
     .proc-steps { grid-template-columns: 1fr; }
@@ -679,7 +679,7 @@
   </div>
 
   <!-- PROCESS: dark -->
-  <section id="how" class="s-dark proc-section">
+  <section id="how" class="s-blue proc-section">
     <div class="proc-header">
       <p class="sec-label reveal">Proceso</p>
     </div>
@@ -697,54 +697,54 @@
         </defs>
 
         <!-- Orbit ring -->
-        <circle cx="310" cy="310" r="160" stroke="rgba(255,255,255,0.12)" stroke-width="0.7"/>
+        <circle cx="310" cy="310" r="160" stroke="rgba(255,255,255,0.25)" stroke-width="0.7"/>
 
-        <!-- Pulse 1 — clockwise, start at top (rotate -90°) -->
-        <circle cx="310" cy="310" r="160" stroke="white" stroke-width="1.8" stroke-linecap="round"
-          stroke-dasharray="22 983" filter="url(#gp)" opacity=".9" transform="rotate(-90,310,310)">
+        <!-- Pulse 1 — clockwise, start at top (rotate -90°) — yellow -->
+        <circle cx="310" cy="310" r="160" stroke="#FFE033" stroke-width="2" stroke-linecap="round"
+          stroke-dasharray="22 983" filter="url(#gp)" opacity="1" transform="rotate(-90,310,310)">
           <animate attributeName="stroke-dashoffset" from="0" to="-1005" dur="3.2s" repeatCount="indefinite"/>
         </circle>
         <!-- Pulse 2 — offset by half period -->
-        <circle cx="310" cy="310" r="160" stroke="white" stroke-width="1.8" stroke-linecap="round"
-          stroke-dasharray="22 983" filter="url(#gp)" opacity=".9" transform="rotate(-90,310,310)">
+        <circle cx="310" cy="310" r="160" stroke="#FFE033" stroke-width="2" stroke-linecap="round"
+          stroke-dasharray="22 983" filter="url(#gp)" opacity="1" transform="rotate(-90,310,310)">
           <animate attributeName="stroke-dashoffset" from="0" to="-1005" dur="3.2s" begin="1.6s" repeatCount="indefinite"/>
         </circle>
 
-        <!-- ── NODE 1 — IDENTIFICAMOS — 12 o'clock (310, 150) ── -->
-        <circle cx="310" cy="150" r="44" fill="#08080F" stroke="rgba(255,255,255,0.3)" stroke-width="0.8"/>
-        <circle cx="310" cy="150" r="13" fill="none" stroke="white" stroke-width="0.8"/>
-        <circle cx="310" cy="150" r="3.5" fill="white"/>
-        <line x1="292" y1="150" x2="297" y2="150" stroke="white" stroke-width="0.8"/>
-        <line x1="323" y1="150" x2="328" y2="150" stroke="white" stroke-width="0.8"/>
-        <line x1="310" y1="132" x2="310" y2="137" stroke="white" stroke-width="0.8"/>
-        <line x1="310" y1="163" x2="310" y2="168" stroke="white" stroke-width="0.8"/>
-        <text x="310" y="82"  text-anchor="middle" font-family="Barlow Condensed,sans-serif" font-size="10" font-weight="700" letter-spacing="3"   fill="rgba(255,255,255,0.3)">01</text>
-        <text x="310" y="97"  text-anchor="middle" font-family="Barlow Condensed,sans-serif" font-size="13" font-weight="700" letter-spacing="1.5" fill="rgba(255,255,255,0.75)">IDENTIFICAMOS</text>
+        <!-- ── NODE 1 — IDENTIFICAMOS — 12 o'clock (310, 150) — yellow fill ── -->
+        <circle cx="310" cy="150" r="44" fill="#FFE033" stroke="white" stroke-width="0.8"/>
+        <circle cx="310" cy="150" r="13" fill="none" stroke="#1A35FF" stroke-width="0.9"/>
+        <circle cx="310" cy="150" r="3.5" fill="#1A35FF"/>
+        <line x1="292" y1="150" x2="297" y2="150" stroke="#1A35FF" stroke-width="0.9"/>
+        <line x1="323" y1="150" x2="328" y2="150" stroke="#1A35FF" stroke-width="0.9"/>
+        <line x1="310" y1="132" x2="310" y2="137" stroke="#1A35FF" stroke-width="0.9"/>
+        <line x1="310" y1="163" x2="310" y2="168" stroke="#1A35FF" stroke-width="0.9"/>
+        <text x="310" y="82"  text-anchor="middle" font-family="Barlow Condensed,sans-serif" font-size="10" font-weight="700" letter-spacing="3"   fill="rgba(255,255,255,0.5)">01</text>
+        <text x="310" y="97"  text-anchor="middle" font-family="Barlow Condensed,sans-serif" font-size="13" font-weight="700" letter-spacing="1.5" fill="white">IDENTIFICAMOS</text>
 
-        <!-- ── NODE 2 — PROPONEMOS — 3 o'clock (470, 310) ── -->
-        <circle cx="470" cy="310" r="44" fill="#08080F" stroke="rgba(255,255,255,0.3)" stroke-width="0.8"/>
-        <polygon points="470,295 484,310 470,325 456,310" fill="none" stroke="white" stroke-width="0.8"/>
-        <text x="520" y="305" text-anchor="start" font-family="Barlow Condensed,sans-serif" font-size="10" font-weight="700" letter-spacing="3"   fill="rgba(255,255,255,0.3)">02</text>
-        <text x="520" y="320" text-anchor="start" font-family="Barlow Condensed,sans-serif" font-size="13" font-weight="700" letter-spacing="1.5" fill="rgba(255,255,255,0.75)">PROPONEMOS</text>
+        <!-- ── NODE 2 — PROPONEMOS — 3 o'clock (470, 310) — yellow fill ── -->
+        <circle cx="470" cy="310" r="44" fill="#FFE033" stroke="white" stroke-width="0.8"/>
+        <polygon points="470,295 484,310 470,325 456,310" fill="none" stroke="#1A35FF" stroke-width="0.9"/>
+        <text x="522" y="305" text-anchor="start" font-family="Barlow Condensed,sans-serif" font-size="10" font-weight="700" letter-spacing="3"   fill="rgba(255,255,255,0.5)">02</text>
+        <text x="522" y="320" text-anchor="start" font-family="Barlow Condensed,sans-serif" font-size="13" font-weight="700" letter-spacing="1.5" fill="white">PROPONEMOS</text>
 
-        <!-- ── NODE 3 — ITERAMOS — 6 o'clock (310, 470) ── -->
-        <circle cx="310" cy="470" r="44" fill="#08080F" stroke="rgba(255,255,255,0.3)" stroke-width="0.8"/>
-        <path d="M299,470 A13,13 0 1,1 321,470" fill="none" stroke="white" stroke-width="0.8" stroke-linecap="round"/>
-        <polyline points="319,479 324,470 316,467" fill="none" stroke="white" stroke-width="0.8" stroke-linecap="round" stroke-linejoin="round"/>
-        <text x="310" y="530" text-anchor="middle" font-family="Barlow Condensed,sans-serif" font-size="10" font-weight="700" letter-spacing="3"   fill="rgba(255,255,255,0.3)">03</text>
-        <text x="310" y="545" text-anchor="middle" font-family="Barlow Condensed,sans-serif" font-size="13" font-weight="700" letter-spacing="1.5" fill="rgba(255,255,255,0.75)">ITERAMOS</text>
+        <!-- ── NODE 3 — ITERAMOS — 6 o'clock (310, 470) — yellow fill ── -->
+        <circle cx="310" cy="470" r="44" fill="#FFE033" stroke="white" stroke-width="0.8"/>
+        <path d="M299,470 A13,13 0 1,1 321,470" fill="none" stroke="#1A35FF" stroke-width="0.9" stroke-linecap="round"/>
+        <polyline points="319,479 324,470 316,467" fill="none" stroke="#1A35FF" stroke-width="0.9" stroke-linecap="round" stroke-linejoin="round"/>
+        <text x="310" y="530" text-anchor="middle" font-family="Barlow Condensed,sans-serif" font-size="10" font-weight="700" letter-spacing="3"   fill="rgba(255,255,255,0.5)">03</text>
+        <text x="310" y="545" text-anchor="middle" font-family="Barlow Condensed,sans-serif" font-size="13" font-weight="700" letter-spacing="1.5" fill="white">ITERAMOS</text>
 
-        <!-- ── NODE 4 — AJUSTAMOS — 9 o'clock (150, 310) ── -->
-        <circle cx="150" cy="310" r="44" fill="#08080F" stroke="rgba(255,255,255,0.3)" stroke-width="0.8"/>
-        <line x1="135" y1="303" x2="165" y2="303" stroke="white" stroke-width="0.8"/>
-        <line x1="135" y1="317" x2="165" y2="317" stroke="white" stroke-width="0.8"/>
-        <circle cx="158" cy="303" r="4.5" fill="#08080F" stroke="white" stroke-width="0.8"/>
-        <circle cx="142" cy="317" r="4.5" fill="#08080F" stroke="white" stroke-width="0.8"/>
-        <text x="100" y="305" text-anchor="end" font-family="Barlow Condensed,sans-serif" font-size="10" font-weight="700" letter-spacing="3"   fill="rgba(255,255,255,0.3)">04</text>
-        <text x="100" y="320" text-anchor="end" font-family="Barlow Condensed,sans-serif" font-size="13" font-weight="700" letter-spacing="1.5" fill="rgba(255,255,255,0.75)">AJUSTAMOS</text>
+        <!-- ── NODE 4 — AJUSTAMOS — 9 o'clock (150, 310) — yellow fill ── -->
+        <circle cx="150" cy="310" r="44" fill="#FFE033" stroke="white" stroke-width="0.8"/>
+        <line x1="135" y1="303" x2="165" y2="303" stroke="#1A35FF" stroke-width="0.9"/>
+        <line x1="135" y1="317" x2="165" y2="317" stroke="#1A35FF" stroke-width="0.9"/>
+        <circle cx="158" cy="303" r="4.5" fill="#FFE033" stroke="#1A35FF" stroke-width="0.9"/>
+        <circle cx="142" cy="317" r="4.5" fill="#FFE033" stroke="#1A35FF" stroke-width="0.9"/>
+        <text x="98"  y="305" text-anchor="end" font-family="Barlow Condensed,sans-serif" font-size="10" font-weight="700" letter-spacing="3"   fill="rgba(255,255,255,0.5)">04</text>
+        <text x="98"  y="320" text-anchor="end" font-family="Barlow Condensed,sans-serif" font-size="13" font-weight="700" letter-spacing="1.5" fill="white">AJUSTAMOS</text>
 
         <!-- Center dot -->
-        <circle cx="310" cy="310" r="2.5" fill="rgba(255,255,255,0.18)"/>
+        <circle cx="310" cy="310" r="2.5" fill="rgba(255,255,255,0.3)"/>
       </svg>
     </div>
 
