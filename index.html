@@ -20,7 +20,8 @@
   }
 
   html { font-size: 16px; scroll-behavior: smooth; }
-  body { font-family: 'Inter', sans-serif; background: var(--ink); color: var(--white); overflow-x: hidden; }
+  html { overflow-x: hidden; }
+  body { font-family: 'Inter', sans-serif; background: var(--ink); color: var(--white); overflow-x: hidden; max-width: 100%; }
 
   /* ── SVG NETWORK ── */
   #net {
@@ -147,6 +148,8 @@
     text-align: center;
     padding: 7rem 1.5rem 4rem;
     overflow: hidden;
+    position: relative;
+    max-width: 100%;
   }
 
   .hero::after {
@@ -355,7 +358,7 @@
     margin: 0 auto; padding: 0 1.5rem;
     position: relative; z-index: 1;
   }
-  .proc-diagram svg { width: 100%; height: auto; overflow: visible; }
+  .proc-diagram svg { width: 100%; height: auto; overflow: hidden; }
 
   /* parallax canvas */
   #proc-canvas {
@@ -564,7 +567,7 @@
   /* ── REDUCED MOTION ── */
   @media (prefers-reduced-motion: reduce) {
     .reveal, .val-card, .nn, .nh { opacity:1!important; transform:none!important; transition:none!important; }
-    .hero-badge, h1.hero-headline, .hero-sub, .hero-actions { opacity:1; animation:none; }
+    .hero-badge, h1.hero-headline, .hero-tagline, .hero-sub, .hero-actions { opacity:1; animation:none; -webkit-text-fill-color: white; }
     .flip-word.exit, .flip-word.enter { animation:none; }
     .mq-track { animation:none; }
     .karaoke .w { color: var(--ink); }
