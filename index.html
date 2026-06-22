@@ -598,9 +598,39 @@
     .hero { padding: 7rem 1.25rem 4rem; justify-content: center; }
     .hero-tagline { font-size: clamp(1.1rem,5vw,1.6rem); }
   }
+  /* ── INTRO TYPEWRITER ── */
+  #intro {
+    position: fixed; inset: 0;
+    background: #08080F;
+    z-index: 9999;
+    display: flex; align-items: center;
+    padding: 0 clamp(1.5rem, 6vw, 6rem);
+    transition: opacity .75s ease;
+  }
+  #intro.out { opacity: 0; pointer-events: none; }
+  #intro-line {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: clamp(3.5rem, 9vw, 9rem);
+    font-weight: 900; letter-spacing: -.01em;
+    text-transform: uppercase; color: #fff;
+    line-height: 1;
+  }
+  #intro-cursor {
+    display: inline-block;
+    width: .08em; height: .9em;
+    background: #fff; margin-left: .06em;
+    vertical-align: middle;
+    animation: cur .65s step-end infinite;
+  }
+  @keyframes cur { 0%,100%{opacity:1} 50%{opacity:0} }
 </style>
 </head>
 <body>
+
+<!-- INTRO TYPEWRITER -->
+<div id="intro" aria-hidden="true">
+  <p id="intro-line"><span id="intro-txt"></span><span id="intro-cursor"></span></p>
+</div>
 
 <!-- SVG NETWORK -->
 <svg id="net" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
@@ -835,6 +865,38 @@
 
 <script>
 const rm = window.matchMedia("(prefers-reduced-motion:reduce)").matches;
+
+/* ── INTRO TYPEWRITER ── */
+(function () {
+  const overlay = document.getElementById('intro');
+  const el      = document.getElementById('intro-txt');
+  if (!overlay || !el) return;
+
+  // Prevent scroll while intro plays
+  document.body.style.overflow = 'hidden';
+
+  const PHRASE   = 'Labnormally.';
+  const SPEED    = 75;   // ms per character (base)
+  const HOLD     = 1000; // ms after typing before fade
+
+  function dismiss () {
+    overlay.classList.add('out');
+    document.body.style.overflow = '';
+    setTimeout(() => { overlay.style.display = 'none'; }, 800);
+  }
+
+  function type (i) {
+    if (i > PHRASE.length) { setTimeout(dismiss, HOLD); return; }
+    el.textContent = PHRASE.slice(0, i);
+    setTimeout(() => type(i + 1), SPEED + Math.random() * 40);
+  }
+
+  if (rm) { dismiss(); return; }
+
+  // Wait for Barlow Condensed to load so there's no font swap mid-type
+  (document.fonts ? document.fonts.ready : Promise.resolve())
+    .then(() => setTimeout(() => type(0), 200));
+})();
 
 /* ── PROCESS SECTION — Neuron firefly effect: static dots, yellow flashes ── */
 (function () {
