@@ -229,6 +229,41 @@
     position: relative; z-index: 1;
   }
 
+  .hero-sub {
+    font-size: clamp(.95rem,1.8vw,1.0625rem);
+    color: rgba(255,255,255,.5);
+    margin-top: 2rem; max-width: 480px;
+    line-height: 1.7;
+    opacity: 0; animation: fadeUp .7s ease .52s forwards;
+    position: relative; z-index: 1;
+    text-align: center;
+  }
+
+  .hero-sub-static { display: block; }
+
+  .hero-flip-row {
+    display: block;
+    margin-top: .2em;
+    font-weight: 600;
+    color: var(--white);
+  }
+
+  .flip-phrase {
+    display: inline-block;
+    transform-origin: center top;
+    perspective: 800px;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-image: linear-gradient(135deg, #FFE04B, #FF8E53);
+  }
+
+  .flip-phrase.exit { animation: flipOut .22s ease-in forwards; }
+  .flip-phrase.enter { animation: flipIn  .28s ease-out forwards; }
+
+  @keyframes flipOut { to { transform: rotateX(-90deg); opacity: 0; } }
+  @keyframes flipIn  { from { transform: rotateX(90deg); opacity: 0; } }
+
   .hero-sub strong { color: var(--white); font-weight: 600; }
 
   .hero-actions {
@@ -586,7 +621,12 @@
   <div class="hero s-dark">
     <h1 class="hero-headline">¿Suena raro?</h1>
     <p class="hero-lead">Lo sé. Pero la idea es sencilla.</p>
-    <p class="hero-sub">Quiero crear soluciones <strong>extremadamente robustas</strong>, pero elegantemente simples.</p>
+    <p class="hero-sub">
+      <span class="hero-sub-static">Creamos tecnología brutalmente simple que ayuda a los negocios a</span>
+      <span class="hero-flip-row" aria-live="polite">
+        <span class="flip-phrase" id="fp">moverse más rápido.</span>
+      </span>
+    </p>
     <div class="hero-actions">
       <a class="btn-p" href="#cases">Ver casos de éxito <svg width="13" height="13" viewBox="0 0 13 13" fill="none"><path d="M2 6.5h9M8 3l3.5 3.5L8 10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
       <a class="btn-s" href="#how">Cómo funciona <svg width="13" height="13" viewBox="0 0 13 13" fill="none"><path d="M2 6.5h9M8 3l3.5 3.5L8 10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
@@ -746,6 +786,27 @@
 
 <script>
 const rm = window.matchMedia("(prefers-reduced-motion:reduce)").matches;
+
+// ── HERO PHRASE FLIP ──
+const PHRASES = [
+  { t:"moverse más rápido.",       g:"linear-gradient(135deg,#FFE04B,#FF8E53)" },
+  { t:"tomar mejores decisiones.", g:"linear-gradient(135deg,#A8FF78,#78FFD6)" },
+  { t:"lograr más.",               g:"linear-gradient(135deg,#FF9DE2,#C8B6FF)" },
+];
+let pi = 0;
+const fp = document.getElementById("fp");
+if (fp) {
+  function flipPhrase(w) {
+    if (rm) { fp.textContent = w.t; fp.style.backgroundImage = w.g; return; }
+    fp.classList.remove("enter"); fp.classList.add("exit");
+    setTimeout(() => {
+      fp.textContent = w.t;
+      fp.style.backgroundImage = w.g;
+      fp.classList.remove("exit"); fp.classList.add("enter");
+    }, 230);
+  }
+  setInterval(() => { pi = (pi + 1) % PHRASES.length; flipPhrase(PHRASES[pi]); }, 2600);
+}
 
 // ── KARAOKE ──
 const txt = "Resolver problemas reales creando herramientas brutalmente simples.";
