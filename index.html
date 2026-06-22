@@ -617,11 +617,11 @@
   }
   #intro-sub {
     font-family: 'Barlow Condensed', sans-serif;
-    font-size: clamp(1.25rem, 3vw, 2.5rem);
-    font-weight: 400; letter-spacing: .04em;
-    color: rgba(255,255,255,.55);
-    margin-top: .6rem; line-height: 1;
-    min-height: 1.2em;
+    font-size: clamp(3.5rem, 9vw, 9rem);
+    font-weight: 900; letter-spacing: -.01em;
+    text-transform: uppercase; color: #fff;
+    margin-top: .1em; line-height: 1;
+    min-height: 1em;
   }
   #intro-cursor {
     display: inline-block;
@@ -890,7 +890,7 @@ const rm = window.matchMedia("(prefers-reduced-motion:reduce)").matches;
   const LINE1  = 'Labnormally.';
   const LINE2  = 'De las ideas a la realidad.';
   const SPEED  = 72;
-  const HOLD   = 1100;
+  const HOLD   = 2000;
 
   function dismiss () {
     overlay.classList.add('out');
@@ -906,9 +906,9 @@ const rm = window.matchMedia("(prefers-reduced-motion:reduce)").matches;
 
   function typeLine1 (i) {
     if (i > LINE1.length) {
-      // Move cursor to sub line
+      // Pause so user reads line 1, then start line 2
       cursor.style.background = 'rgba(255,255,255,.45)';
-      setTimeout(() => typeLine2(0), 320);
+      setTimeout(() => typeLine2(0), 750);
       return;
     }
     el.textContent = LINE1.slice(0, i);
