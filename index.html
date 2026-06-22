@@ -375,58 +375,50 @@
   }
 
   .step-row {
-    display: grid;
-    grid-template-columns: 5.5rem 1fr;
-    gap: 0 1.75rem;
     padding: 2.25rem 0;
     border-top: 1px solid rgba(8,8,15,0.09);
-    position: relative;
-    overflow: hidden;
   }
   .step-row:last-child { border-bottom: 1px solid rgba(8,8,15,0.09); }
 
-  /* wipe-in line that reveals content */
-  .step-row::after {
-    content: '';
-    position: absolute; inset: 0;
-    background: var(--white);
-    transform: scaleX(1);
-    transform-origin: right;
-    transition: transform .65s cubic-bezier(.77,0,.18,1);
-    z-index: 2;
+  /* clip-path wipe: reveals inner content from left → right */
+  .step-inner {
+    display: grid;
+    grid-template-columns: 5.5rem 1fr;
+    gap: 0 1.75rem;
+    align-items: start;
+    clip-path: inset(0 100% 0 0);
+    transition: clip-path .7s cubic-bezier(.77,0,.175,1);
   }
-  .step-row.on::after { transform: scaleX(0); }
+  .step-row.on .step-inner { clip-path: inset(0 0% 0 0); }
 
   .step-num-big {
     font-family: 'Barlow Condensed', sans-serif;
     font-size: 4.5rem; font-weight: 900; line-height: 1;
-    color: var(--blue); opacity: .12;
-    transition: opacity .5s .3s;
-    align-self: start; padding-top: .1rem;
+    color: var(--blue); opacity: .2;
+    padding-top: .05rem;
   }
-  .step-row.on .step-num-big { opacity: .18; }
 
-  .step-body { padding-top: .15rem; }
+  .step-body { padding-top: .2rem; }
   .step-ttl {
     font-family: 'Barlow Condensed', sans-serif;
-    font-size: 1.45rem; font-weight: 700;
+    font-size: 1.5rem; font-weight: 700;
     text-transform: uppercase; letter-spacing: .05em;
-    color: var(--ink); margin-bottom: .5rem;
-    transform: translateY(10px); opacity: 0;
-    transition: transform .5s .35s, opacity .5s .35s;
+    color: var(--ink); margin-bottom: .45rem;
+    opacity: 0; transform: translateY(8px);
+    transition: opacity .45s .55s, transform .45s .55s;
   }
-  .step-row.on .step-ttl { transform: none; opacity: 1; }
+  .step-row.on .step-ttl { opacity: 1; transform: none; }
   .step-dsc {
     font-size: .9rem; line-height: 1.75; color: rgba(8,8,15,.52);
-    transform: translateY(10px); opacity: 0;
-    transition: transform .5s .45s, opacity .5s .45s;
+    opacity: 0; transform: translateY(8px);
+    transition: opacity .45s .68s, transform .45s .68s;
   }
-  .step-row.on .step-dsc { transform: none; opacity: 1; }
+  .step-row.on .step-dsc { opacity: 1; transform: none; }
 
   @media (max-width: 480px) {
     .step-list { padding: 0 1rem; }
     .step-num-big { font-size: 3rem; }
-    .step-row { grid-template-columns: 3.75rem 1fr; gap: 0 1rem; }
+    .step-inner { grid-template-columns: 3.5rem 1fr; gap: 0 1rem; }
     .proc-diagram { padding: 0 1rem; }
   }
 
@@ -840,31 +832,39 @@
     <!-- Step list — wipe reveal -->
     <div class="step-list">
       <div class="step-row">
-        <span class="step-num-big">01</span>
-        <div class="step-body">
-          <p class="step-ttl">Identificamos</p>
-          <p class="step-dsc">Entendemos el problema real. No el síntoma, no la suposición. El dolor verdadero que frena el negocio.</p>
+        <div class="step-inner">
+          <span class="step-num-big">01</span>
+          <div class="step-body">
+            <p class="step-ttl">Identificamos</p>
+            <p class="step-dsc">Entendemos el problema real. No el síntoma, no la suposición. El dolor verdadero que frena el negocio.</p>
+          </div>
         </div>
       </div>
       <div class="step-row">
-        <span class="step-num-big">02</span>
-        <div class="step-body">
-          <p class="step-ttl">Proponemos</p>
-          <p class="step-dsc">Diseñamos la solución más simple posible. Sin capas innecesarias, sin tecnología por tecnología.</p>
+        <div class="step-inner">
+          <span class="step-num-big">02</span>
+          <div class="step-body">
+            <p class="step-ttl">Proponemos</p>
+            <p class="step-dsc">Diseñamos la solución más simple posible. Sin capas innecesarias, sin tecnología por tecnología.</p>
+          </div>
         </div>
       </div>
       <div class="step-row">
-        <span class="step-num-big">03</span>
-        <div class="step-body">
-          <p class="step-ttl">Iteramos</p>
-          <p class="step-dsc">Lanzamos rápido y aprendemos con uso real. Cada ciclo acerca la herramienta a lo que el negocio necesita.</p>
+        <div class="step-inner">
+          <span class="step-num-big">03</span>
+          <div class="step-body">
+            <p class="step-ttl">Iteramos</p>
+            <p class="step-dsc">Lanzamos rápido y aprendemos con uso real. Cada ciclo acerca la herramienta a lo que el negocio necesita.</p>
+          </div>
         </div>
       </div>
       <div class="step-row">
-        <span class="step-num-big">04</span>
-        <div class="step-body">
-          <p class="step-ttl">Ajustamos</p>
-          <p class="step-dsc">La solución evoluciona con el negocio. No es un proyecto cerrado, es un organismo vivo.</p>
+        <div class="step-inner">
+          <span class="step-num-big">04</span>
+          <div class="step-body">
+            <p class="step-ttl">Ajustamos</p>
+            <p class="step-dsc">La solución evoluciona con el negocio. No es un proyecto cerrado, es un organismo vivo.</p>
+          </div>
         </div>
       </div>
     </div>
