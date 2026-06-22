@@ -380,16 +380,16 @@
   }
   .step-row:last-child { border-bottom: 1px solid rgba(8,8,15,0.09); }
 
-  /* clip-path wipe: reveals inner content from left → right */
   .step-inner {
     display: grid;
     grid-template-columns: 5.5rem 1fr;
     gap: 0 1.75rem;
     align-items: start;
-    clip-path: inset(0 100% 0 0);
-    transition: clip-path .7s cubic-bezier(.77,0,.175,1);
+    opacity: 0;
+    transform: translateY(18px);
+    transition: opacity .55s ease, transform .55s ease;
   }
-  .step-row.on .step-inner { clip-path: inset(0 0% 0 0); }
+  .step-row.on .step-inner { opacity: 1; transform: translateY(0); }
 
   .step-num-big {
     font-family: 'Barlow Condensed', sans-serif;
@@ -404,16 +404,10 @@
     font-size: 1.5rem; font-weight: 700;
     text-transform: uppercase; letter-spacing: .05em;
     color: var(--ink); margin-bottom: .45rem;
-    opacity: 0; transform: translateY(8px);
-    transition: opacity .45s .55s, transform .45s .55s;
   }
-  .step-row.on .step-ttl { opacity: 1; transform: none; }
   .step-dsc {
     font-size: .9rem; line-height: 1.75; color: rgba(8,8,15,.52);
-    opacity: 0; transform: translateY(8px);
-    transition: opacity .45s .68s, transform .45s .68s;
   }
-  .step-row.on .step-dsc { opacity: 1; transform: none; }
 
   @media (max-width: 480px) {
     .step-list { padding: 0 1rem; }
@@ -1129,17 +1123,17 @@ karaoke();
 const revObs = new IntersectionObserver(es => es.forEach(e => { if(e.isIntersecting){ e.target.classList.add("on"); revObs.unobserve(e.target); } }), { threshold:.12 });
 document.querySelectorAll(".reveal").forEach(el => revObs.observe(el));
 
-// ── STEP ROWS — staggered wipe reveal ──
+// ── STEP ROWS — staggered fade-up reveal ──
 const stepObs = new IntersectionObserver(es => {
   es.forEach(e => {
     if (!e.isIntersecting) return;
     const rows = e.target.querySelectorAll('.step-row');
     rows.forEach((row, i) => {
-      setTimeout(() => row.classList.add('on'), i * 120);
+      setTimeout(() => requestAnimationFrame(() => row.classList.add('on')), 80 + i * 130);
     });
     stepObs.unobserve(e.target);
   });
-}, { threshold: 0.08 });
+}, { threshold: 0.05 });
 const stepList = document.querySelector('.step-list');
 if (stepList) stepObs.observe(stepList);
 
