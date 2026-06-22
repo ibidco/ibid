@@ -351,28 +351,26 @@
   .proc-header  { text-align: center; padding: 0 1.5rem 3.5rem; }
 
   .proc-diagram {
-    width: 100%; max-width: 980px;
+    width: 100%; max-width: 520px;
     margin: 0 auto; padding: 0 1.5rem;
   }
   .proc-diagram svg { width: 100%; height: auto; overflow: visible; }
 
   .proc-steps {
-    display: grid; grid-template-columns: repeat(4,1fr);
+    display: grid; grid-template-columns: repeat(2,1fr);
     gap: 1px; background: rgba(255,255,255,0.06);
     border-top: 1px solid rgba(255,255,255,0.06);
     border-bottom: 1px solid rgba(255,255,255,0.06);
-    max-width: 980px; margin: 3.5rem auto 0;
+    max-width: 640px; margin: 3.5rem auto 0;
   }
 
   .proc-step { padding: 1.75rem; background: var(--ink); }
+  .proc-step-num { font-family: 'Barlow Condensed', sans-serif; font-size: .75rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: rgba(255,255,255,.35); margin-bottom: .5rem; }
   .proc-step-desc { font-size: .875rem; color: rgba(255,255,255,.42); line-height: 1.7; }
 
-  @media (max-width: 768px) {
-    .proc-steps { grid-template-columns: 1fr 1fr; }
-    .proc-diagram { padding: 0 1rem; }
-  }
   @media (max-width: 480px) {
     .proc-steps { grid-template-columns: 1fr; }
+    .proc-diagram { padding: 0 1rem; }
   }
 
   /* ── PROCESS BG SVG (legacy, unused) ── */
@@ -687,113 +685,85 @@
     </div>
 
     <div class="proc-diagram reveal" style="transition-delay:.2s">
-      <svg viewBox="0 0 900 270" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <!-- Circular orbit: center=310,310  orbit-r=160  node-r=44
+           Nodes at 12/3/6/9 o'clock: (310,150) (470,310) (310,470) (150,310)
+           Circumference ≈ 1005  -->
+      <svg viewBox="0 0 620 620" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
         <defs>
           <filter id="gp" x="-80%" y="-80%" width="260%" height="260%">
-            <feGaussianBlur stdDeviation="2.8" result="b"/>
+            <feGaussianBlur stdDeviation="3" result="b"/>
             <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
           </filter>
-          <marker id="ah" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
-            <polyline points="1,1 7,4 1,7" fill="none" stroke="rgba(255,255,255,0.3)" stroke-width="0.9" stroke-linejoin="round"/>
-          </marker>
         </defs>
 
-        <!-- Nodes: r=44, cy=148, cx = 88 / 316 / 584 / 812 -->
-        <!-- Segments between node edges:
-             P1: 132 → 272  (N1 right → N2 left)
-             P2: 360 → 540  (N2 right → N3 left)
-             P3: 628 → 768  (N3 right → N4 left)
-             Return arc: N4 bottom (812,192) → N1 bottom (88,192)  -->
+        <!-- Orbit ring -->
+        <circle cx="310" cy="310" r="160" stroke="rgba(255,255,255,0.12)" stroke-width="0.7"/>
 
-        <!-- ── BASE LINES ── -->
-        <line x1="132" y1="148" x2="272" y2="148" stroke="rgba(255,255,255,0.12)" stroke-width="0.6" marker-end="url(#ah)"/>
-        <line x1="360" y1="148" x2="540" y2="148" stroke="rgba(255,255,255,0.12)" stroke-width="0.6" marker-end="url(#ah)"/>
-        <line x1="628" y1="148" x2="768" y2="148" stroke="rgba(255,255,255,0.12)" stroke-width="0.6" marker-end="url(#ah)"/>
-        <!-- Return arc -->
-        <path d="M812,192 C812,255 88,255 88,192" stroke="rgba(255,255,255,0.1)" stroke-width="0.6" stroke-dasharray="4 8"/>
+        <!-- Pulse 1 — clockwise, start at top (rotate -90°) -->
+        <circle cx="310" cy="310" r="160" stroke="white" stroke-width="1.8" stroke-linecap="round"
+          stroke-dasharray="22 983" filter="url(#gp)" opacity=".9" transform="rotate(-90,310,310)">
+          <animate attributeName="stroke-dashoffset" from="0" to="-1005" dur="3.2s" repeatCount="indefinite"/>
+        </circle>
+        <!-- Pulse 2 — offset by half period -->
+        <circle cx="310" cy="310" r="160" stroke="white" stroke-width="1.8" stroke-linecap="round"
+          stroke-dasharray="22 983" filter="url(#gp)" opacity=".9" transform="rotate(-90,310,310)">
+          <animate attributeName="stroke-dashoffset" from="0" to="-1005" dur="3.2s" begin="1.6s" repeatCount="indefinite"/>
+        </circle>
 
-        <!-- ── PULSES — Segment 1 (length ≈152) ── -->
-        <line x1="132" y1="148" x2="272" y2="148" stroke="white" stroke-width="1.4" stroke-linecap="round" stroke-dasharray="18 180" filter="url(#gp)" opacity=".85">
-          <animate attributeName="stroke-dashoffset" from="0" to="-198" dur="0.75s" repeatCount="indefinite"/>
-        </line>
-        <line x1="132" y1="148" x2="272" y2="148" stroke="white" stroke-width="1.4" stroke-linecap="round" stroke-dasharray="18 180" filter="url(#gp)" opacity=".85">
-          <animate attributeName="stroke-dashoffset" from="0" to="-198" dur="0.75s" begin="0.375s" repeatCount="indefinite"/>
-        </line>
+        <!-- ── NODE 1 — IDENTIFICAMOS — 12 o'clock (310, 150) ── -->
+        <circle cx="310" cy="150" r="44" fill="#08080F" stroke="rgba(255,255,255,0.3)" stroke-width="0.8"/>
+        <circle cx="310" cy="150" r="13" fill="none" stroke="white" stroke-width="0.8"/>
+        <circle cx="310" cy="150" r="3.5" fill="white"/>
+        <line x1="292" y1="150" x2="297" y2="150" stroke="white" stroke-width="0.8"/>
+        <line x1="323" y1="150" x2="328" y2="150" stroke="white" stroke-width="0.8"/>
+        <line x1="310" y1="132" x2="310" y2="137" stroke="white" stroke-width="0.8"/>
+        <line x1="310" y1="163" x2="310" y2="168" stroke="white" stroke-width="0.8"/>
+        <text x="310" y="82"  text-anchor="middle" font-family="Barlow Condensed,sans-serif" font-size="10" font-weight="700" letter-spacing="3"   fill="rgba(255,255,255,0.3)">01</text>
+        <text x="310" y="97"  text-anchor="middle" font-family="Barlow Condensed,sans-serif" font-size="13" font-weight="700" letter-spacing="1.5" fill="rgba(255,255,255,0.75)">IDENTIFICAMOS</text>
 
-        <!-- ── PULSES — Segment 2 (length ≈180) ── -->
-        <line x1="360" y1="148" x2="540" y2="148" stroke="white" stroke-width="1.4" stroke-linecap="round" stroke-dasharray="18 210" filter="url(#gp)" opacity=".85">
-          <animate attributeName="stroke-dashoffset" from="0" to="-228" dur="0.9s" repeatCount="indefinite"/>
-        </line>
-        <line x1="360" y1="148" x2="540" y2="148" stroke="white" stroke-width="1.4" stroke-linecap="round" stroke-dasharray="18 210" filter="url(#gp)" opacity=".85">
-          <animate attributeName="stroke-dashoffset" from="0" to="-228" dur="0.9s" begin="0.45s" repeatCount="indefinite"/>
-        </line>
+        <!-- ── NODE 2 — PROPONEMOS — 3 o'clock (470, 310) ── -->
+        <circle cx="470" cy="310" r="44" fill="#08080F" stroke="rgba(255,255,255,0.3)" stroke-width="0.8"/>
+        <polygon points="470,295 484,310 470,325 456,310" fill="none" stroke="white" stroke-width="0.8"/>
+        <text x="520" y="305" text-anchor="start" font-family="Barlow Condensed,sans-serif" font-size="10" font-weight="700" letter-spacing="3"   fill="rgba(255,255,255,0.3)">02</text>
+        <text x="520" y="320" text-anchor="start" font-family="Barlow Condensed,sans-serif" font-size="13" font-weight="700" letter-spacing="1.5" fill="rgba(255,255,255,0.75)">PROPONEMOS</text>
 
-        <!-- ── PULSES — Segment 3 (length ≈140) ── -->
-        <line x1="628" y1="148" x2="768" y2="148" stroke="white" stroke-width="1.4" stroke-linecap="round" stroke-dasharray="18 170" filter="url(#gp)" opacity=".85">
-          <animate attributeName="stroke-dashoffset" from="0" to="-188" dur="0.72s" repeatCount="indefinite"/>
-        </line>
-        <line x1="628" y1="148" x2="768" y2="148" stroke="white" stroke-width="1.4" stroke-linecap="round" stroke-dasharray="18 170" filter="url(#gp)" opacity=".85">
-          <animate attributeName="stroke-dashoffset" from="0" to="-188" dur="0.72s" begin="0.36s" repeatCount="indefinite"/>
-        </line>
+        <!-- ── NODE 3 — ITERAMOS — 6 o'clock (310, 470) ── -->
+        <circle cx="310" cy="470" r="44" fill="#08080F" stroke="rgba(255,255,255,0.3)" stroke-width="0.8"/>
+        <path d="M299,470 A13,13 0 1,1 321,470" fill="none" stroke="white" stroke-width="0.8" stroke-linecap="round"/>
+        <polyline points="319,479 324,470 316,467" fill="none" stroke="white" stroke-width="0.8" stroke-linecap="round" stroke-linejoin="round"/>
+        <text x="310" y="530" text-anchor="middle" font-family="Barlow Condensed,sans-serif" font-size="10" font-weight="700" letter-spacing="3"   fill="rgba(255,255,255,0.3)">03</text>
+        <text x="310" y="545" text-anchor="middle" font-family="Barlow Condensed,sans-serif" font-size="13" font-weight="700" letter-spacing="1.5" fill="rgba(255,255,255,0.75)">ITERAMOS</text>
 
-        <!-- ── PULSES — Return arc (length ≈900) ── -->
-        <path d="M812,192 C812,255 88,255 88,192" stroke="white" stroke-width="1.4" stroke-linecap="round" stroke-dasharray="18 950" filter="url(#gp)" opacity=".5">
-          <animate attributeName="stroke-dashoffset" from="0" to="-968" dur="3.6s" repeatCount="indefinite"/>
-        </path>
-        <path d="M812,192 C812,255 88,255 88,192" stroke="white" stroke-width="1.4" stroke-linecap="round" stroke-dasharray="18 950" filter="url(#gp)" opacity=".5">
-          <animate attributeName="stroke-dashoffset" from="0" to="-968" dur="3.6s" begin="1.8s" repeatCount="indefinite"/>
-        </path>
+        <!-- ── NODE 4 — AJUSTAMOS — 9 o'clock (150, 310) ── -->
+        <circle cx="150" cy="310" r="44" fill="#08080F" stroke="rgba(255,255,255,0.3)" stroke-width="0.8"/>
+        <line x1="135" y1="303" x2="165" y2="303" stroke="white" stroke-width="0.8"/>
+        <line x1="135" y1="317" x2="165" y2="317" stroke="white" stroke-width="0.8"/>
+        <circle cx="158" cy="303" r="4.5" fill="#08080F" stroke="white" stroke-width="0.8"/>
+        <circle cx="142" cy="317" r="4.5" fill="#08080F" stroke="white" stroke-width="0.8"/>
+        <text x="100" y="305" text-anchor="end" font-family="Barlow Condensed,sans-serif" font-size="10" font-weight="700" letter-spacing="3"   fill="rgba(255,255,255,0.3)">04</text>
+        <text x="100" y="320" text-anchor="end" font-family="Barlow Condensed,sans-serif" font-size="13" font-weight="700" letter-spacing="1.5" fill="rgba(255,255,255,0.75)">AJUSTAMOS</text>
 
-        <!-- ── NODE 1 — Identificamos — cx=88, cy=148, r=44 ── -->
-        <circle cx="88"  cy="148" r="44" fill="#08080F" stroke="rgba(255,255,255,0.3)" stroke-width="0.8"/>
-        <circle cx="88"  cy="148" r="13" fill="none" stroke="white" stroke-width="0.8"/>
-        <circle cx="88"  cy="148" r="3.5" fill="white"/>
-        <line x1="70" y1="148" x2="75" y2="148" stroke="white" stroke-width="0.8"/>
-        <line x1="101" y1="148" x2="106" y2="148" stroke="white" stroke-width="0.8"/>
-        <line x1="88" y1="130" x2="88" y2="135" stroke="white" stroke-width="0.8"/>
-        <line x1="88" y1="161" x2="88" y2="166" stroke="white" stroke-width="0.8"/>
-        <text x="88"  y="88"  text-anchor="middle" font-family="Barlow Condensed,sans-serif" font-size="10" font-weight="700" letter-spacing="3"   fill="rgba(255,255,255,0.3)">01</text>
-        <text x="88"  y="102" text-anchor="middle" font-family="Barlow Condensed,sans-serif" font-size="13" font-weight="700" letter-spacing="1.5" fill="rgba(255,255,255,0.75)">IDENTIFICAMOS</text>
-
-        <!-- ── NODE 2 — Proponemos — cx=316, cy=148, r=44 ── -->
-        <circle cx="316" cy="148" r="44" fill="#08080F" stroke="rgba(255,255,255,0.3)" stroke-width="0.8"/>
-        <polygon points="316,133 330,148 316,163 302,148" fill="none" stroke="white" stroke-width="0.8"/>
-        <text x="316" y="88"  text-anchor="middle" font-family="Barlow Condensed,sans-serif" font-size="10" font-weight="700" letter-spacing="3"   fill="rgba(255,255,255,0.3)">02</text>
-        <text x="316" y="102" text-anchor="middle" font-family="Barlow Condensed,sans-serif" font-size="13" font-weight="700" letter-spacing="1.5" fill="rgba(255,255,255,0.75)">PROPONEMOS</text>
-
-        <!-- ── NODE 3 — Iteramos — cx=584, cy=148, r=44 ── -->
-        <circle cx="584" cy="148" r="44" fill="#08080F" stroke="rgba(255,255,255,0.3)" stroke-width="0.8"/>
-        <path d="M573,148 A13,13 0 1,1 595,148" fill="none" stroke="white" stroke-width="0.8" stroke-linecap="round"/>
-        <polyline points="593,157 598,148 590,145" fill="none" stroke="white" stroke-width="0.8" stroke-linecap="round" stroke-linejoin="round"/>
-        <text x="584" y="88"  text-anchor="middle" font-family="Barlow Condensed,sans-serif" font-size="10" font-weight="700" letter-spacing="3"   fill="rgba(255,255,255,0.3)">03</text>
-        <text x="584" y="102" text-anchor="middle" font-family="Barlow Condensed,sans-serif" font-size="13" font-weight="700" letter-spacing="1.5" fill="rgba(255,255,255,0.75)">ITERAMOS</text>
-
-        <!-- ── NODE 4 — Ajustamos — cx=812, cy=148, r=44 ── -->
-        <circle cx="812" cy="148" r="44" fill="#08080F" stroke="rgba(255,255,255,0.3)" stroke-width="0.8"/>
-        <line x1="797" y1="141" x2="827" y2="141" stroke="white" stroke-width="0.8"/>
-        <line x1="797" y1="155" x2="827" y2="155" stroke="white" stroke-width="0.8"/>
-        <circle cx="820" cy="141" r="4.5" fill="#08080F" stroke="white" stroke-width="0.8"/>
-        <circle cx="804" cy="155" r="4.5" fill="#08080F" stroke="white" stroke-width="0.8"/>
-        <text x="812" y="88"  text-anchor="middle" font-family="Barlow Condensed,sans-serif" font-size="10" font-weight="700" letter-spacing="3"   fill="rgba(255,255,255,0.3)">04</text>
-        <text x="812" y="102" text-anchor="middle" font-family="Barlow Condensed,sans-serif" font-size="13" font-weight="700" letter-spacing="1.5" fill="rgba(255,255,255,0.75)">AJUSTAMOS</text>
-
-        <!-- Return label -->
-        <text x="450" y="267" text-anchor="middle" font-family="Barlow Condensed,sans-serif" font-size="9" font-weight="700" letter-spacing="5" fill="rgba(255,255,255,0.18)">ITERACIÓN CONTINUA</text>
+        <!-- Center dot -->
+        <circle cx="310" cy="310" r="2.5" fill="rgba(255,255,255,0.18)"/>
       </svg>
     </div>
 
-    <!-- Step descriptions -->
+    <!-- Step descriptions 2×2 -->
     <div class="proc-steps">
       <div class="proc-step reveal" style="transition-delay:.15s">
+        <p class="proc-step-num">01 — Identificamos</p>
         <p class="proc-step-desc">Entendemos el problema real. No el síntoma, no la suposición. El dolor verdadero que frena el negocio.</p>
       </div>
       <div class="proc-step reveal" style="transition-delay:.25s">
+        <p class="proc-step-num">02 — Proponemos</p>
         <p class="proc-step-desc">Diseñamos la solución más simple posible. Sin capas innecesarias, sin tecnología por tecnología.</p>
       </div>
       <div class="proc-step reveal" style="transition-delay:.35s">
+        <p class="proc-step-num">03 — Iteramos</p>
         <p class="proc-step-desc">Lanzamos rápido y aprendemos con uso real. Cada ciclo acerca la herramienta a lo que el negocio necesita.</p>
       </div>
       <div class="proc-step reveal" style="transition-delay:.45s">
+        <p class="proc-step-num">04 — Ajustamos</p>
         <p class="proc-step-desc">La solución evoluciona con el negocio. No es un proyecto cerrado, es un organismo vivo.</p>
       </div>
     </div>
