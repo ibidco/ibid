@@ -347,14 +347,22 @@
   .karaoke .w.lit { color: var(--ink); }
 
   /* ── PROCESS FLOW DIAGRAM ── */
-  .proc-section { padding: 5rem 0 7rem; }
-  .proc-header  { text-align: center; padding: 0 1.5rem 3.5rem; }
+  .proc-section { padding: 5rem 0 7rem; overflow: hidden; }
+  .proc-header  { text-align: center; padding: 0 1.5rem 3.5rem; position: relative; z-index: 1; }
 
   .proc-diagram {
     width: 100%; max-width: 520px;
     margin: 0 auto; padding: 0 1.5rem;
+    position: relative; z-index: 1;
   }
   .proc-diagram svg { width: 100%; height: auto; overflow: visible; }
+
+  /* background orbit field */
+  .proc-bg-orbits {
+    position: absolute; inset: 0;
+    width: 100%; height: 100%;
+    pointer-events: none; z-index: 0;
+  }
 
   .proc-steps {
     display: grid; grid-template-columns: repeat(2,1fr);
@@ -362,6 +370,7 @@
     border-top: 1px solid rgba(255,255,255,0.15);
     border-bottom: 1px solid rgba(255,255,255,0.15);
     max-width: 640px; margin: 3.5rem auto 0;
+    position: relative; z-index: 1;
   }
 
   .proc-step { padding: 1.75rem; background: rgba(0,0,0,.18); }
@@ -680,6 +689,81 @@
 
   <!-- PROCESS: dark -->
   <section id="how" class="s-blue proc-section">
+
+    <!-- ── BACKGROUND ORBIT FIELD — multiple businesses running in parallel ── -->
+    <svg class="proc-bg-orbits" viewBox="0 0 1440 700" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+      <!-- Orbit A — left, tilted 30° -->
+      <g transform="translate(195,310) rotate(30)">
+        <ellipse cx="0" cy="0" rx="148" ry="72" stroke="rgba(255,255,255,0.07)" stroke-width="0.8" fill="none"/>
+        <g><ellipse cx="148" cy="0" rx="3.5" ry="3.5" fill="white" opacity="0.18"/>
+          <animateTransform attributeName="transform" type="rotate" from="0" to="360" dur="9s" repeatCount="indefinite"/>
+        </g>
+        <g><ellipse cx="148" cy="0" rx="2" ry="2" fill="#FFE033" opacity="0.28"/>
+          <animateTransform attributeName="transform" type="rotate" from="180" to="540" dur="9s" repeatCount="indefinite"/>
+        </g>
+      </g>
+
+      <!-- Orbit B — top right, tilted −18° -->
+      <g transform="translate(1230,145) rotate(-18)">
+        <ellipse cx="0" cy="0" rx="115" ry="58" stroke="rgba(255,255,255,0.06)" stroke-width="0.8" fill="none"/>
+        <g><ellipse cx="115" cy="0" rx="2.8" ry="2.8" fill="white" opacity="0.16"/>
+          <animateTransform attributeName="transform" type="rotate" from="0" to="360" dur="7s" repeatCount="indefinite"/>
+        </g>
+        <g><ellipse cx="115" cy="0" rx="1.8" ry="1.8" fill="#FFE033" opacity="0.22"/>
+          <animateTransform attributeName="transform" type="rotate" from="240" to="600" dur="7s" repeatCount="indefinite"/>
+        </g>
+      </g>
+
+      <!-- Orbit C — bottom center, tilted 12° — largest -->
+      <g transform="translate(760,575) rotate(12)">
+        <ellipse cx="0" cy="0" rx="172" ry="86" stroke="rgba(255,255,255,0.05)" stroke-width="0.8" fill="none"/>
+        <g><ellipse cx="172" cy="0" rx="3" ry="3" fill="#FFE033" opacity="0.22"/>
+          <animateTransform attributeName="transform" type="rotate" from="0" to="360" dur="14s" repeatCount="indefinite"/>
+        </g>
+        <g><ellipse cx="172" cy="0" rx="2" ry="2" fill="white" opacity="0.13"/>
+          <animateTransform attributeName="transform" type="rotate" from="120" to="480" dur="14s" repeatCount="indefinite"/>
+        </g>
+      </g>
+
+      <!-- Orbit D — far left top, tilted 42° — small -->
+      <g transform="translate(72,118) rotate(42)">
+        <ellipse cx="0" cy="0" rx="82" ry="41" stroke="rgba(255,255,255,0.08)" stroke-width="0.7" fill="none"/>
+        <g><ellipse cx="82" cy="0" rx="2.2" ry="2.2" fill="white" opacity="0.2"/>
+          <animateTransform attributeName="transform" type="rotate" from="0" to="360" dur="5.5s" repeatCount="indefinite"/>
+        </g>
+      </g>
+
+      <!-- Orbit E — right bottom, tilted −32° -->
+      <g transform="translate(1370,520) rotate(-32)">
+        <ellipse cx="0" cy="0" rx="104" ry="52" stroke="rgba(255,255,255,0.06)" stroke-width="0.8" fill="none"/>
+        <g><ellipse cx="104" cy="0" rx="2.5" ry="2.5" fill="#FFE033" opacity="0.2"/>
+          <animateTransform attributeName="transform" type="rotate" from="0" to="360" dur="8.5s" repeatCount="indefinite"/>
+        </g>
+        <g><ellipse cx="104" cy="0" rx="1.6" ry="1.6" fill="white" opacity="0.14"/>
+          <animateTransform attributeName="transform" type="rotate" from="90" to="450" dur="8.5s" repeatCount="indefinite"/>
+        </g>
+      </g>
+
+      <!-- Orbit F — upper center, tilted −22° — medium -->
+      <g transform="translate(610,75) rotate(-22)">
+        <ellipse cx="0" cy="0" rx="96" ry="48" stroke="rgba(255,255,255,0.05)" stroke-width="0.7" fill="none"/>
+        <g><ellipse cx="96" cy="0" rx="2.2" ry="2.2" fill="white" opacity="0.16"/>
+          <animateTransform attributeName="transform" type="rotate" from="0" to="360" dur="11s" repeatCount="indefinite"/>
+        </g>
+      </g>
+
+      <!-- Orbit G — mid-right, tilted 15° -->
+      <g transform="translate(1050,380) rotate(15)">
+        <ellipse cx="0" cy="0" rx="130" ry="65" stroke="rgba(255,255,255,0.06)" stroke-width="0.8" fill="none"/>
+        <g><ellipse cx="130" cy="0" rx="2.8" ry="2.8" fill="white" opacity="0.14"/>
+          <animateTransform attributeName="transform" type="rotate" from="0" to="360" dur="10s" repeatCount="indefinite"/>
+        </g>
+        <g><ellipse cx="130" cy="0" rx="1.8" ry="1.8" fill="#FFE033" opacity="0.18"/>
+          <animateTransform attributeName="transform" type="rotate" from="60" to="420" dur="10s" repeatCount="indefinite"/>
+        </g>
+      </g>
+    </svg>
+
     <div class="proc-header">
       <p class="sec-label reveal">Proceso</p>
     </div>
