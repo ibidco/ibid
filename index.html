@@ -1121,14 +1121,21 @@ document.querySelectorAll(".reveal").forEach(el => revObs.observe(el));
 
 
 // ── STEP ROWS ──
-const stepObs = new IntersectionObserver(es => {
-  es.forEach(e => {
-    if (!e.isIntersecting) return;
-    e.target.classList.add('on');
-    stepObs.unobserve(e.target);
+// rAF ensures initial opacity:0 is painted before observer can fire
+requestAnimationFrame(() => {
+  const stepObs = new IntersectionObserver(es => {
+    es.forEach(e => {
+      if (!e.isIntersecting) return;
+      const delay = +e.target.dataset.stepDelay || 0;
+      setTimeout(() => e.target.classList.add('on'), delay);
+      stepObs.unobserve(e.target);
+    });
+  }, { threshold: 0.15 });
+  document.querySelectorAll('.step-row').forEach((row, i) => {
+    row.dataset.stepDelay = i * 130;
+    stepObs.observe(row);
   });
-}, { threshold: 0.25 });
-document.querySelectorAll('.step-row').forEach(row => stepObs.observe(row));
+});
 
 // ── VALUE CARDS ──
 const valObs = new IntersectionObserver(es => es.forEach(e => { if(e.isIntersecting){ setTimeout(()=>e.target.classList.add("on"), +e.target.dataset.d*100); valObs.unobserve(e.target); } }), { threshold:.1 });
