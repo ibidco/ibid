@@ -145,7 +145,7 @@
     display: flex; flex-direction: column;
     align-items: center; justify-content: center;
     text-align: center;
-    padding: 9rem 1.5rem 5rem;
+    padding: 7rem 1.5rem 4rem;
     overflow: hidden;
   }
 
@@ -181,8 +181,8 @@
 
   h1.hero-headline {
     font-family: 'Barlow Condensed', sans-serif;
-    font-size: clamp(5rem,14vw,11rem);
-    font-weight: 900; line-height: .9;
+    font-size: clamp(2.75rem,10vw,11rem);
+    font-weight: 900; line-height: .92;
     letter-spacing: -.01em; text-transform: uppercase;
     color: var(--white);
     opacity: 0; animation: fadeUp .7s ease .25s forwards;
@@ -555,7 +555,9 @@
 
   @media (max-width: 480px) {
     .values-grid { grid-template-columns: 1fr; }
-    h1.hero-headline { font-size: clamp(4rem,18vw,6rem); }
+    h1.hero-headline { font-size: clamp(2.5rem,9vw,4rem); }
+    .hero { padding: 6rem 1.25rem 3rem; justify-content: flex-start; padding-top: 7rem; }
+    .hero-tagline { font-size: clamp(1.1rem,5vw,1.6rem); }
   }
 </style>
 </head>
