@@ -350,8 +350,8 @@
   .karaoke .w.lit { color: var(--ink); }
 
   /* ── PROCESS FLOW DIAGRAM ── */
-  .proc-section { padding: 5rem 0 7rem; overflow: hidden; }
-  .proc-header  { text-align: center; padding: 0 1.5rem 3.5rem; position: relative; z-index: 1; }
+  .proc-section { padding: 3.5rem 0 5rem; overflow: hidden; }
+  .proc-header  { text-align: center; padding: 0 1.5rem 1.5rem; position: relative; z-index: 1; }
 
   .proc-diagram {
     width: 100%; max-width: 520px;
@@ -673,24 +673,7 @@
   </div>
 
   <!-- MARQUEE: dark -->
-  <div class="mq-wrap s-dark" aria-hidden="true">
-    <div class="mq-track">
-      <div class="mq-item">Cero burocracia <span class="mq-dot"></span></div>
-      <div class="mq-item">Skin in the game <span class="mq-dot"></span></div>
-      <div class="mq-item">Simplicidad radical <span class="mq-dot"></span></div>
-      <div class="mq-item">Tecnología robusta <span class="mq-dot"></span></div>
-      <div class="mq-item">Organismos vivos <span class="mq-dot"></span></div>
-      <div class="mq-item">Resultados reales <span class="mq-dot"></span></div>
-      <div class="mq-item">Cero burocracia <span class="mq-dot"></span></div>
-      <div class="mq-item">Skin in the game <span class="mq-dot"></span></div>
-      <div class="mq-item">Simplicidad radical <span class="mq-dot"></span></div>
-      <div class="mq-item">Tecnología robusta <span class="mq-dot"></span></div>
-      <div class="mq-item">Organismos vivos <span class="mq-dot"></span></div>
-      <div class="mq-item">Resultados reales <span class="mq-dot"></span></div>
-    </div>
-  </div>
-
-  <!-- PROCESS: dark -->
+  <!-- PROCESS: white -->
   <section id="how" class="s-white proc-section">
 
     <canvas id="proc-canvas" aria-hidden="true"></canvas>
@@ -703,12 +686,16 @@
     <div class="proc-diagram reveal" style="transition-delay:.2s">
       <!-- Circular orbit: center=400,340  orbit-r=160  node-r=44
            Nodes at 12/3/6/9 o'clock: (400,180) (560,340) (400,500) (240,340)
-           Circumference ≈ 1005  viewBox expanded for larger labels  -->
-      <svg viewBox="0 0 800 680" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+           viewBox cropped: y starts at 75, height 530 (labels at y=103..583)  -->
+      <svg viewBox="0 75 800 530" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
         <defs>
           <filter id="gp" x="-80%" y="-80%" width="260%" height="260%">
             <feGaussianBlur stdDeviation="3" result="b"/>
             <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+          </filter>
+          <!-- Drop shadow for node circles -->
+          <filter id="cs" x="-30%" y="-30%" width="160%" height="160%">
+            <feDropShadow dx="0" dy="3" stdDeviation="5" flood-color="rgba(0,0,0,0.22)"/>
           </filter>
         </defs>
 
@@ -727,7 +714,7 @@
         </circle>
 
         <!-- ── NODE 1 — IDENTIFICAMOS — 12 o'clock (400, 180) ── -->
-        <circle cx="400" cy="180" r="44" fill="#FFE033" stroke="rgba(8,8,15,0.2)" stroke-width="1"/>
+        <circle cx="400" cy="180" r="44" fill="#FFE033" stroke="#08080F" stroke-width="2" filter="url(#cs)"/>
         <circle cx="400" cy="180" r="13" fill="none" stroke="#08080F" stroke-width="0.9"/>
         <circle cx="400" cy="180" r="3.5" fill="#08080F"/>
         <line x1="382" y1="180" x2="387" y2="180" stroke="#08080F" stroke-width="0.9"/>
@@ -738,20 +725,20 @@
         <text x="400" y="124" text-anchor="middle" font-family="Barlow Condensed,sans-serif" font-size="20" font-weight="700" letter-spacing="2"   fill="#08080F">IDENTIFICAMOS</text>
 
         <!-- ── NODE 2 — PROPONEMOS — 3 o'clock (560, 340) ── -->
-        <circle cx="560" cy="340" r="44" fill="#FFE033" stroke="rgba(8,8,15,0.2)" stroke-width="1"/>
+        <circle cx="560" cy="340" r="44" fill="#FFE033" stroke="#08080F" stroke-width="2" filter="url(#cs)"/>
         <polygon points="560,325 574,340 560,355 546,340" fill="none" stroke="#08080F" stroke-width="0.9"/>
         <text x="614" y="332" text-anchor="start" font-family="Barlow Condensed,sans-serif" font-size="13" font-weight="700" letter-spacing="3"   fill="rgba(8,8,15,0.35)">02</text>
         <text x="614" y="353" text-anchor="start" font-family="Barlow Condensed,sans-serif" font-size="20" font-weight="700" letter-spacing="2"   fill="#08080F">PROPONEMOS</text>
 
         <!-- ── NODE 3 — ITERAMOS — 6 o'clock (400, 500) ── -->
-        <circle cx="400" cy="500" r="44" fill="#FFE033" stroke="rgba(8,8,15,0.2)" stroke-width="1"/>
+        <circle cx="400" cy="500" r="44" fill="#FFE033" stroke="#08080F" stroke-width="2" filter="url(#cs)"/>
         <path d="M389,500 A13,13 0 1,1 411,500" fill="none" stroke="#08080F" stroke-width="0.9" stroke-linecap="round"/>
         <polyline points="409,509 414,500 406,497" fill="none" stroke="#08080F" stroke-width="0.9" stroke-linecap="round" stroke-linejoin="round"/>
         <text x="400" y="562" text-anchor="middle" font-family="Barlow Condensed,sans-serif" font-size="13" font-weight="700" letter-spacing="3"   fill="rgba(8,8,15,0.35)">03</text>
         <text x="400" y="583" text-anchor="middle" font-family="Barlow Condensed,sans-serif" font-size="20" font-weight="700" letter-spacing="2"   fill="#08080F">ITERAMOS</text>
 
         <!-- ── NODE 4 — AJUSTAMOS — 9 o'clock (240, 340) ── -->
-        <circle cx="240" cy="340" r="44" fill="#FFE033" stroke="rgba(8,8,15,0.2)" stroke-width="1"/>
+        <circle cx="240" cy="340" r="44" fill="#FFE033" stroke="#08080F" stroke-width="2" filter="url(#cs)"/>
         <line x1="225" y1="333" x2="255" y2="333" stroke="#08080F" stroke-width="0.9"/>
         <line x1="225" y1="347" x2="255" y2="347" stroke="#08080F" stroke-width="0.9"/>
         <circle cx="248" cy="333" r="4.5" fill="#FFE033" stroke="#08080F" stroke-width="0.9"/>
