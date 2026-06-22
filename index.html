@@ -217,30 +217,35 @@
     position: relative; z-index: 1;
   }
 
-  .hero-eyebrow {
+  .hero-tagline {
     font-family: 'Barlow Condensed', sans-serif;
-    font-size: clamp(1rem, 2vw, 1.25rem);
+    font-size: clamp(1.5rem, 3.5vw, 2.5rem);
     font-weight: 700;
-    letter-spacing: .1em;
+    letter-spacing: .02em;
     text-transform: uppercase;
-    color: rgba(255,255,255,.35);
-    margin-bottom: 1.25rem;
-    opacity: 0; animation: fadeUp .6s ease .15s forwards;
-    position: relative; z-index: 1;
-  }
-
-  .hero-sub {
-    font-size: clamp(1rem, 1.8vw, 1.125rem);
     color: rgba(255,255,255,.55);
-    margin-top: 1.75rem;
-    max-width: 520px;
-    line-height: 1.7;
-    opacity: 0; animation: fadeUp .7s ease .45s forwards;
+    margin-top: 1.5rem;
+    opacity: 0; animation: fadeUp .7s ease .38s forwards;
     position: relative; z-index: 1;
-    text-align: center;
   }
 
-  .hero-sub strong { color: var(--white); font-weight: 600; }
+  /* ── CTA SECTION ── */
+  .cta-section { border-top: 1px solid rgba(0,0,0,.07); }
+
+  .cta-inner {
+    max-width: 1080px; margin: 0 auto;
+    padding: 3rem 1.5rem;
+    display: flex; gap: .75rem;
+    align-items: center; flex-wrap: wrap;
+  }
+
+  .btn-s--dark {
+    background: rgba(0,0,0,.06);
+    color: var(--ink);
+    border-color: rgba(0,0,0,.15);
+  }
+
+  .btn-s--dark:hover { background: rgba(0,0,0,.1); }
 
   .hero-actions {
     display: flex; gap: .75rem; margin-top: 2.5rem;
@@ -595,12 +600,23 @@
 
   <!-- HERO: dark -->
   <div class="hero s-dark">
-    <p class="hero-eyebrow">¿Suena raro, Labnormally?</p>
-    <h1 class="hero-headline">Lo sé, pero la idea<br>es sencilla.</h1>
-    <p class="hero-sub">Creamos soluciones brutalmente simples, con infraestructura de mañana, para ayudar a los negocios a moverse más rápido, tomar mejores decisiones, y hacer más.</p>
-    <div class="hero-actions">
+    <h1 class="hero-headline">¿Suena raro,<br>Labnormally?</h1>
+    <p class="hero-tagline">Lo sé, pero la idea es sencilla.</p>
+  </div>
+
+  <!-- MISSION: white -->
+  <div class="s-white" id="mission">
+    <div class="mission-inner">
+      <p class="sec-label reveal">Misión</p>
+      <p class="karaoke" id="kt" aria-label="Resolver problemas reales creando herramientas brutalmente simples."></p>
+    </div>
+  </div>
+
+  <!-- CTAs -->
+  <div class="cta-section s-white">
+    <div class="cta-inner">
       <a class="btn-p" href="#cases">Ver casos de éxito <svg width="13" height="13" viewBox="0 0 13 13" fill="none"><path d="M2 6.5h9M8 3l3.5 3.5L8 10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
-      <a class="btn-s" href="#how">Cómo funciona <svg width="13" height="13" viewBox="0 0 13 13" fill="none"><path d="M2 6.5h9M8 3l3.5 3.5L8 10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      <a class="btn-s btn-s--dark" href="#how">Cómo funciona <svg width="13" height="13" viewBox="0 0 13 13" fill="none"><path d="M2 6.5h9M8 3l3.5 3.5L8 10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
     </div>
   </div>
 
@@ -619,14 +635,6 @@
       <div class="mq-item">Tecnología robusta <span class="mq-dot"></span></div>
       <div class="mq-item">Organismos vivos <span class="mq-dot"></span></div>
       <div class="mq-item">Resultados reales <span class="mq-dot"></span></div>
-    </div>
-  </div>
-
-  <!-- MISSION: white -->
-  <div class="s-white" id="mission">
-    <div class="mission-inner">
-      <p class="sec-label reveal">Misión</p>
-      <p class="karaoke" id="kt" aria-label="Resolver problemas reales creando herramientas brutalmente simples."></p>
     </div>
   </div>
 
