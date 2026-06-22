@@ -908,7 +908,7 @@ const rm = window.matchMedia("(prefers-reduced-motion:reduce)").matches;
     if (i > LINE1.length) {
       // Move cursor to end of sub line, then start typing line 2
       setTimeout(() => {
-        sub.appendChild(cursor);
+        document.getElementById('intro-sub').appendChild(cursor);
         cursor.style.background = '';
         typeLine2(0);
       }, 750);
