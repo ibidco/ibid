@@ -687,93 +687,98 @@
     </div>
 
     <div class="proc-diagram reveal" style="transition-delay:.2s">
-      <svg viewBox="0 0 920 260" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <svg viewBox="0 0 900 270" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
         <defs>
           <filter id="gp" x="-80%" y="-80%" width="260%" height="260%">
-            <feGaussianBlur stdDeviation="2.2" result="b"/>
+            <feGaussianBlur stdDeviation="2.8" result="b"/>
             <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
           </filter>
-          <marker id="ah" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto">
-            <polyline points="1,1 6,3.5 1,6" fill="none" stroke="rgba(255,255,255,0.28)" stroke-width="0.9" stroke-linejoin="round"/>
+          <marker id="ah" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+            <polyline points="1,1 7,4 1,7" fill="none" stroke="rgba(255,255,255,0.3)" stroke-width="0.9" stroke-linejoin="round"/>
           </marker>
         </defs>
 
-        <!-- ── BASE PATHS (thin, static) ── -->
-        <!-- Forward segments -->
-        <line x1="132" y1="118" x2="296" y2="118" stroke="rgba(255,255,255,0.1)" stroke-width="0.6" marker-end="url(#ah)"/>
-        <line x1="364" y1="118" x2="554" y2="118" stroke="rgba(255,255,255,0.1)" stroke-width="0.6" marker-end="url(#ah)"/>
-        <line x1="622" y1="118" x2="786" y2="118" stroke="rgba(255,255,255,0.1)" stroke-width="0.6" marker-end="url(#ah)"/>
-        <!-- Return arc (dashed) -->
-        <path d="M818,148 C818,228 102,228 102,148" stroke="rgba(255,255,255,0.1)" stroke-width="0.6" stroke-dasharray="4 8"/>
+        <!-- Nodes: r=44, cy=148, cx = 88 / 316 / 584 / 812 -->
+        <!-- Segments between node edges:
+             P1: 132 → 272  (N1 right → N2 left)
+             P2: 360 → 540  (N2 right → N3 left)
+             P3: 628 → 768  (N3 right → N4 left)
+             Return arc: N4 bottom (812,192) → N1 bottom (88,192)  -->
 
-        <!-- ── PULSE LAYER ── -->
-        <!-- Segment 1 -->
-        <line x1="132" y1="118" x2="296" y2="118" stroke="white" stroke-width="1.1" stroke-linecap="round" stroke-dasharray="16 230" filter="url(#gp)" opacity=".8">
-          <animate attributeName="stroke-dashoffset" from="0" to="-246" dur="0.9s" repeatCount="indefinite"/>
-        </line>
-        <line x1="132" y1="118" x2="296" y2="118" stroke="white" stroke-width="1.1" stroke-linecap="round" stroke-dasharray="16 230" filter="url(#gp)" opacity=".8">
-          <animate attributeName="stroke-dashoffset" from="0" to="-246" dur="0.9s" begin="0.45s" repeatCount="indefinite"/>
-        </line>
+        <!-- ── BASE LINES ── -->
+        <line x1="132" y1="148" x2="272" y2="148" stroke="rgba(255,255,255,0.12)" stroke-width="0.6" marker-end="url(#ah)"/>
+        <line x1="360" y1="148" x2="540" y2="148" stroke="rgba(255,255,255,0.12)" stroke-width="0.6" marker-end="url(#ah)"/>
+        <line x1="628" y1="148" x2="768" y2="148" stroke="rgba(255,255,255,0.12)" stroke-width="0.6" marker-end="url(#ah)"/>
+        <!-- Return arc -->
+        <path d="M812,192 C812,255 88,255 88,192" stroke="rgba(255,255,255,0.1)" stroke-width="0.6" stroke-dasharray="4 8"/>
 
-        <!-- Segment 2 -->
-        <line x1="364" y1="118" x2="554" y2="118" stroke="white" stroke-width="1.1" stroke-linecap="round" stroke-dasharray="16 260" filter="url(#gp)" opacity=".8">
-          <animate attributeName="stroke-dashoffset" from="0" to="-276" dur="1.0s" repeatCount="indefinite"/>
+        <!-- ── PULSES — Segment 1 (length ≈152) ── -->
+        <line x1="132" y1="148" x2="272" y2="148" stroke="white" stroke-width="1.4" stroke-linecap="round" stroke-dasharray="18 180" filter="url(#gp)" opacity=".85">
+          <animate attributeName="stroke-dashoffset" from="0" to="-198" dur="0.75s" repeatCount="indefinite"/>
         </line>
-        <line x1="364" y1="118" x2="554" y2="118" stroke="white" stroke-width="1.1" stroke-linecap="round" stroke-dasharray="16 260" filter="url(#gp)" opacity=".8">
-          <animate attributeName="stroke-dashoffset" from="0" to="-276" dur="1.0s" begin="0.5s" repeatCount="indefinite"/>
+        <line x1="132" y1="148" x2="272" y2="148" stroke="white" stroke-width="1.4" stroke-linecap="round" stroke-dasharray="18 180" filter="url(#gp)" opacity=".85">
+          <animate attributeName="stroke-dashoffset" from="0" to="-198" dur="0.75s" begin="0.375s" repeatCount="indefinite"/>
         </line>
 
-        <!-- Segment 3 -->
-        <line x1="622" y1="118" x2="786" y2="118" stroke="white" stroke-width="1.1" stroke-linecap="round" stroke-dasharray="16 230" filter="url(#gp)" opacity=".8">
-          <animate attributeName="stroke-dashoffset" from="0" to="-246" dur="0.9s" repeatCount="indefinite"/>
+        <!-- ── PULSES — Segment 2 (length ≈180) ── -->
+        <line x1="360" y1="148" x2="540" y2="148" stroke="white" stroke-width="1.4" stroke-linecap="round" stroke-dasharray="18 210" filter="url(#gp)" opacity=".85">
+          <animate attributeName="stroke-dashoffset" from="0" to="-228" dur="0.9s" repeatCount="indefinite"/>
         </line>
-        <line x1="622" y1="118" x2="786" y2="118" stroke="white" stroke-width="1.1" stroke-linecap="round" stroke-dasharray="16 230" filter="url(#gp)" opacity=".8">
-          <animate attributeName="stroke-dashoffset" from="0" to="-246" dur="0.9s" begin="0.45s" repeatCount="indefinite"/>
+        <line x1="360" y1="148" x2="540" y2="148" stroke="white" stroke-width="1.4" stroke-linecap="round" stroke-dasharray="18 210" filter="url(#gp)" opacity=".85">
+          <animate attributeName="stroke-dashoffset" from="0" to="-228" dur="0.9s" begin="0.45s" repeatCount="indefinite"/>
         </line>
 
-        <!-- Return arc pulses -->
-        <path d="M818,148 C818,228 102,228 102,148" stroke="white" stroke-width="1.1" stroke-linecap="round" stroke-dasharray="16 750" filter="url(#gp)" opacity=".5">
-          <animate attributeName="stroke-dashoffset" from="0" to="-766" dur="3.0s" repeatCount="indefinite"/>
+        <!-- ── PULSES — Segment 3 (length ≈140) ── -->
+        <line x1="628" y1="148" x2="768" y2="148" stroke="white" stroke-width="1.4" stroke-linecap="round" stroke-dasharray="18 170" filter="url(#gp)" opacity=".85">
+          <animate attributeName="stroke-dashoffset" from="0" to="-188" dur="0.72s" repeatCount="indefinite"/>
+        </line>
+        <line x1="628" y1="148" x2="768" y2="148" stroke="white" stroke-width="1.4" stroke-linecap="round" stroke-dasharray="18 170" filter="url(#gp)" opacity=".85">
+          <animate attributeName="stroke-dashoffset" from="0" to="-188" dur="0.72s" begin="0.36s" repeatCount="indefinite"/>
+        </line>
+
+        <!-- ── PULSES — Return arc (length ≈900) ── -->
+        <path d="M812,192 C812,255 88,255 88,192" stroke="white" stroke-width="1.4" stroke-linecap="round" stroke-dasharray="18 950" filter="url(#gp)" opacity=".5">
+          <animate attributeName="stroke-dashoffset" from="0" to="-968" dur="3.6s" repeatCount="indefinite"/>
         </path>
-        <path d="M818,148 C818,228 102,228 102,148" stroke="white" stroke-width="1.1" stroke-linecap="round" stroke-dasharray="16 750" filter="url(#gp)" opacity=".5">
-          <animate attributeName="stroke-dashoffset" from="0" to="-766" dur="3.0s" begin="1.5s" repeatCount="indefinite"/>
+        <path d="M812,192 C812,255 88,255 88,192" stroke="white" stroke-width="1.4" stroke-linecap="round" stroke-dasharray="18 950" filter="url(#gp)" opacity=".5">
+          <animate attributeName="stroke-dashoffset" from="0" to="-968" dur="3.6s" begin="1.8s" repeatCount="indefinite"/>
         </path>
 
-        <!-- ── NODE 1 — Identificamos (102, 118) ── -->
-        <circle cx="102" cy="118" r="30" fill="#08080F" stroke="rgba(255,255,255,0.32)" stroke-width="0.7"/>
-        <circle cx="102" cy="118" r="9"  fill="none"   stroke="white" stroke-width="0.65"/>
-        <circle cx="102" cy="118" r="2.5" fill="white"/>
-        <line x1="89" y1="118" x2="93" y2="118" stroke="white" stroke-width="0.65"/>
-        <line x1="111" y1="118" x2="115" y2="118" stroke="white" stroke-width="0.65"/>
-        <line x1="102" y1="105" x2="102" y2="109" stroke="white" stroke-width="0.65"/>
-        <line x1="102" y1="127" x2="102" y2="131" stroke="white" stroke-width="0.65"/>
-        <text x="102" y="70"  text-anchor="middle" font-family="Barlow Condensed,sans-serif" font-size="9"  font-weight="700" letter-spacing="2.5" fill="rgba(255,255,255,0.3)">01</text>
-        <text x="102" y="83"  text-anchor="middle" font-family="Barlow Condensed,sans-serif" font-size="12" font-weight="700" letter-spacing="1.5" fill="rgba(255,255,255,0.72)">IDENTIFICAMOS</text>
+        <!-- ── NODE 1 — Identificamos — cx=88, cy=148, r=44 ── -->
+        <circle cx="88"  cy="148" r="44" fill="#08080F" stroke="rgba(255,255,255,0.3)" stroke-width="0.8"/>
+        <circle cx="88"  cy="148" r="13" fill="none" stroke="white" stroke-width="0.8"/>
+        <circle cx="88"  cy="148" r="3.5" fill="white"/>
+        <line x1="70" y1="148" x2="75" y2="148" stroke="white" stroke-width="0.8"/>
+        <line x1="101" y1="148" x2="106" y2="148" stroke="white" stroke-width="0.8"/>
+        <line x1="88" y1="130" x2="88" y2="135" stroke="white" stroke-width="0.8"/>
+        <line x1="88" y1="161" x2="88" y2="166" stroke="white" stroke-width="0.8"/>
+        <text x="88"  y="88"  text-anchor="middle" font-family="Barlow Condensed,sans-serif" font-size="10" font-weight="700" letter-spacing="3"   fill="rgba(255,255,255,0.3)">01</text>
+        <text x="88"  y="102" text-anchor="middle" font-family="Barlow Condensed,sans-serif" font-size="13" font-weight="700" letter-spacing="1.5" fill="rgba(255,255,255,0.75)">IDENTIFICAMOS</text>
 
-        <!-- ── NODE 2 — Proponemos (330, 118) ── -->
-        <circle cx="330" cy="118" r="30" fill="#08080F" stroke="rgba(255,255,255,0.32)" stroke-width="0.7"/>
-        <polygon points="330,106 342,118 330,130 318,118" fill="none" stroke="white" stroke-width="0.65"/>
-        <text x="330" y="70"  text-anchor="middle" font-family="Barlow Condensed,sans-serif" font-size="9"  font-weight="700" letter-spacing="2.5" fill="rgba(255,255,255,0.3)">02</text>
-        <text x="330" y="83"  text-anchor="middle" font-family="Barlow Condensed,sans-serif" font-size="12" font-weight="700" letter-spacing="1.5" fill="rgba(255,255,255,0.72)">PROPONEMOS</text>
+        <!-- ── NODE 2 — Proponemos — cx=316, cy=148, r=44 ── -->
+        <circle cx="316" cy="148" r="44" fill="#08080F" stroke="rgba(255,255,255,0.3)" stroke-width="0.8"/>
+        <polygon points="316,133 330,148 316,163 302,148" fill="none" stroke="white" stroke-width="0.8"/>
+        <text x="316" y="88"  text-anchor="middle" font-family="Barlow Condensed,sans-serif" font-size="10" font-weight="700" letter-spacing="3"   fill="rgba(255,255,255,0.3)">02</text>
+        <text x="316" y="102" text-anchor="middle" font-family="Barlow Condensed,sans-serif" font-size="13" font-weight="700" letter-spacing="1.5" fill="rgba(255,255,255,0.75)">PROPONEMOS</text>
 
-        <!-- ── NODE 3 — Iteramos (588, 118) ── -->
-        <circle cx="588" cy="118" r="30" fill="#08080F" stroke="rgba(255,255,255,0.32)" stroke-width="0.7"/>
-        <path d="M580,118 A10,10 0 1,1 596,118" fill="none" stroke="white" stroke-width="0.65" stroke-linecap="round"/>
-        <polyline points="594,125 598,118 592,116" fill="none" stroke="white" stroke-width="0.65" stroke-linecap="round" stroke-linejoin="round"/>
-        <text x="588" y="70"  text-anchor="middle" font-family="Barlow Condensed,sans-serif" font-size="9"  font-weight="700" letter-spacing="2.5" fill="rgba(255,255,255,0.3)">03</text>
-        <text x="588" y="83"  text-anchor="middle" font-family="Barlow Condensed,sans-serif" font-size="12" font-weight="700" letter-spacing="1.5" fill="rgba(255,255,255,0.72)">ITERAMOS</text>
+        <!-- ── NODE 3 — Iteramos — cx=584, cy=148, r=44 ── -->
+        <circle cx="584" cy="148" r="44" fill="#08080F" stroke="rgba(255,255,255,0.3)" stroke-width="0.8"/>
+        <path d="M573,148 A13,13 0 1,1 595,148" fill="none" stroke="white" stroke-width="0.8" stroke-linecap="round"/>
+        <polyline points="593,157 598,148 590,145" fill="none" stroke="white" stroke-width="0.8" stroke-linecap="round" stroke-linejoin="round"/>
+        <text x="584" y="88"  text-anchor="middle" font-family="Barlow Condensed,sans-serif" font-size="10" font-weight="700" letter-spacing="3"   fill="rgba(255,255,255,0.3)">03</text>
+        <text x="584" y="102" text-anchor="middle" font-family="Barlow Condensed,sans-serif" font-size="13" font-weight="700" letter-spacing="1.5" fill="rgba(255,255,255,0.75)">ITERAMOS</text>
 
-        <!-- ── NODE 4 — Ajustamos (818, 118) ── -->
-        <circle cx="818" cy="118" r="30" fill="#08080F" stroke="rgba(255,255,255,0.32)" stroke-width="0.7"/>
-        <line x1="806" y1="113" x2="830" y2="113" stroke="white" stroke-width="0.65"/>
-        <line x1="806" y1="123" x2="830" y2="123" stroke="white" stroke-width="0.65"/>
-        <circle cx="823" cy="113" r="3.2" fill="#08080F" stroke="white" stroke-width="0.65"/>
-        <circle cx="813" cy="123" r="3.2" fill="#08080F" stroke="white" stroke-width="0.65"/>
-        <text x="818" y="70"  text-anchor="middle" font-family="Barlow Condensed,sans-serif" font-size="9"  font-weight="700" letter-spacing="2.5" fill="rgba(255,255,255,0.3)">04</text>
-        <text x="818" y="83"  text-anchor="middle" font-family="Barlow Condensed,sans-serif" font-size="12" font-weight="700" letter-spacing="1.5" fill="rgba(255,255,255,0.72)">AJUSTAMOS</text>
+        <!-- ── NODE 4 — Ajustamos — cx=812, cy=148, r=44 ── -->
+        <circle cx="812" cy="148" r="44" fill="#08080F" stroke="rgba(255,255,255,0.3)" stroke-width="0.8"/>
+        <line x1="797" y1="141" x2="827" y2="141" stroke="white" stroke-width="0.8"/>
+        <line x1="797" y1="155" x2="827" y2="155" stroke="white" stroke-width="0.8"/>
+        <circle cx="820" cy="141" r="4.5" fill="#08080F" stroke="white" stroke-width="0.8"/>
+        <circle cx="804" cy="155" r="4.5" fill="#08080F" stroke="white" stroke-width="0.8"/>
+        <text x="812" y="88"  text-anchor="middle" font-family="Barlow Condensed,sans-serif" font-size="10" font-weight="700" letter-spacing="3"   fill="rgba(255,255,255,0.3)">04</text>
+        <text x="812" y="102" text-anchor="middle" font-family="Barlow Condensed,sans-serif" font-size="13" font-weight="700" letter-spacing="1.5" fill="rgba(255,255,255,0.75)">AJUSTAMOS</text>
 
-        <!-- Return arc label -->
-        <text x="460" y="250" text-anchor="middle" font-family="Barlow Condensed,sans-serif" font-size="9" font-weight="700" letter-spacing="4" fill="rgba(255,255,255,0.18)">ITERACIÓN CONTINUA</text>
+        <!-- Return label -->
+        <text x="450" y="267" text-anchor="middle" font-family="Barlow Condensed,sans-serif" font-size="9" font-weight="700" letter-spacing="5" fill="rgba(255,255,255,0.18)">ITERACIÓN CONTINUA</text>
       </svg>
     </div>
 
