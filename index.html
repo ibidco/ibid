@@ -590,8 +590,18 @@
   .case-name { font-family: 'Barlow Condensed', sans-serif; font-size: clamp(2.5rem,5vw,4rem); font-weight: 900; text-transform: uppercase; letter-spacing: .02em; line-height: .95; color: var(--white); margin-top: 1.25rem; }
   .case-desc { font-size: .9375rem; color: rgba(255,255,255,.5); line-height: 1.65; }
 
-  .case-link { display: inline-flex; align-items: center; gap: .5rem; color: var(--white); text-decoration: none; font-size: .875rem; font-weight: 600; opacity: .55; transition: opacity .2s; }
-  .case-link:hover { opacity: 1; }
+  .case-link {
+    display: inline-flex; align-items: center; gap: .5rem;
+    text-decoration: none; font-size: .9rem; font-weight: 700;
+    background: linear-gradient(120deg, #1A35FF, #8B5CF6, #06B6D4, #10B981, #F472B6, #818CF8, #1A35FF);
+    background-size: 300% 300%;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: auroraShift 5s ease infinite;
+    transition: opacity .2s;
+  }
+  .case-link svg { flex-shrink: 0; stroke: #8B5CF6; }
 
   .case-tagline { font-family: 'Barlow Condensed', sans-serif; font-size: 1.375rem; font-weight: 700; text-transform: uppercase; letter-spacing: .04em; color: var(--white); line-height: 1.2; }
 
