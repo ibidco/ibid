@@ -559,13 +559,53 @@
   /* ── CASES ── */
   .cases-inner { max-width: 1080px; margin: 0 auto; padding: 2rem 1.5rem 6rem; }
 
+  /* Carousel */
+  .cases-carousel { position: relative; }
+  .cases-track {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    gap: 0;
+  }
+  .cases-track::-webkit-scrollbar { display: none; }
+
   .case-card {
+    flex: 0 0 100%;
+    scroll-snap-align: start;
     border: 1px solid rgba(255,255,255,.09);
     background: rgba(255,255,255,.03);
     overflow: hidden; transition: background .2s;
   }
 
   .case-card:hover { background: rgba(255,255,255,.06); }
+
+  /* Nav arrows */
+  .carousel-nav { display: flex; align-items: center; justify-content: space-between; margin-top: 1.5rem; }
+  .carousel-arrows { display: flex; gap: .75rem; }
+  .carousel-btn {
+    width: 2.75rem; height: 2.75rem;
+    border-radius: 50%;
+    border: 1px solid rgba(255,255,255,.15);
+    background: rgba(255,255,255,.05);
+    color: #fff; font-size: 1.1rem;
+    cursor: pointer; display: flex; align-items: center; justify-content: center;
+    transition: background .2s, border-color .2s;
+  }
+  .carousel-btn:hover { background: rgba(255,255,255,.12); border-color: rgba(255,255,255,.3); }
+  .carousel-btn:disabled { opacity: .25; cursor: default; }
+
+  /* Dots */
+  .carousel-dots { display: flex; gap: .5rem; align-items: center; }
+  .c-dot {
+    width: 6px; height: 6px; border-radius: 50%;
+    background: rgba(255,255,255,.2);
+    transition: background .25s, transform .25s;
+    cursor: pointer;
+  }
+  .c-dot.on { background: #fff; transform: scale(1.3); }
 
   .case-body { display: grid; grid-template-columns: 1fr 1fr; }
 
@@ -712,7 +752,7 @@
 
 <!-- INTRO TYPEWRITER -->
 <div id="intro" aria-hidden="true">
-  <div>
+  <div style="width:100%">
     <p id="intro-line"><span id="intro-txt"></span><span id="intro-cursor"></span></p>
     <p id="intro-sub"><span id="intro-sub-txt"></span></p>
     <p id="intro-sub2"><span id="intro-sub2-txt"></span></p>
@@ -879,168 +919,189 @@
   <div class="s-dark" id="cases">
     <div class="cases-inner">
       <p class="sec-label reveal">Casos de éxito</p>
-      <div class="case-card reveal" style="transition-delay:.15s;margin-top:2rem;">
-        <div class="case-body">
-          <div class="case-l">
-            <div>
-              <span class="case-tag"><span class="tag-dot"></span>Live</span>
-              <p class="case-name">Top<br>Nodo</p>
-            </div>
-            <div>
-              <p class="case-desc">Sistema operativo de inventario para retail omnicanal. Una sola fuente de verdad para tiendas físicas, e-commerce, bodegas, ferias y consignación.</p>
-              <a class="case-link" href="https://topnodo.com" target="_blank" rel="noopener">topnodo.com <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 10L10 2M10 2H5M10 2v5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
-            </div>
-          </div>
-          <div class="case-r">
-            <div>
-              <p class="case-tagline">El problema que resuelve</p>
-              <p class="case-prob">Los retailers con múltiples canales pierden dinero por inventario desactualizado: venden lo que no tienen, no reponen lo que se agota, y no saben dónde está cada ítem en tiempo real.</p>
-            </div>
-            <div class="case-feats">
-              <div class="case-feat"><svg class="feat-ic" viewBox="0 0 18 18" fill="none"><path d="M9 1.5v15M1.5 9h15" stroke="white" stroke-width="1.5" stroke-linecap="round"/></svg>Trazabilidad completa: cada movimiento registrado con fecha, hora y responsable.</div>
-              <div class="case-feat"><svg class="feat-ic" viewBox="0 0 18 18" fill="none"><path d="M9 1.5v15M1.5 9h15" stroke="white" stroke-width="1.5" stroke-linecap="round"/></svg>Dashboard centralizado por canal, tienda o período. Sin hojas de Excel.</div>
-              <div class="case-feat"><svg class="feat-ic" viewBox="0 0 18 18" fill="none"><path d="M9 1.5v15M1.5 9h15" stroke="white" stroke-width="1.5" stroke-linecap="round"/></svg>Integración nativa con Shopify y WooCommerce para sincronización automática.</div>
-              <div class="case-feat"><svg class="feat-ic" viewBox="0 0 18 18" fill="none"><path d="M9 1.5v15M1.5 9h15" stroke="white" stroke-width="1.5" stroke-linecap="round"/></svg>Alertas de stock bajo y tendencias por variante, en tiempo real.</div>
-            </div>
-          </div>
-        </div>
-        <div class="case-foot">
-          <span class="foot-item">Industria: <strong>Retail omnicanal</strong></span>
-          <span class="foot-item">Canales: <strong>Tienda física · Online · Consignación · Feria</strong></span>
-          <span class="foot-item">Integra con: <strong>Shopify · WooCommerce</strong></span>
-        </div>
-      </div>
 
-      <!-- CASO 2: Hato IA -->
-      <div class="case-card reveal" style="transition-delay:.3s;margin-top:2rem;">
-        <div class="case-body">
-          <div class="case-l">
-            <div>
-              <span class="case-tag"><span class="tag-dot"></span>Live</span>
-              <p class="case-name">Hato<br>iA</p>
-            </div>
-            <div>
-              <p class="case-desc">Sistema de gestión ganadera para el productor colombiano. Registro de producción, reproducción y salud desde el celular. Sin capacitación, sin escritorio.</p>
-              <a class="case-link" href="https://hatoia.labnormally.com/" target="_blank" rel="noopener">hatoIA.com <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 10L10 2M10 2H5M10 2v5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
-            </div>
-          </div>
-          <div class="case-r">
-            <div>
-              <p class="case-tagline">El problema que resuelve</p>
-              <p class="case-prob">Los productores medianos toman decisiones con información de semanas de retraso. Vacas que se secan tarde, preñeces sin confirmar, caídas de producción que se detectan cuando ya llevan días ocurriendo.</p>
-            </div>
-            <div class="case-feats">
-              <div class="case-feat"><svg class="feat-ic" viewBox="0 0 18 18" fill="none"><path d="M9 1.5v15M1.5 9h15" stroke="white" stroke-width="1.5" stroke-linecap="round"/></svg>Registro de ordeño desde el celular: litros por vaca, alertas de caída automáticas.</div>
-              <div class="case-feat"><svg class="feat-ic" viewBox="0 0 18 18" fill="none"><path d="M9 1.5v15M1.5 9h15" stroke="white" stroke-width="1.5" stroke-linecap="round"/></svg>Reproducción con fechas de parto, secado y preparto calculadas solas.</div>
-              <div class="case-feat"><svg class="feat-ic" viewBox="0 0 18 18" fill="none"><path d="M9 1.5v15M1.5 9h15" stroke="white" stroke-width="1.5" stroke-linecap="round"/></svg>Ración de concentrado recomendada por animal según fase de lactancia.</div>
-              <div class="case-feat"><svg class="feat-ic" viewBox="0 0 18 18" fill="none"><path d="M9 1.5v15M1.5 9h15" stroke="white" stroke-width="1.5" stroke-linecap="round"/></svg>Proyección de producción a 6 meses con bandas de confianza.</div>
-            </div>
-          </div>
-        </div>
-        <div class="case-foot">
-          <span class="foot-item">Industria: <strong>Ganadería lechera</strong></span>
-          <span class="foot-item">Animales registrados: <strong>+200</strong></span>
-          <span class="foot-item">Función única: <strong>Proyección a 6 meses</strong></span>
-        </div>
-      </div>
+      <div class="cases-carousel" style="margin-top:2rem;">
+        <div class="cases-track" id="cases-track">
 
-      <!-- CASO 3: Labnormally Quant -->
-      <div class="case-card reveal" style="transition-delay:.45s;margin-top:2rem;">
-        <div class="case-body">
-          <div class="case-l">
-            <div>
-              <span class="case-tag"><span class="tag-dot"></span>Live</span>
-              <p class="case-name">Labnormally<br>Quant</p>
-            </div>
-            <div>
-              <p class="case-desc">Tres monitores especializados de datos financieros y energéticos colombianos. Fuentes oficiales, actualización automática, visualización lista para decidir.</p>
-              <a class="case-link" href="https://quant.labnormally.com" target="_blank" rel="noopener">quant.labnormally.com <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 10L10 2M10 2H5M10 2v5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
-            </div>
-          </div>
-          <div class="case-r">
-            <div>
-              <p class="case-tagline">El problema que resuelve</p>
-              <p class="case-prob">Los equipos de análisis en Colombia pasan horas limpiando datos antes de poder decidir. PDFs de la SFC, reportes de XM y exports manuales de Excel que nadie mantiene actualizado. Análisis que deberían tomar minutos toman días.</p>
-            </div>
-            <div class="case-feats">
-              <div class="case-feat"><svg class="feat-ic" viewBox="0 0 18 18" fill="none"><path d="M9 1.5v15M1.5 9h15" stroke="white" stroke-width="1.5" stroke-linecap="round"/></svg><strong>FiQuant</strong> — 1.170 fondos de inversión colombianos con 4.3M de puntos de datos históricos desde 2016.</div>
-              <div class="case-feat"><svg class="feat-ic" viewBox="0 0 18 18" fill="none"><path d="M9 1.5v15M1.5 9h15" stroke="white" stroke-width="1.5" stroke-linecap="round"/></svg><strong>eQuant</strong> — Mercado eléctrico colombiano: precio bolsa, hidrología, generación y demanda desde 2009.</div>
-              <div class="case-feat"><svg class="feat-ic" viewBox="0 0 18 18" fill="none"><path d="M9 1.5v15M1.5 9h15" stroke="white" stroke-width="1.5" stroke-linecap="round"/></svg><strong>bQuant</strong> — 41 entidades bancarias, 96 indicadores contables normalizados desde 2015.</div>
-              <div class="case-feat"><svg class="feat-ic" viewBox="0 0 18 18" fill="none"><path d="M9 1.5v15M1.5 9h15" stroke="white" stroke-width="1.5" stroke-linecap="round"/></svg>Datos directos de la SFC y XM. Sin estimaciones, sin proxies, sin trabajo manual.</div>
-            </div>
-          </div>
-        </div>
-        <div class="case-foot">
-          <span class="foot-item">Sectores: <strong>Fondos · Banca · Energía</strong></span>
-          <span class="foot-item">Datos históricos: <strong>5M+</strong></span>
-          <span class="foot-item">Mercado: <strong>Colombia</strong></span>
-        </div>
-      </div>
-
-      <!-- CASO 4: Tulutes -->
-      <div class="case-card reveal" style="transition-delay:.6s;margin-top:2rem;">
-        <div class="case-body">
-          <div class="case-l">
-            <div>
-              <span class="case-tag"><span class="tag-dot"></span>Live</span>
-              <p class="case-name">Tulutes</p>
-              <div>
-                <p class="case-desc">Plataforma de reservas para estudios de bienestar. Yoga, pilates, fisioterapia, entrenamiento personal. El estudio listo para operar en menos de una hora.</p>
-                <a class="case-link" href="https://tulutes.labnormally.com/" target="_blank" rel="noopener">tulutes.labnormally.com <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 10L10 2M10 2H5M10 2v5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+          <!-- 1: Hato iA -->
+          <div class="case-card">
+            <div class="case-body">
+              <div class="case-l">
+                <div>
+                  <span class="case-tag"><span class="tag-dot"></span>Live</span>
+                  <p class="case-name">Hato<br>iA</p>
+                </div>
+                <div>
+                  <p class="case-desc">Sistema de gestión ganadera para el productor colombiano. Registro de producción, reproducción y salud desde el celular. Sin capacitación, sin escritorio.</p>
+                  <a class="case-link" href="https://hatoia.labnormally.com/" target="_blank" rel="noopener">hatoIA.com <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 10L10 2M10 2H5M10 2v5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+                </div>
+              </div>
+              <div class="case-r">
+                <div>
+                  <p class="case-tagline">El problema que resuelve</p>
+                  <p class="case-prob">Los productores medianos toman decisiones con información de semanas de retraso. Vacas que se secan tarde, preñeces sin confirmar, caídas de producción que se detectan cuando ya llevan días ocurriendo.</p>
+                </div>
+                <div class="case-feats">
+                  <div class="case-feat"><svg class="feat-ic" viewBox="0 0 18 18" fill="none"><path d="M9 1.5v15M1.5 9h15" stroke="white" stroke-width="1.5" stroke-linecap="round"/></svg>Registro de ordeño desde el celular: litros por vaca, alertas de caída automáticas.</div>
+                  <div class="case-feat"><svg class="feat-ic" viewBox="0 0 18 18" fill="none"><path d="M9 1.5v15M1.5 9h15" stroke="white" stroke-width="1.5" stroke-linecap="round"/></svg>Reproducción con fechas de parto, secado y preparto calculadas solas.</div>
+                  <div class="case-feat"><svg class="feat-ic" viewBox="0 0 18 18" fill="none"><path d="M9 1.5v15M1.5 9h15" stroke="white" stroke-width="1.5" stroke-linecap="round"/></svg>Ración de concentrado recomendada por animal según fase de lactancia.</div>
+                  <div class="case-feat"><svg class="feat-ic" viewBox="0 0 18 18" fill="none"><path d="M9 1.5v15M1.5 9h15" stroke="white" stroke-width="1.5" stroke-linecap="round"/></svg>Proyección de producción a 6 meses con bandas de confianza.</div>
+                </div>
               </div>
             </div>
-          </div>
-          <div class="case-r">
-            <div>
-              <p class="case-tagline">El problema que resuelve</p>
-              <p class="case-prob">Los estudios pequeños gestionan reservas por WhatsApp y cobran por transferencia. Sin historial, sin datos, sin forma de saber qué clases llenan o cuántos clientes llevan un mes sin volver.</p>
-            </div>
-            <div class="case-feats">
-              <div class="case-feat"><svg class="feat-ic" viewBox="0 0 18 18" fill="none"><path d="M9 1.5v15M1.5 9h15" stroke="white" stroke-width="1.5" stroke-linecap="round"/></svg>Clases grupales con horarios recurrentes y cupos que cierran solos cuando se llenan.</div>
-              <div class="case-feat"><svg class="feat-ic" viewBox="0 0 18 18" fill="none"><path d="M9 1.5v15M1.5 9h15" stroke="white" stroke-width="1.5" stroke-linecap="round"/></svg>Citas individuales para fisioterapeutas, nutricionistas y entrenadores personales.</div>
-              <div class="case-feat"><svg class="feat-ic" viewBox="0 0 18 18" fill="none"><path d="M9 1.5v15M1.5 9h15" stroke="white" stroke-width="1.5" stroke-linecap="round"/></svg>Dashboard con ocupación, retención de clientes y tendencia semanal de reservas.</div>
-              <div class="case-feat"><svg class="feat-ic" viewBox="0 0 18 18" fill="none"><path d="M9 1.5v15M1.5 9h15" stroke="white" stroke-width="1.5" stroke-linecap="round"/></svg>Precio conversado, sin contrato. 15 días gratis sin tarjeta de crédito.</div>
+            <div class="case-foot">
+              <span class="foot-item">Industria: <strong>Ganadería lechera</strong></span>
+              <span class="foot-item">Animales registrados: <strong>+200</strong></span>
+              <span class="foot-item">Función única: <strong>Proyección a 6 meses</strong></span>
             </div>
           </div>
-        </div>
-        <div class="case-foot">
-          <span class="foot-item">Sectores: <strong>Bienestar · Fitness · Salud</strong></span>
-          <span class="foot-item">Mercado: <strong>Colombia · España</strong></span>
-        </div>
-      </div>
 
-      <!-- CASO 5: HCE Colombia -->
-      <div class="case-card reveal" style="transition-delay:.75s;margin-top:2rem;">
-        <div class="case-body">
-          <div class="case-l">
-            <div>
-              <span class="case-tag"><span class="tag-dot"></span>Live</span>
-              <p class="case-name">HCE<br>Colombia</p>
-              <div>
-                <p class="case-desc">Historia clínica electrónica en la nube para médicos en consultorio privado. Registro clínico, fotos del antes y después, y firma digital con validez legal — en un solo lugar.</p>
-                <a class="case-link" href="https://hceweb.labnormally.com" target="_blank" rel="noopener">hceweb.labnormally.com <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 10L10 2M10 2H5M10 2v5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+          <!-- 2: TopNodo -->
+          <div class="case-card">
+            <div class="case-body">
+              <div class="case-l">
+                <div>
+                  <span class="case-tag"><span class="tag-dot"></span>Live</span>
+                  <p class="case-name">Top<br>Nodo</p>
+                </div>
+                <div>
+                  <p class="case-desc">Sistema operativo de inventario para retail omnicanal. Una sola fuente de verdad para tiendas físicas, e-commerce, bodegas, ferias y consignación.</p>
+                  <a class="case-link" href="https://topnodo.com" target="_blank" rel="noopener">topnodo.com <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 10L10 2M10 2H5M10 2v5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+                </div>
+              </div>
+              <div class="case-r">
+                <div>
+                  <p class="case-tagline">El problema que resuelve</p>
+                  <p class="case-prob">Los retailers con múltiples canales pierden dinero por inventario desactualizado: venden lo que no tienen, no reponen lo que se agota, y no saben dónde está cada ítem en tiempo real.</p>
+                </div>
+                <div class="case-feats">
+                  <div class="case-feat"><svg class="feat-ic" viewBox="0 0 18 18" fill="none"><path d="M9 1.5v15M1.5 9h15" stroke="white" stroke-width="1.5" stroke-linecap="round"/></svg>Trazabilidad completa: cada movimiento registrado con fecha, hora y responsable.</div>
+                  <div class="case-feat"><svg class="feat-ic" viewBox="0 0 18 18" fill="none"><path d="M9 1.5v15M1.5 9h15" stroke="white" stroke-width="1.5" stroke-linecap="round"/></svg>Dashboard centralizado por canal, tienda o período. Sin hojas de Excel.</div>
+                  <div class="case-feat"><svg class="feat-ic" viewBox="0 0 18 18" fill="none"><path d="M9 1.5v15M1.5 9h15" stroke="white" stroke-width="1.5" stroke-linecap="round"/></svg>Integración nativa con Shopify y WooCommerce para sincronización automática.</div>
+                  <div class="case-feat"><svg class="feat-ic" viewBox="0 0 18 18" fill="none"><path d="M9 1.5v15M1.5 9h15" stroke="white" stroke-width="1.5" stroke-linecap="round"/></svg>Alertas de stock bajo y tendencias por variante, en tiempo real.</div>
+                </div>
               </div>
             </div>
-          </div>
-          <div class="case-r">
-            <div>
-              <p class="case-tagline">El problema que resuelve</p>
-              <p class="case-prob">Los médicos llevan historias en Word, guardan fotos de pacientes en WhatsApp y firman documentos sin validez legal clara. Sin cumplimiento de la Res. 1995/1999, sin respaldo, sin trazabilidad.</p>
-            </div>
-            <div class="case-feats">
-              <div class="case-feat"><svg class="feat-ic" viewBox="0 0 18 18" fill="none"><path d="M9 1.5v15M1.5 9h15" stroke="white" stroke-width="1.5" stroke-linecap="round"/></svg>Historia clínica completa con CIE-10, plan de manejo y PDF listo para entregar al paciente.</div>
-              <div class="case-feat"><svg class="feat-ic" viewBox="0 0 18 18" fill="none"><path d="M9 1.5v15M1.5 9h15" stroke="white" stroke-width="1.5" stroke-linecap="round"/></svg>Galería fotográfica de antes y después vinculada a cada consulta. Las fotos nunca salen por WhatsApp.</div>
-              <div class="case-feat"><svg class="feat-ic" viewBox="0 0 18 18" fill="none"><path d="M9 1.5v15M1.5 9h15" stroke="white" stroke-width="1.5" stroke-linecap="round"/></svg>Firma digital con hash SHA-256 y sello de tiempo. Válida bajo la Ley 527 de 1999.</div>
-              <div class="case-feat"><svg class="feat-ic" viewBox="0 0 18 18" fill="none"><path d="M9 1.5v15M1.5 9h15" stroke="white" stroke-width="1.5" stroke-linecap="round"/></svg>Más de 13.000 medicamentos del CUM de INVIMA y buscador de códigos CUPS integrados.</div>
+            <div class="case-foot">
+              <span class="foot-item">Industria: <strong>Retail omnicanal</strong></span>
+              <span class="foot-item">Canales: <strong>Tienda física · Online · Consignación · Feria</strong></span>
+              <span class="foot-item">Integra con: <strong>Shopify · WooCommerce</strong></span>
             </div>
           </div>
+
+          <!-- 3: HCE Colombia -->
+          <div class="case-card">
+            <div class="case-body">
+              <div class="case-l">
+                <div>
+                  <span class="case-tag"><span class="tag-dot"></span>Live</span>
+                  <p class="case-name">HCE<br>Colombia</p>
+                </div>
+                <div>
+                  <p class="case-desc">Historia clínica electrónica en la nube para médicos en consultorio privado. Registro clínico, fotos del antes y después, y firma digital con validez legal en un solo lugar.</p>
+                  <a class="case-link" href="https://hceweb.labnormally.com" target="_blank" rel="noopener">hceweb.labnormally.com <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 10L10 2M10 2H5M10 2v5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+                </div>
+              </div>
+              <div class="case-r">
+                <div>
+                  <p class="case-tagline">El problema que resuelve</p>
+                  <p class="case-prob">Los médicos llevan historias en Word, guardan fotos de pacientes en WhatsApp y firman documentos sin validez legal clara. Sin cumplimiento de la Res. 1995/1999, sin respaldo, sin trazabilidad.</p>
+                </div>
+                <div class="case-feats">
+                  <div class="case-feat"><svg class="feat-ic" viewBox="0 0 18 18" fill="none"><path d="M9 1.5v15M1.5 9h15" stroke="white" stroke-width="1.5" stroke-linecap="round"/></svg>Historia clínica completa con CIE-10, plan de manejo y PDF listo para entregar al paciente.</div>
+                  <div class="case-feat"><svg class="feat-ic" viewBox="0 0 18 18" fill="none"><path d="M9 1.5v15M1.5 9h15" stroke="white" stroke-width="1.5" stroke-linecap="round"/></svg>Galería fotográfica de antes y después vinculada a cada consulta. Las fotos nunca salen por WhatsApp.</div>
+                  <div class="case-feat"><svg class="feat-ic" viewBox="0 0 18 18" fill="none"><path d="M9 1.5v15M1.5 9h15" stroke="white" stroke-width="1.5" stroke-linecap="round"/></svg>Firma digital con hash SHA-256 y sello de tiempo. Válida bajo la Ley 527 de 1999.</div>
+                  <div class="case-feat"><svg class="feat-ic" viewBox="0 0 18 18" fill="none"><path d="M9 1.5v15M1.5 9h15" stroke="white" stroke-width="1.5" stroke-linecap="round"/></svg>Más de 13.000 medicamentos del CUM de INVIMA y buscador de códigos CUPS integrados.</div>
+                </div>
+              </div>
+            </div>
+            <div class="case-foot">
+              <span class="foot-item">Sector: <strong>Salud</strong></span>
+              <span class="foot-item">Especialidades: <strong>Dermatología · Cirugía estética · Medicina estética</strong></span>
+              <span class="foot-item">Mercado: <strong>Colombia</strong></span>
+            </div>
+          </div>
+
+          <!-- 4: Tulutes -->
+          <div class="case-card">
+            <div class="case-body">
+              <div class="case-l">
+                <div>
+                  <span class="case-tag"><span class="tag-dot"></span>Live</span>
+                  <p class="case-name">Tulutes</p>
+                </div>
+                <div>
+                  <p class="case-desc">Plataforma de reservas para estudios de bienestar. Yoga, pilates, fisioterapia, entrenamiento personal. El estudio listo para operar en menos de una hora.</p>
+                  <a class="case-link" href="https://tulutes.labnormally.com/" target="_blank" rel="noopener">tulutes.labnormally.com <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 10L10 2M10 2H5M10 2v5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+                </div>
+              </div>
+              <div class="case-r">
+                <div>
+                  <p class="case-tagline">El problema que resuelve</p>
+                  <p class="case-prob">Los estudios pequeños gestionan reservas por WhatsApp y cobran por transferencia. Sin historial, sin datos, sin forma de saber qué clases llenan o cuántos clientes llevan un mes sin volver.</p>
+                </div>
+                <div class="case-feats">
+                  <div class="case-feat"><svg class="feat-ic" viewBox="0 0 18 18" fill="none"><path d="M9 1.5v15M1.5 9h15" stroke="white" stroke-width="1.5" stroke-linecap="round"/></svg>Clases grupales con horarios recurrentes y cupos que cierran solos cuando se llenan.</div>
+                  <div class="case-feat"><svg class="feat-ic" viewBox="0 0 18 18" fill="none"><path d="M9 1.5v15M1.5 9h15" stroke="white" stroke-width="1.5" stroke-linecap="round"/></svg>Citas individuales para fisioterapeutas, nutricionistas y entrenadores personales.</div>
+                  <div class="case-feat"><svg class="feat-ic" viewBox="0 0 18 18" fill="none"><path d="M9 1.5v15M1.5 9h15" stroke="white" stroke-width="1.5" stroke-linecap="round"/></svg>Dashboard con ocupación, retención de clientes y tendencia semanal de reservas.</div>
+                  <div class="case-feat"><svg class="feat-ic" viewBox="0 0 18 18" fill="none"><path d="M9 1.5v15M1.5 9h15" stroke="white" stroke-width="1.5" stroke-linecap="round"/></svg>Precio conversado, sin contrato. 15 días gratis sin tarjeta de crédito.</div>
+                </div>
+              </div>
+            </div>
+            <div class="case-foot">
+              <span class="foot-item">Sectores: <strong>Bienestar · Fitness · Salud</strong></span>
+              <span class="foot-item">Mercado: <strong>Colombia · España</strong></span>
+            </div>
+          </div>
+
+          <!-- 5: Labnormally Quant -->
+          <div class="case-card">
+            <div class="case-body">
+              <div class="case-l">
+                <div>
+                  <span class="case-tag"><span class="tag-dot"></span>Live</span>
+                  <p class="case-name">Labnormally<br>Quant</p>
+                </div>
+                <div>
+                  <p class="case-desc">Tres monitores especializados de datos financieros y energéticos colombianos. Fuentes oficiales, actualización automática, visualización lista para decidir.</p>
+                  <a class="case-link" href="https://quant.labnormally.com" target="_blank" rel="noopener">quant.labnormally.com <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 10L10 2M10 2H5M10 2v5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+                </div>
+              </div>
+              <div class="case-r">
+                <div>
+                  <p class="case-tagline">El problema que resuelve</p>
+                  <p class="case-prob">Los equipos de análisis en Colombia pasan horas limpiando datos antes de poder decidir. PDFs de la SFC, reportes de XM y exports manuales de Excel que nadie mantiene actualizado. Análisis que deberían tomar minutos toman días.</p>
+                </div>
+                <div class="case-feats">
+                  <div class="case-feat"><svg class="feat-ic" viewBox="0 0 18 18" fill="none"><path d="M9 1.5v15M1.5 9h15" stroke="white" stroke-width="1.5" stroke-linecap="round"/></svg><strong>FiQuant</strong> — 1.170 fondos de inversión colombianos con 4.3M de puntos de datos históricos desde 2016.</div>
+                  <div class="case-feat"><svg class="feat-ic" viewBox="0 0 18 18" fill="none"><path d="M9 1.5v15M1.5 9h15" stroke="white" stroke-width="1.5" stroke-linecap="round"/></svg><strong>eQuant</strong> — Mercado eléctrico colombiano: precio bolsa, hidrología, generación y demanda desde 2009.</div>
+                  <div class="case-feat"><svg class="feat-ic" viewBox="0 0 18 18" fill="none"><path d="M9 1.5v15M1.5 9h15" stroke="white" stroke-width="1.5" stroke-linecap="round"/></svg><strong>bQuant</strong> — 41 entidades bancarias, 96 indicadores contables normalizados desde 2015.</div>
+                  <div class="case-feat"><svg class="feat-ic" viewBox="0 0 18 18" fill="none"><path d="M9 1.5v15M1.5 9h15" stroke="white" stroke-width="1.5" stroke-linecap="round"/></svg>Datos directos de la SFC y XM. Sin estimaciones, sin proxies, sin trabajo manual.</div>
+                </div>
+              </div>
+            </div>
+            <div class="case-foot">
+              <span class="foot-item">Sectores: <strong>Fondos · Banca · Energía</strong></span>
+              <span class="foot-item">Datos históricos: <strong>5M+</strong></span>
+              <span class="foot-item">Mercado: <strong>Colombia</strong></span>
+            </div>
+          </div>
+
+        </div><!-- /cases-track -->
+
+        <div class="carousel-nav">
+          <div class="carousel-dots" id="cases-dots"></div>
+          <div class="carousel-arrows">
+            <button class="carousel-btn" id="cases-prev" aria-label="Anterior">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M10 3L5 8l5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+            <button class="carousel-btn" id="cases-next" aria-label="Siguiente">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M6 3l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+          </div>
         </div>
-        <div class="case-foot">
-          <span class="foot-item">Sector: <strong>Salud</strong></span>
-          <span class="foot-item">Especialidades: <strong>Dermatología · Cirugía estética · Medicina estética</strong></span>
-          <span class="foot-item">Mercado: <strong>Colombia</strong></span>
-        </div>
-      </div>
+      </div><!-- /cases-carousel -->
+
     </div>
   </div>
 
@@ -1105,6 +1166,52 @@ const rm = window.matchMedia("(prefers-reduced-motion:reduce)").matches;
 
   (document.fonts ? document.fonts.ready : Promise.resolve())
     .then(() => setTimeout(() => typeLine(0, 0), 200));
+})();
+
+/* ── CASES CAROUSEL ── */
+(function () {
+  const track = document.getElementById('cases-track');
+  const dotsEl = document.getElementById('cases-dots');
+  const prevBtn = document.getElementById('cases-prev');
+  const nextBtn = document.getElementById('cases-next');
+  if (!track) return;
+
+  const cards = Array.from(track.children);
+  const total = cards.length;
+  let current = 0;
+
+  // Build dots
+  const dots = cards.map((_, i) => {
+    const d = document.createElement('button');
+    d.className = 'c-dot';
+    d.setAttribute('aria-label', 'Ir al caso ' + (i + 1));
+    d.addEventListener('click', () => goTo(i));
+    dotsEl.appendChild(d);
+    return d;
+  });
+
+  function goTo(idx) {
+    current = Math.max(0, Math.min(total - 1, idx));
+    track.scrollTo({ left: current * track.offsetWidth, behavior: 'smooth' });
+    dots.forEach((d, i) => d.classList.toggle('on', i === current));
+    prevBtn.disabled = current === 0;
+    nextBtn.disabled = current === total - 1;
+  }
+
+  prevBtn.addEventListener('click', () => goTo(current - 1));
+  nextBtn.addEventListener('click', () => goTo(current + 1));
+
+  // Sync dots on manual scroll/swipe
+  let scrollTimer;
+  track.addEventListener('scroll', () => {
+    clearTimeout(scrollTimer);
+    scrollTimer = setTimeout(() => {
+      const idx = Math.round(track.scrollLeft / track.offsetWidth);
+      if (idx !== current) goTo(idx);
+    }, 80);
+  });
+
+  goTo(0);
 })();
 
 /* ── PROCESS SECTION — Neuron firefly effect: static dots, yellow flashes ── */
