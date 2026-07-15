@@ -1208,7 +1208,7 @@ const rm = window.matchMedia("(prefers-reduced-motion:reduce)").matches;
       return;
     }
     span.textContent = str.slice(0, charIdx);
-    const speed = lineIdx === 0 ? 72 + Math.random() * 40 : 38 + Math.random() * 18;
+    const speed = lineIdx === 0 ? 72 + Math.random() * 40 : 19 + Math.random() * 9;
     setTimeout(() => typeLine(lineIdx, charIdx + 1), speed);
   }
 
