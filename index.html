@@ -590,23 +590,23 @@
   .carousel-counter {
     font-family: 'Barlow Condensed', sans-serif;
     font-size: .8rem; font-weight: 700; letter-spacing: .14em;
-    color: rgba(255,255,255,.3);
+    color: rgba(8,8,15,.3);
   }
-  .carousel-counter span { color: #fff; }
+  .carousel-counter span { color: var(--ink); }
 
   /* Progress bar */
   .carousel-progress {
     height: 2px;
-    background: rgba(255,255,255,.1);
+    background: rgba(8,8,15,.1);
     border-radius: 2px;
     margin-bottom: 1.25rem;
     overflow: hidden;
   }
   .carousel-bar {
     height: 100%; border-radius: 2px;
-    background: #fff;
+    background: var(--ink);
     transition: width .4s ease;
-    width: 20%; /* 1/5 */
+    width: 16.67%; /* 1/6 */
   }
 
   /* Nav arrows */
@@ -614,13 +614,13 @@
   .carousel-btn {
     width: 2.75rem; height: 2.75rem;
     border-radius: 50%;
-    border: 1px solid rgba(255,255,255,.15);
-    background: rgba(255,255,255,.05);
-    color: #fff;
+    border: 1px solid rgba(8,8,15,.15);
+    background: rgba(8,8,15,.04);
+    color: var(--ink);
     cursor: pointer; display: flex; align-items: center; justify-content: center;
     transition: background .2s, border-color .2s;
   }
-  .carousel-btn:hover { background: rgba(255,255,255,.12); border-color: rgba(255,255,255,.3); }
+  .carousel-btn:hover { background: rgba(8,8,15,.09); border-color: rgba(8,8,15,.3); }
   .carousel-btn:disabled { opacity: .25; cursor: default; }
 
   .case-body { display: grid; grid-template-columns: 1fr 1fr; }
@@ -931,13 +931,13 @@
     </div>
   </div>
 
-  <!-- CASES: dark -->
-  <div class="s-dark" id="cases">
+  <!-- CASES -->
+  <div class="s-white" id="cases">
     <div class="cases-inner">
       <div class="cases-carousel" style="margin-top:2rem;">
         <div class="carousel-header">
           <p class="sec-label" style="margin:0">Casos de éxito</p>
-          <p class="carousel-counter"><span id="cases-current">01</span> / 05</p>
+          <p class="carousel-counter"><span id="cases-current">01</span> / 06</p>
         </div>
         <div class="carousel-progress"><div class="carousel-bar" id="cases-bar"></div></div>
         <div class="cases-track" id="cases-track">
@@ -1103,6 +1103,39 @@
               <span class="foot-item">Sectores: <strong>Fondos · Banca · Energía</strong></span>
               <span class="foot-item">Datos históricos: <strong>5M+</strong></span>
               <span class="foot-item">Mercado: <strong>Colombia</strong></span>
+            </div>
+          </div>
+
+          <!-- 6: ElijoVotar -->
+          <div class="case-card">
+            <div class="case-body">
+              <div class="case-l">
+                <div>
+                  <span class="case-tag"><span class="tag-dot"></span>Live</span>
+                  <p class="case-name">Elijo<br>Votar</p>
+                </div>
+                <div>
+                  <p class="case-desc">Match electoral para las presidenciales Colombia 2026. El ciudadano responde 12 afirmaciones sin ver ningún nombre — solo al final descubre su afinidad con cada candidato. Primero las ideas, luego los nombres.</p>
+                  <a class="case-link" href="https://elijovotar.com" target="_blank" rel="noopener">elijovotar.com <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 10L10 2M10 2H5M10 2v5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+                </div>
+              </div>
+              <div class="case-r">
+                <div>
+                  <p class="case-tagline">El problema que resuelve</p>
+                  <p class="case-prob">Los colombianos votan por nombre, por partido o por inercia. La polarización hace imposible comparar candidatos sin propaganda. ElijoVotar invierte el orden: ideas primero, nombres al final.</p>
+                </div>
+                <div class="case-feats">
+                  <div class="case-feat"><svg class="feat-ic" viewBox="0 0 18 18" fill="none"><path d="M9 1.5v15M1.5 9h15" stroke="white" stroke-width="1.5" stroke-linecap="round"/></svg>Quiz de afinidad con 12 preguntas sobre 6 temas. Algoritmo de match ponderado por importancia de cada tema.</div>
+                  <div class="case-feat"><svg class="feat-ic" viewBox="0 0 18 18" fill="none"><path d="M9 1.5v15M1.5 9h15" stroke="white" stroke-width="1.5" stroke-linecap="round"/></svg>Swipe deck táctil construido en vanilla JS — sin librerías. 17.343 quizzes completados, tasa de completación del 54.6%.</div>
+                  <div class="case-feat"><svg class="feat-ic" viewBox="0 0 18 18" fill="none"><path d="M9 1.5v15M1.5 9h15" stroke="white" stroke-width="1.5" stroke-linecap="round"/></svg>Dashboard en tiempo real: distribución de respuestas, intención de voto, pregunta más divisiva y mayor consenso.</div>
+                  <div class="case-feat"><svg class="feat-ic" viewBox="0 0 18 18" fill="none"><path d="M9 1.5v15M1.5 9h15" stroke="white" stroke-width="1.5" stroke-linecap="round"/></svg>Mandato Ciudadano: documento histórico con los resultados agregados de 17.000 colombianos antes de la primera vuelta.</div>
+                </div>
+              </div>
+            </div>
+            <div class="case-foot">
+              <span class="foot-item">Tipo: <strong>Civic tech</strong></span>
+              <span class="foot-item">Visitas: <strong>31.745</strong></span>
+              <span class="foot-item">Quizzes completados: <strong>17.343</strong></span>
             </div>
           </div>
 
