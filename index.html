@@ -735,21 +735,27 @@
   }
   #intro.out { opacity: 0; pointer-events: none; }
   #intro-line,
-  #intro-sub,
-  #intro-sub2,
-  #intro-sub3 {
+  #intro-sub {
     font-family: 'Share Tech Mono', monospace;
     font-weight: 400;
     line-height: 1.25;
+  }
+  #intro-pre {
+    font-family: 'Share Tech Mono', monospace;
+    font-weight: 400;
+    font-size: clamp(.85rem, 1.6vw, 1.25rem);
+    color: rgba(255,255,255,.55);
+    line-height: 1.7;
+    max-width: 52ch;
+    margin-bottom: 2rem;
+    min-height: 1.7em;
   }
   #intro-line {
     font-size: clamp(3.5rem, 10vw, 10rem);
     color: #fff;
     margin-bottom: .35em;
   }
-  #intro-sub,
-  #intro-sub2,
-  #intro-sub3 {
+  #intro-sub {
     font-size: clamp(1.1rem, 2.8vw, 2.8rem);
     color: #33FF66;
     min-height: 1.25em;
@@ -770,10 +776,9 @@
 <!-- INTRO TYPEWRITER -->
 <div id="intro" aria-hidden="true">
   <div style="width:100%">
-    <p id="intro-line"><span id="intro-txt"></span><span id="intro-cursor"></span></p>
+    <p id="intro-pre"><span id="intro-pre-txt"></span><span id="intro-cursor"></span></p>
+    <p id="intro-line"><span id="intro-txt"></span></p>
     <p id="intro-sub"><span id="intro-sub-txt"></span></p>
-    <p id="intro-sub2"><span id="intro-sub2-txt"></span></p>
-    <p id="intro-sub3"><span id="intro-sub3-txt"></span></p>
   </div>
 </div>
 
@@ -1175,16 +1180,14 @@ const rm = window.matchMedia("(prefers-reduced-motion:reduce)").matches;
   if (!overlay) return;
 
   const LINES = [
-    { txt: document.getElementById('intro-txt'),      para: document.getElementById('intro-line') },
-    { txt: document.getElementById('intro-sub-txt'),  para: document.getElementById('intro-sub') },
-    { txt: document.getElementById('intro-sub2-txt'), para: document.getElementById('intro-sub2') },
-    { txt: document.getElementById('intro-sub3-txt'), para: document.getElementById('intro-sub3') },
+    { txt: document.getElementById('intro-pre-txt'), para: document.getElementById('intro-pre') },
+    { txt: document.getElementById('intro-txt'),     para: document.getElementById('intro-line') },
+    { txt: document.getElementById('intro-sub-txt'), para: document.getElementById('intro-sub') },
   ];
   const STRINGS = [
+    'Labnormally nace porque creo firmemente en que hay una mejor forma de hacer las cosas. Creo que la tecnología hoy día nos permite redescubrir nuevos caminos, hacer lo que antes era imposible, hacer la vida más sencilla y hacerla más divertida. Es una iniciativa personal.',
     'Labnormally.',
-    'De las ideas a la realidad.',
-    'De lo imposible a lo difícil.',
-    'De lo difícil a lo sencillo.',
+    'Lo que antes era imposible, ahora es difícil. Lo que antes era difícil, hoy es sencillo.',
   ];
   const HOLD = 2000;
 
@@ -1201,14 +1204,17 @@ const rm = window.matchMedia("(prefers-reduced-motion:reduce)").matches;
     const span = LINES[lineIdx].txt;
     if (charIdx > str.length) {
       if (lineIdx === LINES.length - 1) { setTimeout(dismiss, HOLD); return; }
+      const pause = lineIdx === 0 ? 900 : 600;
       setTimeout(() => {
         LINES[lineIdx + 1].para.appendChild(cursor);
         typeLine(lineIdx + 1, 0);
-      }, 600);
+      }, pause);
       return;
     }
     span.textContent = str.slice(0, charIdx);
-    const speed = lineIdx === 0 ? 72 + Math.random() * 40 : 19 + Math.random() * 9;
+    const speed = lineIdx === 0 ? 10 + Math.random() * 5
+                : lineIdx === 1 ? 72 + Math.random() * 40
+                : 19 + Math.random() * 9;
     setTimeout(() => typeLine(lineIdx, charIdx + 1), speed);
   }
 
