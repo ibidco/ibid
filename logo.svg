@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<svg width="1008" height="200" viewBox="0 0 1008 200" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="labGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#1E3A8A"></stop>
+      <stop offset="36%" stop-color="#7C3AED"></stop>
+      <stop offset="100%" stop-color="#7C3AED"></stop>
+    </linearGradient>
+  </defs>
+  <text x="0" y="145" font-family="&#39;Share Tech Mono&#39;, monospace" font-weight="700" font-size="120" fill="url(#labGradient)">Labnormally</text>
+</svg>
