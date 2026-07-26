@@ -76,6 +76,19 @@ nav {
 .nav-links a.active { color: var(--white); }
 .nav-cta { font-size: .875rem; font-weight: 600; color: var(--white); background: var(--blue); text-decoration: none; padding: .5rem 1.25rem; border-radius: 100px; display: flex; align-items: center; gap: .375rem; transition: opacity .2s; }
 .nav-cta:hover { opacity: .85; }
+.lang-btn {
+  font-size: .8rem; font-weight: 600;
+  background: rgba(255,255,255,.1);
+  border: 1px solid rgba(255,255,255,.2);
+  color: rgba(255,255,255,.7);
+  border-radius: 100px;
+  padding: .375rem .875rem;
+  cursor: pointer;
+  transition: background .15s, color .15s, border-color .15s;
+  margin-left: .5rem;
+  letter-spacing: .04em;
+}
+.lang-btn:hover { background: rgba(255,255,255,.18); color: var(--white); }
 
 /* ── HERO ── */
 .blog-hero {
@@ -225,18 +238,19 @@ footer { border-top: 1px solid rgba(255,255,255,.06); background: var(--ink); co
 <nav>
   <a class="logo" href="/">Labnormally</a>
   <ul class="nav-links">
-    <li><a href="/#mission">Misión</a></li>
-    <li><a href="/#how">Proceso</a></li>
-    <li><a href="/#cases">Casos</a></li>
-    <li><a href="/blog" class="active" style="color:var(--white)">Blog</a></li>
-    <li><a href="/quien-soy">Yo</a></li>
+    <li><a href="/#mission" data-i18n="nav-mission">Misión</a></li>
+    <li><a href="/#how" data-i18n="nav-process">Proceso</a></li>
+    <li><a href="/#cases" data-i18n="nav-cases">Casos</a></li>
+    <li><a href="/blog" class="active" style="color:var(--white)" data-i18n="nav-blog">Blog</a></li>
+    <li><a href="/quien-soy" data-i18n="nav-about">Yo</a></li>
   </ul>
   <a class="nav-cta" href="mailto:hola@ibid.co">
-    Hablemos
+    <span data-i18n="nav-cta">Hablemos</span>
     <svg width="13" height="13" viewBox="0 0 13 13" fill="none" aria-hidden="true">
       <path d="M2 6.5h9M8 3l3.5 3.5L8 10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
     </svg>
   </a>
+  <button class="lang-btn" id="lang-toggle" aria-label="Switch language">EN</button>
 </nav>
 
 <main>
@@ -246,29 +260,29 @@ footer { border-top: 1px solid rgba(255,255,255,.06); background: var(--ink); co
 
     <!-- Hero -->
     <div class="blog-hero">
-      <p class="blog-overline reveal">Blog</p>
-      <h1 class="blog-h1 reveal" style="transition-delay:.1s">Ideas sobre software<br>y negocios reales.</h1>
-      <p class="blog-tagline reveal" style="transition-delay:.2s">Sin tendencias de moda, sin lenguaje de startup. Lo que aprendemos construyendo software para problemas concretos.</p>
+      <p class="blog-overline reveal" data-i18n="blog-overline">Blog</p>
+      <h1 class="blog-h1 reveal" style="transition-delay:.1s" data-i18n-html="blog-h1">Ideas sobre software<br>y negocios reales.</h1>
+      <p class="blog-tagline reveal" style="transition-delay:.2s" data-i18n="blog-tagline">Sin tendencias de moda, sin lenguaje de startup. Lo que aprendemos construyendo software para problemas concretos.</p>
     </div>
 
     <!-- Featured -->
     <div class="featured-wrap">
-      <p class="feat-label reveal">Artículo destacado</p>
-      <a class="feat-card reveal" href="#article-1" id="read-article" style="transition-delay:.1s" aria-label="Leer: El software más simple suele ser el más valioso">
+      <p class="feat-label reveal" data-i18n="feat-label">Artículo destacado</p>
+      <a class="feat-card reveal" href="#article-1" id="read-article" style="transition-delay:.1s" aria-label="Leer artículo">
         <div class="feat-img" aria-hidden="true">
           <p class="feat-img-text">Menos<br>es<br>más.</p>
         </div>
         <div class="feat-body">
           <div>
             <div class="feat-meta">
-              <span class="feat-tag">Filosofía</span>
-              <span class="feat-date">26 jul 2026</span>
+              <span class="feat-tag" data-i18n="feat-tag">Filosofía</span>
+              <span class="feat-date" data-i18n="feat-date">26 jul 2026</span>
             </div>
-            <h2 class="feat-title">El software más simple suele ser el más valioso</h2>
-            <p class="feat-excerpt">Por qué casi todo el software de gestión está sobrediseñado, qué pasa cuando alguien se atreve a construir lo mínimo que funciona de verdad, y cómo eso cambia la ecuación para el usuario.</p>
+            <h2 class="feat-title" data-i18n="feat-title">El software más simple suele ser el más valioso</h2>
+            <p class="feat-excerpt" data-i18n="feat-excerpt">Por qué casi todo el software de gestión está sobrediseñado, qué pasa cuando alguien se atreve a construir lo mínimo que funciona de verdad, y cómo eso cambia la ecuación para el usuario.</p>
           </div>
           <p class="feat-read">
-            Leer artículo
+            <span data-i18n="feat-read">Leer artículo</span>
             <svg class="feat-arrow" width="14" height="14" viewBox="0 0 13 13" fill="none" aria-hidden="true">
               <path d="M2 6.5h9M8 3l3.5 3.5L8 10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
@@ -279,32 +293,32 @@ footer { border-top: 1px solid rgba(255,255,255,.06); background: var(--ink); co
 
     <!-- Posts Grid -->
     <div class="posts-wrap">
-      <p class="posts-label reveal">Próximamente</p>
+      <p class="posts-label reveal" data-i18n="coming-label">Próximamente</p>
       <div class="posts-grid reveal" style="transition-delay:.1s">
         <div class="post-card post-card-coming">
-          <span class="coming-badge">Próximamente</span>
-          <p class="post-card-tag">Negocios</p>
-          <p class="post-card-title">Cómo leer un negocio ganadero desde los datos</p>
-          <p class="post-card-excerpt">Lo que las finanzas me enseñaron sobre producción animal y cómo eso cambió lo que construimos en Hato iA.</p>
+          <span class="coming-badge" data-i18n="coming-badge">Próximamente</span>
+          <p class="post-card-tag" data-i18n="p2-tag">Negocios</p>
+          <p class="post-card-title" data-i18n="p2-title">Cómo leer un negocio ganadero desde los datos</p>
+          <p class="post-card-excerpt" data-i18n="p2-excerpt">Lo que las finanzas me enseñaron sobre producción animal y cómo eso cambió lo que construimos en Hato iA.</p>
         </div>
         <div class="post-card post-card-coming">
-          <span class="coming-badge">Próximamente</span>
-          <p class="post-card-tag">Tecnología</p>
-          <p class="post-card-title">Por qué no usamos IA generativa para todo</p>
-          <p class="post-card-excerpt">Cuándo tiene sentido usar modelos de lenguaje y cuándo una regla determinista hace el trabajo mejor y más barato.</p>
+          <span class="coming-badge" data-i18n="coming-badge">Próximamente</span>
+          <p class="post-card-tag" data-i18n="p3-tag">Tecnología</p>
+          <p class="post-card-title" data-i18n="p3-title">Por qué no usamos IA generativa para todo</p>
+          <p class="post-card-excerpt" data-i18n="p3-excerpt">Cuándo tiene sentido usar modelos de lenguaje y cuándo una regla determinista hace el trabajo mejor y más barato.</p>
         </div>
         <div class="post-card post-card-coming">
-          <span class="coming-badge">Próximamente</span>
-          <p class="post-card-tag">Producto</p>
-          <p class="post-card-title">El error que casi mató a TopNodo en su primer mes</p>
-          <p class="post-card-excerpt">Construimos la feature equivocada primero. Aquí está lo que aprendimos sobre el orden en que se construye un producto de inventario.</p>
+          <span class="coming-badge" data-i18n="coming-badge">Próximamente</span>
+          <p class="post-card-tag" data-i18n="p4-tag">Producto</p>
+          <p class="post-card-title" data-i18n="p4-title">El error que casi mató a TopNodo en su primer mes</p>
+          <p class="post-card-excerpt" data-i18n="p4-excerpt">Construimos la feature equivocada primero. Aquí está lo que aprendimos sobre el orden en que se construye un producto de inventario.</p>
         </div>
       </div>
     </div>
 
   </div>
 
-  <!-- ARTICLE 1 (hidden by default, shown when clicking featured) -->
+  <!-- ARTICLE 1 (hidden by default) -->
   <div id="article-1" class="article-section" style="display:none">
 
     <div class="article-back">
@@ -312,81 +326,81 @@ footer { border-top: 1px solid rgba(255,255,255,.06); background: var(--ink); co
         <svg width="14" height="14" viewBox="0 0 13 13" fill="none" aria-hidden="true">
           <path d="M11 6.5H2M5 10L1.5 6.5 5 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
         </svg>
-        Volver al blog
+        <span data-i18n="back-link">Volver al blog</span>
       </a>
     </div>
 
     <article>
       <header class="article-header">
         <div class="article-meta">
-          <span class="article-tag">Filosofía</span>
-          <time class="article-date" datetime="2026-07-26">26 de julio de 2026</time>
-          <span class="article-date">· 6 min de lectura</span>
+          <span class="article-tag" data-i18n="article-tag">Filosofía</span>
+          <time class="article-date" datetime="2026-07-26" data-i18n="article-date">26 de julio de 2026</time>
+          <span class="article-date" data-i18n="article-read-time">· 6 min de lectura</span>
         </div>
-        <h1 class="article-h1">El software más simple suele ser el más valioso</h1>
-        <p class="article-lead">Por qué casi todo el software de gestión está sobrediseñado, qué pasa cuando alguien se atreve a construir lo mínimo que funciona de verdad, y cómo eso cambia la ecuación para el usuario.</p>
+        <h1 class="article-h1" data-i18n="article-h1">El software más simple suele ser el más valioso</h1>
+        <p class="article-lead" data-i18n="article-lead">Por qué casi todo el software de gestión está sobrediseñado, qué pasa cuando alguien se atreve a construir lo mínimo que funciona de verdad, y cómo eso cambia la ecuación para el usuario.</p>
       </header>
 
       <div class="article-body">
 
-        <p>Cuando un ganadero me describió cómo llevaba el control de su hato, esperaba encontrar algo primitivo. Lo que encontré fue más sofisticado de lo que imaginaba: un cuaderno con una lógica propia, columnas inventadas, abreviaciones que solo él entendía, pero que funcionaban. Había construido su propio sistema de información con lo que tenía.</p>
+        <p data-i18n="art-p1">Cuando un ganadero me describió cómo llevaba el control de su hato, esperaba encontrar algo primitivo. Lo que encontré fue más sofisticado de lo que imaginaba: un cuaderno con una lógica propia, columnas inventadas, abreviaciones que solo él entendía, pero que funcionaban. Había construido su propio sistema de información con lo que tenía.</p>
 
-        <p>El problema no era que careciera de método. El problema era que ese método no escalaba, no le avisaba cuando una vaca empezaba a producir menos, no le decía en qué mes del año tendría más terneros disponibles. La información existía. Simplemente no estaba en la forma correcta.</p>
+        <p data-i18n="art-p2">El problema no era que careciera de método. El problema era que ese método no escalaba, no le avisaba cuando una vaca empezaba a producir menos, no le decía en qué mes del año tendría más terneros disponibles. La información existía. Simplemente no estaba en la forma correcta.</p>
 
-        <p>Eso me enseñó algo fundamental sobre el software: <strong>el usuario ya resolvió el problema de alguna forma.</strong> Tu trabajo como constructor no es reemplazarlo con algo más complejo: es encontrar la forma más simple de darle exactamente lo que le falta.</p>
+        <p data-i18n-html="art-p3">Eso me enseñó algo fundamental sobre el software: <strong>el usuario ya resolvió el problema de alguna forma.</strong> Tu trabajo como constructor no es reemplazarlo con algo más complejo: es encontrar la forma más simple de darle exactamente lo que le falta.</p>
 
-        <h2>El problema de la complejidad innecesaria</h2>
+        <h2 data-i18n="art-h2-1">El problema de la complejidad innecesaria</h2>
 
-        <p>Existe una tendencia persistente en la industria del software a confundir complejidad con valor. Los sistemas más grandes, con más módulos, con más configuraciones, parecen más profesionales. Los decks de ventas los muestran como prueba de robustez.</p>
+        <p data-i18n="art-p4">Existe una tendencia persistente en la industria del software a confundir complejidad con valor. Los sistemas más grandes, con más módulos, con más configuraciones, parecen más profesionales. Los decks de ventas los muestran como prueba de robustez.</p>
 
-        <p>La realidad es diferente. La mayoría del software de gestión empresarial tiene una tasa de adopción de características de entre el 20% y el 30%. El usuario aprende lo que necesita para hacer su trabajo y el resto desaparece. El otro 70% o 80% de features no solo es dinero desperdiciado: es ruido activo que hace más lento al usuario y más caro el mantenimiento.</p>
+        <p data-i18n="art-p5">La realidad es diferente. La mayoría del software de gestión empresarial tiene una tasa de adopción de características de entre el 20% y el 30%. El usuario aprende lo que necesita para hacer su trabajo y el resto desaparece. El otro 70% o 80% de features no solo es dinero desperdiciado: es ruido activo que hace más lento al usuario y más caro el mantenimiento.</p>
 
-        <blockquote>El software más valioso es el que alguien abre todos los días, el que no requiere manual, el que hace exactamente lo que promete y nada más.</blockquote>
+        <blockquote data-i18n="art-bq">El software más valioso es el que alguien abre todos los días, el que no requiere manual, el que hace exactamente lo que promete y nada más.</blockquote>
 
-        <p>Esa frase no es una aspiración filosófica. Es una métrica. Si el usuario no lo abre todos los días, no es que no lo necesite: es que el software no lo resolvió suficientemente bien.</p>
+        <p data-i18n="art-p6">Esa frase no es una aspiración filosófica. Es una métrica. Si el usuario no lo abre todos los días, no es que no lo necesite: es que el software no lo resolvió suficientemente bien.</p>
 
-        <h2>Lo que significa construir lo mínimo que funciona</h2>
+        <h2 data-i18n="art-h2-2">Lo que significa construir lo mínimo que funciona</h2>
 
-        <p>Hay una diferencia importante entre "mínimo" en el sentido de incompleto y "mínimo" en el sentido de preciso. El mínimo que funciona no es un prototipo. Es una solución que hace una cosa extremadamente bien, sin que el usuario tenga que pensar en el software mientras la hace.</p>
+        <p data-i18n="art-p7">Hay una diferencia importante entre "mínimo" en el sentido de incompleto y "mínimo" en el sentido de preciso. El mínimo que funciona no es un prototipo. Es una solución que hace una cosa extremadamente bien, sin que el usuario tenga que pensar en el software mientras la hace.</p>
 
-        <p>Cuando construimos Hato iA, la primera versión tenía tres funciones: registrar ordeño, registrar un evento reproductivo y ver el historial de una vaca. Eso era todo. No había módulos de inventario de medicamentos, ni proyecciones financieras, ni integración con básculas. Tampoco las necesitábamos todavía.</p>
+        <p data-i18n="art-p8">Cuando construimos Hato iA, la primera versión tenía tres funciones: registrar ordeño, registrar un evento reproductivo y ver el historial de una vaca. Eso era todo. No había módulos de inventario de medicamentos, ni proyecciones financieras, ni integración con básculas. Tampoco las necesitábamos todavía.</p>
 
-        <p>Lo que sí tenía era que funcionaba desde el celular con señal de 2G, en 30 segundos por vaca, por un operario que nunca había usado un software en su vida. Esa restricción, que no fuera el dueño sino el operario quien lo usara, determinó cada decisión de diseño.</p>
+        <p data-i18n="art-p9">Lo que sí tenía era que funcionaba desde el celular con señal de 2G, en 30 segundos por vaca, por un operario que nunca había usado un software en su vida. Esa restricción, que no fuera el dueño sino el operario quien lo usara, determinó cada decisión de diseño.</p>
 
-        <ul>
-          <li>Sin texto donde alcanzara un número.</li>
-          <li>Sin confirmaciones innecesarias.</li>
-          <li>Sin pantallas de configuración que el usuario nunca iba a tocar.</li>
-          <li>Sin onboarding de cinco pasos.</li>
+        <ul id="art-ul">
+          <li data-i18n="art-li1">Sin texto donde alcanzara un número.</li>
+          <li data-i18n="art-li2">Sin confirmaciones innecesarias.</li>
+          <li data-i18n="art-li3">Sin pantallas de configuración que el usuario nunca iba a tocar.</li>
+          <li data-i18n="art-li4">Sin onboarding de cinco pasos.</li>
         </ul>
 
-        <p>El resultado fue un sistema que el operario aprendió a usar en 10 minutos. No porque los operarios sean menos capaces, sino porque ese es el estándar real de usabilidad. Si requiere más de 10 minutos, el diseño falló.</p>
+        <p data-i18n="art-p10">El resultado fue un sistema que el operario aprendió a usar en 10 minutos. No porque los operarios sean menos capaces, sino porque ese es el estándar real de usabilidad. Si requiere más de 10 minutos, el diseño falló.</p>
 
-        <h2>La trampa del cliente que pide más features</h2>
+        <h2 data-i18n="art-h2-3">La trampa del cliente que pide más features</h2>
 
-        <p>Hay un momento en el ciclo de vida de todo producto donde el cliente empieza a pedir cosas. "¿Pueden agregar un módulo de nómina?" "¿Y si pudiéramos exportar a Excel?" "¿Qué tal una app para el veterinario?"</p>
+        <p data-i18n="art-p11">Hay un momento en el ciclo de vida de todo producto donde el cliente empieza a pedir cosas. "¿Pueden agregar un módulo de nómina?" "¿Y si pudiéramos exportar a Excel?" "¿Qué tal una app para el veterinario?"</p>
 
-        <p>Esas peticiones son señales, no órdenes. A veces revelan un problema real. Más seguido revelan que el usuario encontró una forma de usar el producto que no anticipamos, y que hay algo más profundo que resolver.</p>
+        <p data-i18n="art-p12">Esas peticiones son señales, no órdenes. A veces revelan un problema real. Más seguido revelan que el usuario encontró una forma de usar el producto que no anticipamos, y que hay algo más profundo que resolver.</p>
 
-        <p>El trabajo del constructor es distinguir entre las dos cosas. Agregar la feature que el cliente pide es fácil. Entender <strong>por qué</strong> la está pidiendo. Construir la solución correcta para ese problema subyacente es lo que separa el software que funciona del software que se abandona.</p>
+        <p data-i18n-html="art-p13">El trabajo del constructor es distinguir entre las dos cosas. Agregar la feature que el cliente pide es fácil. Entender <strong>por qué</strong> la está pidiendo. Construir la solución correcta para ese problema subyacente es lo que separa el software que funciona del software que se abandona.</p>
 
-        <p>En Labnormally tenemos una regla: antes de construir una feature nueva, tenemos que poder explicar cuántas veces por semana la va a usar el cliente principal. Si la respuesta es "una vez al mes" o "cuando se acuerde", probablemente no es lo que más necesita hoy.</p>
+        <p data-i18n="art-p14">En Labnormally tenemos una regla: antes de construir una feature nueva, tenemos que poder explicar cuántas veces por semana la va a usar el cliente principal. Si la respuesta es "una vez al mes" o "cuando se acuerde", probablemente no es lo que más necesita hoy.</p>
 
-        <h2>Por qué esto importa para los negocios pequeños</h2>
+        <h2 data-i18n="art-h2-4">Por qué esto importa para los negocios pequeños</h2>
 
-        <p>Las empresas grandes tienen la capacidad de absorber software complejo. Tienen equipos de IT, tiempo de capacitación, presupuestos de implementación. El software genérico está diseñado para ese mercado.</p>
+        <p data-i18n="art-p15">Las empresas grandes tienen la capacidad de absorber software complejo. Tienen equipos de IT, tiempo de capacitación, presupuestos de implementación. El software genérico está diseñado para ese mercado.</p>
 
-        <p>El ganadero, el médico en consultorio privado, el dueño del estudio de yoga: no tienen nada de eso. Tienen 20 minutos en la mañana y un celular. Si el software no funciona en ese contexto, no funciona.</p>
+        <p data-i18n="art-p16">El ganadero, el médico en consultorio privado, el dueño del estudio de yoga: no tienen nada de eso. Tienen 20 minutos en la mañana y un celular. Si el software no funciona en ese contexto, no funciona.</p>
 
-        <p>Esa restricción es lo que me apasiona de construir para ese mercado. No es una limitación: es una disciplina de diseño. Cada decisión que tomas tiene consecuencias inmediatas y verificables. El software o lo usa todos los días o no lo usa. No hay término medio.</p>
+        <p data-i18n="art-p17">Esa restricción es lo que me apasiona de construir para ese mercado. No es una limitación: es una disciplina de diseño. Cada decisión que tomas tiene consecuencias inmediatas y verificables. El software o lo usa todos los días o no lo usa. No hay término medio.</p>
 
         <hr class="article-divider">
 
-        <p>El software más simple suele ser el más valioso no porque la simplicidad sea un fin en sí misma. Sino porque la simplicidad es evidencia de que alguien entendió el problema de verdad.</p>
+        <p data-i18n="art-p18">El software más simple suele ser el más valioso no porque la simplicidad sea un fin en sí misma. Sino porque la simplicidad es evidencia de que alguien entendió el problema de verdad.</p>
 
-        <p>Entender el problema de verdad requiere tiempo. Requiere observar cómo el usuario resuelve el problema hoy. Requiere construir, entregar, medir y corregir. No se puede hacer desde lejos.</p>
+        <p data-i18n="art-p19">Entender el problema de verdad requiere tiempo. Requiere observar cómo el usuario resuelve el problema hoy. Requiere construir, entregar, medir y corregir. No se puede hacer desde lejos.</p>
 
-        <p>Eso es lo que intentamos hacer en Labnormally. No siempre lo logramos a la primera. Pero es el estándar al que apuntamos.</p>
+        <p data-i18n="art-p20">Eso es lo que intentamos hacer en Labnormally. No siempre lo logramos a la primera. Pero es el estándar al que apuntamos.</p>
 
         <div class="article-author">
           <div class="author-avatar" aria-hidden="true">L</div>
@@ -407,15 +421,170 @@ footer { border-top: 1px solid rgba(255,255,255,.06); background: var(--ink); co
   <div class="foot-inner">
     <a class="foot-logo" href="/">Labnormally</a>
     <div class="foot-links">
-      <a href="/">Inicio</a>
-      <a href="/quien-soy">Quién soy</a>
-      <a href="mailto:hola@ibid.co">Contacto</a>
+      <a href="/" data-i18n="foot-home">Inicio</a>
+      <a href="/quien-soy" data-i18n="foot-about">Quién soy</a>
+      <a href="mailto:hola@ibid.co" data-i18n="foot-contact">Contacto</a>
     </div>
     <span class="foot-cr">© 2026 Labnormally.</span>
   </div>
 </footer>
 
 <script>
+const I18N = {
+  es: {
+    'nav-mission':    'Misión',
+    'nav-process':    'Proceso',
+    'nav-cases':      'Casos',
+    'nav-blog':       'Blog',
+    'nav-about':      'Yo',
+    'nav-cta':        'Hablemos',
+    'blog-overline':  'Blog',
+    'blog-h1':        'Ideas sobre software<br>y negocios reales.',
+    'blog-tagline':   'Sin tendencias de moda, sin lenguaje de startup. Lo que aprendemos construyendo software para problemas concretos.',
+    'feat-label':     'Artículo destacado',
+    'feat-tag':       'Filosofía',
+    'feat-date':      '26 jul 2026',
+    'feat-title':     'El software más simple suele ser el más valioso',
+    'feat-excerpt':   'Por qué casi todo el software de gestión está sobrediseñado, qué pasa cuando alguien se atreve a construir lo mínimo que funciona de verdad, y cómo eso cambia la ecuación para el usuario.',
+    'feat-read':      'Leer artículo',
+    'coming-label':   'Próximamente',
+    'coming-badge':   'Próximamente',
+    'p2-tag':         'Negocios',
+    'p2-title':       'Cómo leer un negocio ganadero desde los datos',
+    'p2-excerpt':     'Lo que las finanzas me enseñaron sobre producción animal y cómo eso cambió lo que construimos en Hato iA.',
+    'p3-tag':         'Tecnología',
+    'p3-title':       'Por qué no usamos IA generativa para todo',
+    'p3-excerpt':     'Cuándo tiene sentido usar modelos de lenguaje y cuándo una regla determinista hace el trabajo mejor y más barato.',
+    'p4-tag':         'Producto',
+    'p4-title':       'El error que casi mató a TopNodo en su primer mes',
+    'p4-excerpt':     'Construimos la feature equivocada primero. Aquí está lo que aprendimos sobre el orden en que se construye un producto de inventario.',
+    'back-link':      'Volver al blog',
+    'article-tag':    'Filosofía',
+    'article-date':   '26 de julio de 2026',
+    'article-read-time': '· 6 min de lectura',
+    'article-h1':     'El software más simple suele ser el más valioso',
+    'article-lead':   'Por qué casi todo el software de gestión está sobrediseñado, qué pasa cuando alguien se atreve a construir lo mínimo que funciona de verdad, y cómo eso cambia la ecuación para el usuario.',
+    'art-p1':  'Cuando un ganadero me describió cómo llevaba el control de su hato, esperaba encontrar algo primitivo. Lo que encontré fue más sofisticado de lo que imaginaba: un cuaderno con una lógica propia, columnas inventadas, abreviaciones que solo él entendía, pero que funcionaban. Había construido su propio sistema de información con lo que tenía.',
+    'art-p2':  'El problema no era que careciera de método. El problema era que ese método no escalaba, no le avisaba cuando una vaca empezaba a producir menos, no le decía en qué mes del año tendría más terneros disponibles. La información existía. Simplemente no estaba en la forma correcta.',
+    'art-p3':  'Eso me enseñó algo fundamental sobre el software: <strong>el usuario ya resolvió el problema de alguna forma.</strong> Tu trabajo como constructor no es reemplazarlo con algo más complejo: es encontrar la forma más simple de darle exactamente lo que le falta.',
+    'art-h2-1':'El problema de la complejidad innecesaria',
+    'art-p4':  'Existe una tendencia persistente en la industria del software a confundir complejidad con valor. Los sistemas más grandes, con más módulos, con más configuraciones, parecen más profesionales. Los decks de ventas los muestran como prueba de robustez.',
+    'art-p5':  'La realidad es diferente. La mayoría del software de gestión empresarial tiene una tasa de adopción de características de entre el 20% y el 30%. El usuario aprende lo que necesita para hacer su trabajo y el resto desaparece. El otro 70% o 80% de features no solo es dinero desperdiciado: es ruido activo que hace más lento al usuario y más caro el mantenimiento.',
+    'art-bq':  'El software más valioso es el que alguien abre todos los días, el que no requiere manual, el que hace exactamente lo que promete y nada más.',
+    'art-p6':  'Esa frase no es una aspiración filosófica. Es una métrica. Si el usuario no lo abre todos los días, no es que no lo necesite: es que el software no lo resolvió suficientemente bien.',
+    'art-h2-2':'Lo que significa construir lo mínimo que funciona',
+    'art-p7':  'Hay una diferencia importante entre "mínimo" en el sentido de incompleto y "mínimo" en el sentido de preciso. El mínimo que funciona no es un prototipo. Es una solución que hace una cosa extremadamente bien, sin que el usuario tenga que pensar en el software mientras la hace.',
+    'art-p8':  'Cuando construimos Hato iA, la primera versión tenía tres funciones: registrar ordeño, registrar un evento reproductivo y ver el historial de una vaca. Eso era todo. No había módulos de inventario de medicamentos, ni proyecciones financieras, ni integración con básculas. Tampoco las necesitábamos todavía.',
+    'art-p9':  'Lo que sí tenía era que funcionaba desde el celular con señal de 2G, en 30 segundos por vaca, por un operario que nunca había usado un software en su vida. Esa restricción, que no fuera el dueño sino el operario quien lo usara, determinó cada decisión de diseño.',
+    'art-li1': 'Sin texto donde alcanzara un número.',
+    'art-li2': 'Sin confirmaciones innecesarias.',
+    'art-li3': 'Sin pantallas de configuración que el usuario nunca iba a tocar.',
+    'art-li4': 'Sin onboarding de cinco pasos.',
+    'art-p10': 'El resultado fue un sistema que el operario aprendió a usar en 10 minutos. No porque los operarios sean menos capaces, sino porque ese es el estándar real de usabilidad. Si requiere más de 10 minutos, el diseño falló.',
+    'art-h2-3':'La trampa del cliente que pide más features',
+    'art-p11': 'Hay un momento en el ciclo de vida de todo producto donde el cliente empieza a pedir cosas. "¿Pueden agregar un módulo de nómina?" "¿Y si pudiéramos exportar a Excel?" "¿Qué tal una app para el veterinario?"',
+    'art-p12': 'Esas peticiones son señales, no órdenes. A veces revelan un problema real. Más seguido revelan que el usuario encontró una forma de usar el producto que no anticipamos, y que hay algo más profundo que resolver.',
+    'art-p13': 'El trabajo del constructor es distinguir entre las dos cosas. Agregar la feature que el cliente pide es fácil. Entender <strong>por qué</strong> la está pidiendo. Construir la solución correcta para ese problema subyacente es lo que separa el software que funciona del software que se abandona.',
+    'art-p14': 'En Labnormally tenemos una regla: antes de construir una feature nueva, tenemos que poder explicar cuántas veces por semana la va a usar el cliente principal. Si la respuesta es "una vez al mes" o "cuando se acuerde", probablemente no es lo que más necesita hoy.',
+    'art-h2-4':'Por qué esto importa para los negocios pequeños',
+    'art-p15': 'Las empresas grandes tienen la capacidad de absorber software complejo. Tienen equipos de IT, tiempo de capacitación, presupuestos de implementación. El software genérico está diseñado para ese mercado.',
+    'art-p16': 'El ganadero, el médico en consultorio privado, el dueño del estudio de yoga: no tienen nada de eso. Tienen 20 minutos en la mañana y un celular. Si el software no funciona en ese contexto, no funciona.',
+    'art-p17': 'Esa restricción es lo que me apasiona de construir para ese mercado. No es una limitación: es una disciplina de diseño. Cada decisión que tomas tiene consecuencias inmediatas y verificables. El software o lo usa todos los días o no lo usa. No hay término medio.',
+    'art-p18': 'El software más simple suele ser el más valioso no porque la simplicidad sea un fin en sí misma. Sino porque la simplicidad es evidencia de que alguien entendió el problema de verdad.',
+    'art-p19': 'Entender el problema de verdad requiere tiempo. Requiere observar cómo el usuario resuelve el problema hoy. Requiere construir, entregar, medir y corregir. No se puede hacer desde lejos.',
+    'art-p20': 'Eso es lo que intentamos hacer en Labnormally. No siempre lo logramos a la primera. Pero es el estándar al que apuntamos.',
+    'foot-home':    'Inicio',
+    'foot-about':   'Quién soy',
+    'foot-contact': 'Contacto',
+  },
+  en: {
+    'nav-mission':    'Mission',
+    'nav-process':    'Process',
+    'nav-cases':      'Cases',
+    'nav-blog':       'Blog',
+    'nav-about':      'Me',
+    'nav-cta':        "Let's talk",
+    'blog-overline':  'Blog',
+    'blog-h1':        'Ideas on software<br>and real business.',
+    'blog-tagline':   'No trendy buzzwords, no startup speak. What we learn building software for concrete problems.',
+    'feat-label':     'Featured article',
+    'feat-tag':       'Philosophy',
+    'feat-date':      'Jul 26, 2026',
+    'feat-title':     'The simplest software is often the most valuable',
+    'feat-excerpt':   'Why almost all management software is overdesigned, what happens when someone dares to build the minimum that truly works, and how that changes the equation for the user.',
+    'feat-read':      'Read article',
+    'coming-label':   'Coming soon',
+    'coming-badge':   'Coming soon',
+    'p2-tag':         'Business',
+    'p2-title':       'How to read a livestock business through data',
+    'p2-excerpt':     'What finance taught me about animal production and how that shaped what we built in Hato iA.',
+    'p3-tag':         'Technology',
+    'p3-title':       'Why we do not use generative AI for everything',
+    'p3-excerpt':     'When it makes sense to use language models and when a deterministic rule does the job better and cheaper.',
+    'p4-tag':         'Product',
+    'p4-title':       'The mistake that almost killed TopNodo in its first month',
+    'p4-excerpt':     'We built the wrong feature first. Here is what we learned about the order in which you build an inventory product.',
+    'back-link':      'Back to blog',
+    'article-tag':    'Philosophy',
+    'article-date':   'July 26, 2026',
+    'article-read-time': '· 6 min read',
+    'article-h1':     'The simplest software is often the most valuable',
+    'article-lead':   'Why almost all management software is overdesigned, what happens when someone dares to build the minimum that truly works, and how that changes the equation for the user.',
+    'art-p1':  'When a cattle rancher described how he tracked his herd, I expected to find something primitive. What I found was more sophisticated than I imagined: a notebook with its own logic, invented columns, abbreviations only he understood, but that worked. He had built his own information system with what he had.',
+    'art-p2':  'The problem was not that he lacked method. The problem was that his method did not scale, did not alert him when a cow started producing less, did not tell him in which month of the year he would have the most calves available. The information existed. It just was not in the right form.',
+    'art-p3':  'That taught me something fundamental about software: <strong>the user has already solved the problem somehow.</strong> Your job as a builder is not to replace it with something more complex. It is to find the simplest way to give them exactly what they are missing.',
+    'art-h2-1':'The problem of unnecessary complexity',
+    'art-p4':  'There is a persistent tendency in the software industry to confuse complexity with value. Larger systems, with more modules and more configuration options, seem more professional. Sales decks showcase them as proof of robustness.',
+    'art-p5':  'The reality is different. Most enterprise management software has a feature adoption rate of between 20% and 30%. The user learns what they need to do their job and the rest disappears. The other 70% or 80% of features is not just wasted money: it is active noise that slows the user down and makes maintenance more expensive.',
+    'art-bq':  'The most valuable software is the one someone opens every day, the one that requires no manual, the one that does exactly what it promises and nothing more.',
+    'art-p6':  'That sentence is not a philosophical aspiration. It is a metric. If the user does not open it every day, it is not that they do not need it: it is that the software did not solve it well enough.',
+    'art-h2-2':'What it means to build the minimum that works',
+    'art-p7':  'There is an important difference between "minimum" in the sense of incomplete and "minimum" in the sense of precise. The minimum that works is not a prototype. It is a solution that does one thing extremely well, without the user having to think about the software while doing it.',
+    'art-p8':  'When we built Hato iA, the first version had three functions: log a milking, log a reproductive event, and view a cow\'s history. That was it. There were no medication inventory modules, no financial projections, no scale integrations. We did not need them yet.',
+    'art-p9':  'What it did have was that it worked from a mobile phone with a 2G signal, in 30 seconds per cow, operated by a worker who had never used software in their life. That constraint, that it was the worker and not the owner who would use it, determined every design decision.',
+    'art-li1': 'No text where a number would do.',
+    'art-li2': 'No unnecessary confirmations.',
+    'art-li3': 'No configuration screens the user would never touch.',
+    'art-li4': 'No five-step onboarding.',
+    'art-p10': 'The result was a system the worker learned to use in 10 minutes. Not because workers are less capable, but because that is the real standard of usability. If it takes more than 10 minutes, the design failed.',
+    'art-h2-3':'The trap of the client who asks for more features',
+    'art-p11': '"Can you add a payroll module?" "What if we could export to Excel?" "How about an app for the vet?" There is a moment in every product\'s lifecycle when the client starts making requests.',
+    'art-p12': 'Those requests are signals, not orders. Sometimes they reveal a real problem. More often they reveal that the user found a way to use the product that we did not anticipate, and that there is something deeper to solve.',
+    'art-p13': 'The builder\'s job is to tell the two things apart. Adding the feature the client asks for is easy. Understanding <strong>why</strong> they are asking for it. Building the right solution for that underlying problem is what separates software that works from software that gets abandoned.',
+    'art-p14': 'At Labnormally we have a rule: before building a new feature, we have to be able to explain how many times per week the main client will use it. If the answer is "once a month" or "whenever they remember," it is probably not what they need most today.',
+    'art-h2-4':'Why this matters for small businesses',
+    'art-p15': 'Large companies have the capacity to absorb complex software. They have IT teams, training time, implementation budgets. Generic software is designed for that market.',
+    'art-p16': 'The rancher, the doctor in private practice, the yoga studio owner: they have none of that. They have 20 minutes in the morning and a phone. If the software does not work in that context, it does not work.',
+    'art-p17': 'That constraint is what excites me about building for this market. It is not a limitation: it is a design discipline. Every decision you make has immediate, verifiable consequences. The software is either used every day or it is not. There is no middle ground.',
+    'art-p18': 'The simplest software is often the most valuable not because simplicity is an end in itself. But because simplicity is evidence that someone truly understood the problem.',
+    'art-p19': 'Truly understanding the problem takes time. It requires watching how the user solves the problem today. It requires building, delivering, measuring and correcting. It cannot be done from a distance.',
+    'art-p20': 'That is what we try to do at Labnormally. We do not always get it right the first time. But it is the standard we aim for.',
+    'foot-home':    'Home',
+    'foot-about':   'About me',
+    'foot-contact': 'Contact',
+  }
+};
+
+let currentLang = 'es';
+const langBtn = document.getElementById('lang-toggle');
+
+function setLang(lang) {
+  currentLang = lang;
+  document.documentElement.lang = lang;
+  langBtn.textContent = lang === 'es' ? 'EN' : 'ES';
+  const dict = I18N[lang];
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const k = el.dataset.i18n;
+    if (dict[k] !== undefined) el.textContent = dict[k];
+  });
+  document.querySelectorAll('[data-i18n-html]').forEach(el => {
+    const k = el.dataset.i18nHtml;
+    if (dict[k] !== undefined) el.innerHTML = dict[k];
+  });
+}
+
+if (langBtn) langBtn.addEventListener('click', () => setLang(currentLang === 'es' ? 'en' : 'es'));
+
 // Reveal animations
 const revObs = new IntersectionObserver(es => es.forEach(e => {
   if (e.isIntersecting) { e.target.classList.add('on'); revObs.unobserve(e.target); }
@@ -423,10 +592,10 @@ const revObs = new IntersectionObserver(es => es.forEach(e => {
 document.querySelectorAll('.reveal').forEach(el => revObs.observe(el));
 
 // Article toggle
-const blogIndex  = document.getElementById('blog-index');
-const article1   = document.getElementById('article-1');
-const readBtn    = document.getElementById('read-article');
-const backBtn    = document.getElementById('back-to-blog');
+const blogIndex = document.getElementById('blog-index');
+const article1  = document.getElementById('article-1');
+const readBtn   = document.getElementById('read-article');
+const backBtn   = document.getElementById('back-to-blog');
 
 function showArticle(e) {
   e.preventDefault();
@@ -446,7 +615,6 @@ function showIndex(e) {
 if (readBtn) readBtn.addEventListener('click', showArticle);
 if (backBtn) backBtn.addEventListener('click', showIndex);
 
-// Handle browser back/forward
 window.addEventListener('popstate', () => {
   if (location.pathname.endsWith('/blog')) {
     article1.style.display  = 'none';

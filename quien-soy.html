@@ -96,6 +96,19 @@ nav {
   transition: opacity .2s;
 }
 .nav-cta:hover { opacity: .85; }
+.lang-btn {
+  font-size: .8rem; font-weight: 600;
+  background: rgba(255,255,255,.1);
+  border: 1px solid rgba(255,255,255,.2);
+  color: rgba(255,255,255,.7);
+  border-radius: 100px;
+  padding: .375rem .875rem;
+  cursor: pointer;
+  transition: background .15s, color .15s, border-color .15s;
+  margin-left: .5rem;
+  letter-spacing: .04em;
+}
+.lang-btn:hover { background: rgba(255,255,255,.18); color: var(--white); }
 
 /* ── SECTIONS ── */
 .s-dark  { background: var(--ink);   color: var(--white); position: relative; }
@@ -346,27 +359,28 @@ footer { border-top: 1px solid rgba(255,255,255,.06); }
 <nav>
   <a class="logo" href="/">Labnormally</a>
   <ul class="nav-links">
-    <li><a href="/#mission">Misión</a></li>
-    <li><a href="/#how">Proceso</a></li>
-    <li><a href="/#cases">Casos</a></li>
-    <li><a href="/blog" class="active">Blog</a></li>
-    <li><a href="/quien-soy" class="active" style="color:var(--white)">Yo</a></li>
+    <li><a href="/#mission" data-i18n="nav-mission">Misión</a></li>
+    <li><a href="/#how" data-i18n="nav-process">Proceso</a></li>
+    <li><a href="/#cases" data-i18n="nav-cases">Casos</a></li>
+    <li><a href="/blog" data-i18n="nav-blog">Blog</a></li>
+    <li><a href="/quien-soy" class="active" style="color:var(--white)" data-i18n="nav-about">Yo</a></li>
   </ul>
   <a class="nav-cta" href="mailto:hola@ibid.co">
-    Hablemos
+    <span data-i18n="nav-cta">Hablemos</span>
     <svg width="13" height="13" viewBox="0 0 13 13" fill="none" aria-hidden="true">
       <path d="M2 6.5h9M8 3l3.5 3.5L8 10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
     </svg>
   </a>
+  <button class="lang-btn" id="lang-toggle" aria-label="Switch language">EN</button>
 </nav>
 
 <main>
 
   <!-- HERO -->
   <div class="qs-hero s-dark">
-    <p class="qs-overline">Quién soy</p>
-    <h1 class="qs-h1">Diez años leyendo negocios.<br><em>Los últimos, construyéndolos.</em></h1>
-    <p class="qs-tagline">Vine de las finanzas. Aprendí a ver los problemas de los negocios desde adentro. En algún punto decidí que entenderlos no era suficiente. Había que resolverlos.</p>
+    <p class="qs-overline" data-i18n="qs-overline">Quién soy</p>
+    <h1 class="qs-h1" data-i18n-html="qs-h1">Diez años leyendo negocios.<br><em>Los últimos, construyéndolos.</em></h1>
+    <p class="qs-tagline" data-i18n="qs-tagline">Vine de las finanzas. Aprendí a ver los problemas de los negocios desde adentro. En algún punto decidí que entenderlos no era suficiente. Había que resolverlos.</p>
     <span class="scroll-hint" aria-hidden="true">scroll</span>
   </div>
 
@@ -374,18 +388,18 @@ footer { border-top: 1px solid rgba(255,255,255,.06); }
   <div class="s-dark" style="position:relative; border-top: 1px solid rgba(255,255,255,.06);">
     <span class="act-num" aria-hidden="true">01</span>
     <div class="content-wrap">
-      <p class="section-label reveal">El principio</p>
-      <h2 class="act-title reveal">Los años en finanzas.</h2>
-      <p class="body-text reveal" style="transition-delay:.1s">
+      <p class="section-label reveal" data-i18n="act1-label">El principio</p>
+      <h2 class="act-title reveal" data-i18n="act1-title">Los años en finanzas.</h2>
+      <p class="body-text reveal" style="transition-delay:.1s" data-i18n="act1-p1">
         Pasé una década trabajando en el sector financiero colombiano. Analicé balances, flujos de caja, estructuras de capital. Aprendí a leer un negocio como se lee un electrocardiograma: los números te dicen dónde está el problema antes de que el dueño lo note.
       </p>
-      <p class="body-text reveal" style="transition-delay:.2s">
+      <p class="body-text reveal" style="transition-delay:.2s" data-i18n="act1-p2">
         Ese tiempo me enseñó algo que todavía me guía: los negocios que sobreviven no son los que tienen mejores ideas: son los que tienen información correcta en el momento correcto. El ganadero que sabe qué vaca va a caer en producción antes de que pase. El médico que sabe cuántos pacientes perdió este mes y por qué. El retailer que sabe qué SKU se va a agotar en 48 horas.
       </p>
-      <p class="body-text reveal" style="transition-delay:.3s">
+      <p class="body-text reveal" style="transition-delay:.3s" data-i18n="act1-p3">
         El problema es que esa información casi nunca existía de forma usable. Estaba en cuadernos, en hojas de Excel que nadie actualizaba, en reportes que llegaban cuando ya era demasiado tarde.
       </p>
-      <div class="pull-quote reveal" style="transition-delay:.4s">
+      <div class="pull-quote reveal" style="transition-delay:.4s" data-i18n="act1-quote">
         "Los negocios no fallan por falta de trabajo duro. Fallan por tomar decisiones con información de semanas de retraso."
       </div>
     </div>
@@ -395,18 +409,18 @@ footer { border-top: 1px solid rgba(255,255,255,.06); }
   <div class="s-white" style="position:relative;">
     <span class="act-num" aria-hidden="true">02</span>
     <div class="content-wrap">
-      <p class="section-label reveal">El giro</p>
-      <h2 class="act-title reveal">Cuando la tecnología cambió las reglas.</h2>
-      <p class="body-text reveal" style="transition-delay:.1s">
+      <p class="section-label reveal" data-i18n="act2-label">El giro</p>
+      <h2 class="act-title reveal" data-i18n="act2-title">Cuando la tecnología cambió las reglas.</h2>
+      <p class="body-text reveal" style="transition-delay:.1s" data-i18n="act2-p1">
         En algún momento de la última década, la infraestructura tecnológica se democratizó por completo. Bases de datos en tiempo real. Despliegues instantáneos en la nube. Interfaces que funcionan en el celular de un trabajador de campo. Cosas que antes costaban millones de dólares y requerían equipos de 20 ingenieros hoy se pueden hacer en semanas, solas o con un equipo pequeño.
       </p>
-      <p class="body-text reveal" style="transition-delay:.2s">
+      <p class="body-text reveal" style="transition-delay:.2s" data-i18n-html="act2-p2">
         El problema dejó de ser la tecnología. El problema pasó a ser: <strong>¿quién se toma el trabajo de aplicarla bien en los problemas correctos?</strong>
       </p>
-      <p class="body-text reveal" style="transition-delay:.3s">
+      <p class="body-text reveal" style="transition-delay:.3s" data-i18n="act2-p3">
         Una asesoría de tecnología te dice qué deberías hacer. Una agencia de desarrollo te construye lo que le pides. Pero nadie con experiencia real en el negocio, con skin in the game, se sienta a entender el problema desde adentro y construye la solución que funciona de verdad.
       </p>
-      <p class="body-text reveal" style="transition-delay:.4s">
+      <p class="body-text reveal" style="transition-delay:.4s" data-i18n="act2-p4">
         Decidí que ese alguien podía ser yo. Así nació Labnormally.
       </p>
     </div>
@@ -416,52 +430,52 @@ footer { border-top: 1px solid rgba(255,255,255,.06); }
   <div class="s-dark" style="position:relative; border-top: 1px solid rgba(255,255,255,.06);">
     <span class="act-num" aria-hidden="true">03</span>
     <div class="content-wrap wide">
-      <p class="section-label reveal" style="padding: 0 clamp(1.5rem, 4vw, 3rem);">Lo que construí</p>
-      <h2 class="act-title reveal" style="padding: 0 clamp(1.5rem, 4vw, 3rem);">Seis productos. Seis problemas reales.</h2>
-      <p class="body-text reveal" style="padding: 0 clamp(1.5rem, 4vw, 3rem); max-width: 58ch; transition-delay:.1s">
+      <p class="section-label reveal" style="padding: 0 clamp(1.5rem, 4vw, 3rem);" data-i18n="act3-label">Lo que construí</p>
+      <h2 class="act-title reveal" style="padding: 0 clamp(1.5rem, 4vw, 3rem);" data-i18n="act3-title">Seis productos. Seis problemas reales.</h2>
+      <p class="body-text reveal" style="padding: 0 clamp(1.5rem, 4vw, 3rem); max-width: 58ch; transition-delay:.1s" data-i18n="act3-intro">
         No elegí los sectores por tendencia. Los elegí porque encontré personas con un dolor concreto que la tecnología podía resolver, y estuve dispuesto a entender ese dolor de cerca antes de escribir una línea de código.
       </p>
       <div class="products-grid reveal" style="transition-delay:.2s; margin: 3rem clamp(1.5rem, 4vw, 3rem) 0;">
         <div class="prod-cell">
           <span class="prod-tag"><span class="prod-dot"></span>Live</span>
-          <p class="prod-label">Ganadería · Colombia</p>
+          <p class="prod-label" data-i18n="p1-label">Ganadería · Colombia</p>
           <p class="prod-name">Hato iA</p>
-          <p class="prod-desc">Gestión ganadera desde el celular. Producción, reproducción y salud. Sin escritorio, sin capacitación.</p>
+          <p class="prod-desc" data-i18n="p1-desc">Gestión ganadera desde el celular. Producción, reproducción y salud. Sin escritorio, sin capacitación.</p>
           <a class="prod-link" href="https://hatoia.labnormally.com/" target="_blank" rel="noopener">hatoia.labnormally.com <svg width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M2 10L10 2M10 2H5M10 2v5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
         </div>
         <div class="prod-cell">
           <span class="prod-tag"><span class="prod-dot"></span>Live</span>
-          <p class="prod-label">Retail · Omnicanal</p>
+          <p class="prod-label" data-i18n="p2-label">Retail · Omnicanal</p>
           <p class="prod-name">TopNodo</p>
-          <p class="prod-desc">Sistema operativo de inventario para retail con múltiples canales. Una sola fuente de verdad.</p>
+          <p class="prod-desc" data-i18n="p2-desc">Sistema operativo de inventario para retail con múltiples canales. Una sola fuente de verdad.</p>
           <a class="prod-link" href="https://topnodo.com" target="_blank" rel="noopener">topnodo.com <svg width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M2 10L10 2M10 2H5M10 2v5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
         </div>
         <div class="prod-cell">
           <span class="prod-tag"><span class="prod-dot"></span>Live</span>
-          <p class="prod-label">Salud · Colombia</p>
+          <p class="prod-label" data-i18n="p3-label">Salud · Colombia</p>
           <p class="prod-name">HCE Colombia</p>
-          <p class="prod-desc">Historia clínica electrónica en la nube. Registro, fotos antes/después y firma digital con validez legal.</p>
+          <p class="prod-desc" data-i18n="p3-desc">Historia clínica electrónica en la nube. Registro, fotos antes/después y firma digital con validez legal.</p>
           <a class="prod-link" href="https://hceweb.labnormally.com" target="_blank" rel="noopener">hceweb.labnormally.com <svg width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M2 10L10 2M10 2H5M10 2v5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
         </div>
         <div class="prod-cell">
           <span class="prod-tag"><span class="prod-dot"></span>Live</span>
-          <p class="prod-label">Bienestar · Colombia · España</p>
+          <p class="prod-label" data-i18n="p4-label">Bienestar · Colombia · España</p>
           <p class="prod-name">Tulutes</p>
-          <p class="prod-desc">Reservas para estudios de yoga, pilates y fisioterapia. El estudio listo para operar en menos de una hora.</p>
+          <p class="prod-desc" data-i18n="p4-desc">Reservas para estudios de yoga, pilates y fisioterapia. El estudio listo para operar en menos de una hora.</p>
           <a class="prod-link" href="https://tulutes.labnormally.com/" target="_blank" rel="noopener">tulutes.labnormally.com <svg width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M2 10L10 2M10 2H5M10 2v5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
         </div>
         <div class="prod-cell">
           <span class="prod-tag"><span class="prod-dot"></span>Live</span>
-          <p class="prod-label">Finanzas · Energía · Colombia</p>
+          <p class="prod-label" data-i18n="p5-label">Finanzas · Energía · Colombia</p>
           <p class="prod-name">Labnormally Quant</p>
-          <p class="prod-desc">Tres monitores especializados de datos financieros y energéticos colombianos. Fuentes oficiales, actualización automática.</p>
+          <p class="prod-desc" data-i18n="p5-desc">Tres monitores especializados de datos financieros y energéticos colombianos. Fuentes oficiales, actualización automática.</p>
           <a class="prod-link" href="https://quant.labnormally.com" target="_blank" rel="noopener">quant.labnormally.com <svg width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M2 10L10 2M10 2H5M10 2v5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
         </div>
         <div class="prod-cell">
           <span class="prod-tag"><span class="prod-dot"></span>Live</span>
-          <p class="prod-label">Civic tech · Colombia</p>
+          <p class="prod-label" data-i18n="p6-label">Civic tech · Colombia</p>
           <p class="prod-name">ElijoVotar</p>
-          <p class="prod-desc">Match electoral para las presidenciales 2026. Ideas primero, nombres al final. 17.343 quizzes completados.</p>
+          <p class="prod-desc" data-i18n="p6-desc">Match electoral para las presidenciales 2026. Ideas primero, nombres al final. 17.343 quizzes completados.</p>
           <a class="prod-link" href="https://elijovotar.com" target="_blank" rel="noopener">elijovotar.com <svg width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M2 10L10 2M10 2H5M10 2v5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
         </div>
       </div>
@@ -472,23 +486,23 @@ footer { border-top: 1px solid rgba(255,255,255,.06); }
   <div class="s-gray" style="position:relative;">
     <span class="act-num" aria-hidden="true">04</span>
     <div class="content-wrap">
-      <p class="section-label reveal">Cómo trabajo</p>
-      <h2 class="act-title reveal">Tres principios que no negocio.</h2>
+      <p class="section-label reveal" data-i18n="act4-label">Cómo trabajo</p>
+      <h2 class="act-title reveal" data-i18n="act4-title">Tres principios que no negocio.</h2>
       <div class="val-row">
         <div class="val-item reveal" style="transition-delay:.1s">
           <p class="val-num">01</p>
-          <p class="val-ttl">Simplicidad radical</p>
-          <p class="val-dsc">La solución más simple que funciona. Si el usuario necesita capacitación para usarlo, el problema es mío. Ni una pantalla de más, ni un formulario que no aporte nada.</p>
+          <p class="val-ttl" data-i18n="v1-ttl">Simplicidad radical</p>
+          <p class="val-dsc" data-i18n="v1-dsc">La solución más simple que funciona. Si el usuario necesita capacitación para usarlo, el problema es mío. Ni una pantalla de más, ni un formulario que no aporte nada.</p>
         </div>
         <div class="val-item reveal" style="transition-delay:.2s">
           <p class="val-num">02</p>
-          <p class="val-ttl">Tecnología robusta</p>
-          <p class="val-dsc">No construyo prototipos disfrazados de producto. Lo que entrego escala, tiene copias de seguridad y funciona cuando llevan 500 personas al mismo tiempo.</p>
+          <p class="val-ttl" data-i18n="v2-ttl">Tecnología robusta</p>
+          <p class="val-dsc" data-i18n="v2-dsc">No construyo prototipos disfrazados de producto. Lo que entrego escala, tiene copias de seguridad y funciona cuando llevan 500 personas al mismo tiempo.</p>
         </div>
         <div class="val-item reveal" style="transition-delay:.3s">
           <p class="val-num">03</p>
-          <p class="val-ttl">Skin in the game</p>
-          <p class="val-dsc">Me involucro de verdad. No mando una propuesta y desaparezco. En varios casos soy también accionista o cliente del producto que construí.</p>
+          <p class="val-ttl" data-i18n="v3-ttl">Skin in the game</p>
+          <p class="val-dsc" data-i18n="v3-dsc">Me involucro de verdad. No mando una propuesta y desaparezco. En varios casos soy también accionista o cliente del producto que construí.</p>
         </div>
       </div>
     </div>
@@ -496,10 +510,10 @@ footer { border-top: 1px solid rgba(255,255,255,.06); }
 
   <!-- CTA -->
   <div class="s-dark cta-section">
-    <h2 class="cta-h2">¿Tienes un problema<br>que vale la pena resolver?</h2>
-    <p class="cta-sub">Si hay un dolor concreto en tu negocio y crees que la tecnología puede resolverlo, me interesa escucharlo.</p>
+    <h2 class="cta-h2" data-i18n-html="cta-h2">¿Tienes un problema<br>que vale la pena resolver?</h2>
+    <p class="cta-sub" data-i18n="cta-sub">Si hay un dolor concreto en tu negocio y crees que la tecnología puede resolverlo, me interesa escucharlo.</p>
     <a class="btn-primary" href="mailto:hola@ibid.co">
-      Escribeme
+      <span data-i18n="cta-btn">Escribeme</span>
       <svg width="14" height="14" viewBox="0 0 13 13" fill="none" aria-hidden="true">
         <path d="M2 6.5h9M8 3l3.5 3.5L8 10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
       </svg>
@@ -512,15 +526,142 @@ footer { border-top: 1px solid rgba(255,255,255,.06); }
   <div class="foot-inner">
     <a class="foot-logo" href="/">Labnormally</a>
     <div class="foot-links">
-      <a href="/">Inicio</a>
-      <a href="/blog">Blog</a>
-      <a href="mailto:hola@ibid.co">Contacto</a>
+      <a href="/" data-i18n="foot-home">Inicio</a>
+      <a href="/blog" data-i18n="foot-blog">Blog</a>
+      <a href="mailto:hola@ibid.co" data-i18n="foot-contact">Contacto</a>
     </div>
     <span class="foot-cr">© 2026 Labnormally.</span>
   </div>
 </footer>
 
 <script>
+const I18N = {
+  es: {
+    'nav-mission': 'Misión',
+    'nav-process': 'Proceso',
+    'nav-cases':   'Casos',
+    'nav-blog':    'Blog',
+    'nav-about':   'Yo',
+    'nav-cta':     'Hablemos',
+    'qs-overline': 'Quién soy',
+    'qs-h1':       'Diez años leyendo negocios.<br><em>Los últimos, construyéndolos.</em>',
+    'qs-tagline':  'Vine de las finanzas. Aprendí a ver los problemas de los negocios desde adentro. En algún punto decidí que entenderlos no era suficiente. Había que resolverlos.',
+    'act1-label':  'El principio',
+    'act1-title':  'Los años en finanzas.',
+    'act1-p1':     'Pasé una década trabajando en el sector financiero colombiano. Analicé balances, flujos de caja, estructuras de capital. Aprendí a leer un negocio como se lee un electrocardiograma: los números te dicen dónde está el problema antes de que el dueño lo note.',
+    'act1-p2':     'Ese tiempo me enseñó algo que todavía me guía: los negocios que sobreviven no son los que tienen mejores ideas: son los que tienen información correcta en el momento correcto. El ganadero que sabe qué vaca va a caer en producción antes de que pase. El médico que sabe cuántos pacientes perdió este mes y por qué. El retailer que sabe qué SKU se va a agotar en 48 horas.',
+    'act1-p3':     'El problema es que esa información casi nunca existía de forma usable. Estaba en cuadernos, en hojas de Excel que nadie actualizaba, en reportes que llegaban cuando ya era demasiado tarde.',
+    'act1-quote':  '"Los negocios no fallan por falta de trabajo duro. Fallan por tomar decisiones con información de semanas de retraso."',
+    'act2-label':  'El giro',
+    'act2-title':  'Cuando la tecnología cambió las reglas.',
+    'act2-p1':     'En algún momento de la última década, la infraestructura tecnológica se democratizó por completo. Bases de datos en tiempo real. Despliegues instantáneos en la nube. Interfaces que funcionan en el celular de un trabajador de campo. Cosas que antes costaban millones de dólares y requerían equipos de 20 ingenieros hoy se pueden hacer en semanas, solas o con un equipo pequeño.',
+    'act2-p2':     'El problema dejó de ser la tecnología. El problema pasó a ser: <strong>¿quién se toma el trabajo de aplicarla bien en los problemas correctos?</strong>',
+    'act2-p3':     'Una asesoría de tecnología te dice qué deberías hacer. Una agencia de desarrollo te construye lo que le pides. Pero nadie con experiencia real en el negocio, con skin in the game, se sienta a entender el problema desde adentro y construye la solución que funciona de verdad.',
+    'act2-p4':     'Decidí que ese alguien podía ser yo. Así nació Labnormally.',
+    'act3-label':  'Lo que construí',
+    'act3-title':  'Seis productos. Seis problemas reales.',
+    'act3-intro':  'No elegí los sectores por tendencia. Los elegí porque encontré personas con un dolor concreto que la tecnología podía resolver, y estuve dispuesto a entender ese dolor de cerca antes de escribir una línea de código.',
+    'p1-label':    'Ganadería · Colombia',
+    'p1-desc':     'Gestión ganadera desde el celular. Producción, reproducción y salud. Sin escritorio, sin capacitación.',
+    'p2-label':    'Retail · Omnicanal',
+    'p2-desc':     'Sistema operativo de inventario para retail con múltiples canales. Una sola fuente de verdad.',
+    'p3-label':    'Salud · Colombia',
+    'p3-desc':     'Historia clínica electrónica en la nube. Registro, fotos antes/después y firma digital con validez legal.',
+    'p4-label':    'Bienestar · Colombia · España',
+    'p4-desc':     'Reservas para estudios de yoga, pilates y fisioterapia. El estudio listo para operar en menos de una hora.',
+    'p5-label':    'Finanzas · Energía · Colombia',
+    'p5-desc':     'Tres monitores especializados de datos financieros y energéticos colombianos. Fuentes oficiales, actualización automática.',
+    'p6-label':    'Civic tech · Colombia',
+    'p6-desc':     'Match electoral para las presidenciales 2026. Ideas primero, nombres al final. 17.343 quizzes completados.',
+    'act4-label':  'Cómo trabajo',
+    'act4-title':  'Tres principios que no negocio.',
+    'v1-ttl':      'Simplicidad radical',
+    'v1-dsc':      'La solución más simple que funciona. Si el usuario necesita capacitación para usarlo, el problema es mío. Ni una pantalla de más, ni un formulario que no aporte nada.',
+    'v2-ttl':      'Tecnología robusta',
+    'v2-dsc':      'No construyo prototipos disfrazados de producto. Lo que entrego escala, tiene copias de seguridad y funciona cuando llevan 500 personas al mismo tiempo.',
+    'v3-ttl':      'Skin in the game',
+    'v3-dsc':      'Me involucro de verdad. No mando una propuesta y desaparezco. En varios casos soy también accionista o cliente del producto que construí.',
+    'cta-h2':      '¿Tienes un problema<br>que vale la pena resolver?',
+    'cta-sub':     'Si hay un dolor concreto en tu negocio y crees que la tecnología puede resolverlo, me interesa escucharlo.',
+    'cta-btn':     'Escribeme',
+    'foot-home':   'Inicio',
+    'foot-blog':   'Blog',
+    'foot-contact':'Contacto',
+  },
+  en: {
+    'nav-mission': 'Mission',
+    'nav-process': 'Process',
+    'nav-cases':   'Cases',
+    'nav-blog':    'Blog',
+    'nav-about':   'Me',
+    'nav-cta':     "Let's talk",
+    'qs-overline': 'About me',
+    'qs-h1':       'Ten years reading businesses.<br><em>The last few, building them.</em>',
+    'qs-tagline':  'I came from finance. I learned to see business problems from the inside. At some point I decided that understanding them was not enough. They had to be solved.',
+    'act1-label':  'The beginning',
+    'act1-title':  'The finance years.',
+    'act1-p1':     'I spent a decade working in the Colombian financial sector. I analyzed balance sheets, cash flows, capital structures. I learned to read a business the way you read an electrocardiogram: the numbers tell you where the problem is before the owner even notices.',
+    'act1-p2':     'That time taught me something that still guides me: the businesses that survive are not the ones with the best ideas. They are the ones with the right information at the right moment. The rancher who knows which cow is about to drop in production before it happens. The doctor who knows how many patients they lost this month and why. The retailer who knows which SKU will sell out in 48 hours.',
+    'act1-p3':     'The problem is that this information almost never existed in a usable form. It lived in notebooks, in Excel sheets nobody updated, in reports that arrived when it was already too late.',
+    'act1-quote':  '"Businesses do not fail from lack of hard work. They fail from making decisions with information that is weeks out of date."',
+    'act2-label':  'The pivot',
+    'act2-title':  'When technology changed the rules.',
+    'act2-p1':     'At some point in the last decade, the technology infrastructure was completely democratized. Real-time databases. Instant cloud deployments. Interfaces that work on a field worker\'s phone. Things that once cost millions of dollars and required teams of 20 engineers can now be done in weeks, alone or with a small team.',
+    'act2-p2':     'The problem stopped being technology. The problem became: <strong>who does the work of applying it well to the right problems?</strong>',
+    'act2-p3':     'A tech consultancy tells you what you should do. A development agency builds what you ask for. But nobody with real business experience, with skin in the game, sits down to understand the problem from the inside and builds the solution that actually works.',
+    'act2-p4':     'I decided that person could be me. That is how Labnormally was born.',
+    'act3-label':  'What I built',
+    'act3-title':  'Six products. Six real problems.',
+    'act3-intro':  'I did not choose these sectors because they were trending. I chose them because I found people with a concrete pain point that technology could solve, and I was willing to understand that pain up close before writing a single line of code.',
+    'p1-label':    'Livestock · Colombia',
+    'p1-desc':     'Livestock management from your phone. Production, reproduction and health. No desktop, no training required.',
+    'p2-label':    'Retail · Omnichannel',
+    'p2-desc':     'Inventory operating system for retail with multiple channels. One single source of truth.',
+    'p3-label':    'Health · Colombia',
+    'p3-desc':     'Cloud-based electronic health records. Patient logs, before and after photos, and legally valid digital signatures.',
+    'p4-label':    'Wellness · Colombia · Spain',
+    'p4-desc':     'Booking platform for yoga, pilates and physiotherapy studios. The studio up and running in under an hour.',
+    'p5-label':    'Finance · Energy · Colombia',
+    'p5-desc':     'Three specialized monitors for Colombian financial and energy data. Official sources, automatic updates.',
+    'p6-label':    'Civic tech · Colombia',
+    'p6-desc':     'Electoral match for the 2026 presidential race. Ideas first, names last. 17,343 quizzes completed.',
+    'act4-label':  'How I work',
+    'act4-title':  'Three principles I do not negotiate.',
+    'v1-ttl':      'Radical simplicity',
+    'v1-dsc':      'The simplest solution that works. If the user needs training to use it, the problem is mine. Not one extra screen, not one form that adds nothing.',
+    'v2-ttl':      'Robust technology',
+    'v2-dsc':      'I do not build prototypes dressed up as products. What I deliver scales, has backups, and holds up when 500 people are using it at the same time.',
+    'v3-ttl':      'Skin in the game',
+    'v3-dsc':      'I get genuinely involved. I do not send a proposal and disappear. In several cases I am also a shareholder or a user of the product I built.',
+    'cta-h2':      'Do you have a problem<br>worth solving?',
+    'cta-sub':     'If there is a concrete pain point in your business and you believe technology can solve it, I want to hear about it.',
+    'cta-btn':     'Write to me',
+    'foot-home':   'Home',
+    'foot-blog':   'Blog',
+    'foot-contact':'Contact',
+  }
+};
+
+let currentLang = 'es';
+const langBtn = document.getElementById('lang-toggle');
+
+function setLang(lang) {
+  currentLang = lang;
+  document.documentElement.lang = lang;
+  langBtn.textContent = lang === 'es' ? 'EN' : 'ES';
+  const dict = I18N[lang];
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const k = el.dataset.i18n;
+    if (dict[k] !== undefined) el.textContent = dict[k];
+  });
+  document.querySelectorAll('[data-i18n-html]').forEach(el => {
+    const k = el.dataset.i18nHtml;
+    if (dict[k] !== undefined) el.innerHTML = dict[k];
+  });
+}
+
+if (langBtn) langBtn.addEventListener('click', () => setLang(currentLang === 'es' ? 'en' : 'es'));
+
 const revObs = new IntersectionObserver(es => es.forEach(e => {
   if (e.isIntersecting) { e.target.classList.add('on'); revObs.unobserve(e.target); }
 }), { threshold: .1 });
