@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Blog — Labnormally</title>
+<meta name="description" content="Ideas sobre software, negocios reales y por qué la tecnología más valiosa es la que alguien usa todos los días. Por Labnormally.">
+<link rel="canonical" href="https://labnormally.com/blog">
+<meta property="og:title" content="Blog — Labnormally">
+<meta property="og:description" content="Ideas sobre software, negocios reales y por qué la tecnología más valiosa es la que alguien usa todos los días.">
+<meta property="og:url" content="https://labnormally.com/blog">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://labnormally.com/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Blog — Labnormally">
+<meta name="twitter:description" content="Ideas sobre software, negocios reales y por qué la tecnología más valiosa es la que alguien usa todos los días.">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Blog",
+  "name": "Blog de Labnormally",
+  "url": "https://labnormally.com/blog",
+  "description": "Ideas sobre software, negocios reales y simplicidad tecnológica.",
+  "publisher": {
+    "@type": "Organization",
+    "name": "Labnormally",
+    "url": "https://labnormally.com"
+  },
+  "blogPost": [
+    {
+      "@type": "BlogPosting",
+      "headline": "El software más simple suele ser el más valioso",
+      "url": "https://labnormally.com/blog/software-simple",
+      "datePublished": "2026-07-26",
+      "dateModified": "2026-07-26",
+      "description": "Por qué casi todo el software de gestión está sobrediseñado, y qué significa construirlo bien.",
+      "author": { "@type": "Person", "name": "Labnormally" }
+    }
+  ]
+}
+</script>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --blue:      #1A35FF;
+  --ink:       #08080F;
+  --white:     #FFFFFF;
+  --gray:      #F4F4F6;
+}
+html { font-size: 16px; scroll-behavior: smooth; overflow-x: hidden; }
+body { font-family: 'Inter', sans-serif; background: var(--ink); color: var(--white); overflow-x: hidden; }
+
+/* ── NAV ── */
+nav {
+  position: fixed; top: 1rem; left: 50%;
+  transform: translateX(-50%);
+  z-index: 200;
+  width: calc(100% - 3rem); max-width: 1080px;
+  display: flex; justify-content: space-between; align-items: center;
+  padding: .75rem 1.25rem;
+  background: rgba(8,8,15,.72);
+  backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255,255,255,.1); border-radius: 100px;
+  transition: background .4s, border-color .4s;
+}
+.logo { font-family: 'Barlow Condensed', sans-serif; font-size: 1.375rem; font-weight: 900; letter-spacing: .06em; text-transform: uppercase; color: var(--white); text-decoration: none; }
+.nav-links { display: flex; gap: .125rem; list-style: none; }
+.nav-links a { font-size: .875rem; font-weight: 500; color: rgba(255,255,255,.6); text-decoration: none; padding: .375rem .875rem; border-radius: 100px; transition: background .15s, color .15s; }
+.nav-links a:hover { background: rgba(255,255,255,.1); color: var(--white); }
+.nav-links a.active { color: var(--white); }
+.nav-cta { font-size: .875rem; font-weight: 600; color: var(--white); background: var(--blue); text-decoration: none; padding: .5rem 1.25rem; border-radius: 100px; display: flex; align-items: center; gap: .375rem; transition: opacity .2s; }
+.nav-cta:hover { opacity: .85; }
+
+/* ── HERO ── */
+.blog-hero {
+  padding: clamp(9rem, 20vh, 14rem) clamp(1.5rem, 6vw, 6rem) 5rem;
+  max-width: 1080px; margin: 0 auto;
+  border-bottom: 1px solid rgba(255,255,255,.06);
+}
+.blog-overline { font-size: .75rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: rgba(255,255,255,.3); margin-bottom: 1.5rem; }
+.blog-h1 {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: clamp(3rem, 9vw, 7rem); font-weight: 900; line-height: .95;
+  letter-spacing: -.02em; margin-bottom: 1.5rem;
+}
+.blog-tagline { font-size: 1.1rem; color: rgba(255,255,255,.5); max-width: 52ch; line-height: 1.65; }
+
+/* ── FEATURED POST ── */
+.featured-wrap {
+  max-width: 1080px; margin: 0 auto;
+  padding: 5rem clamp(1.5rem, 6vw, 6rem) 0;
+}
+.feat-label { font-size: .75rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: rgba(255,255,255,.3); margin-bottom: 2rem; }
+.feat-card {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 0;
+  border: 1px solid rgba(255,255,255,.08); border-radius: 16px; overflow: hidden;
+  text-decoration: none; color: inherit;
+  transition: border-color .2s;
+}
+.feat-card:hover { border-color: rgba(255,255,255,.2); }
+.feat-card:hover .feat-arrow { transform: translate(4px,-4px); }
+.feat-img {
+  background: linear-gradient(135deg, #0a0a1a 0%, #0d1533 50%, #0a0a1a 100%);
+  min-height: 340px;
+  display: flex; align-items: center; justify-content: center;
+  position: relative; overflow: hidden;
+}
+.feat-img-text {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: clamp(4rem, 8vw, 7rem); font-weight: 900; line-height: .9;
+  letter-spacing: -.02em;
+  background: linear-gradient(135deg, rgba(255,255,255,.12) 0%, rgba(26,53,255,.3) 100%);
+  -webkit-background-clip: text; background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-align: center; padding: 2rem;
+  user-select: none;
+}
+.feat-body { padding: 3rem; display: flex; flex-direction: column; justify-content: space-between; }
+.feat-meta { display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem; }
+.feat-tag {
+  display: inline-block; font-size: .7rem; font-weight: 700;
+  letter-spacing: .1em; text-transform: uppercase;
+  background: rgba(26,53,255,.25); color: #7a9eff;
+  border: 1px solid rgba(26,53,255,.4);
+  padding: .25rem .75rem; border-radius: 100px;
+}
+.feat-date { font-size: .8rem; color: rgba(255,255,255,.35); }
+.feat-title {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: clamp(1.75rem, 3.5vw, 2.5rem); font-weight: 900; line-height: 1.05;
+  letter-spacing: -.01em; margin-bottom: 1rem;
+}
+.feat-excerpt { font-size: .9rem; line-height: 1.65; color: rgba(255,255,255,.55); margin-bottom: 2rem; flex: 1; }
+.feat-read { display: flex; align-items: center; gap: .5rem; font-size: .875rem; font-weight: 600; color: var(--blue); }
+.feat-arrow { transition: transform .2s; }
+
+/* ── POSTS GRID ── */
+.posts-wrap {
+  max-width: 1080px; margin: 0 auto;
+  padding: 4rem clamp(1.5rem, 6vw, 6rem) 6rem;
+}
+.posts-label { font-size: .75rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: rgba(255,255,255,.3); margin-bottom: 2rem; }
+.posts-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: rgba(255,255,255,.07); border: 1px solid rgba(255,255,255,.07); border-radius: 12px; overflow: hidden; }
+.post-card { background: var(--ink); padding: 2.5rem 2rem; display: flex; flex-direction: column; gap: 1rem; position: relative; transition: background .2s; text-decoration: none; color: inherit; }
+.post-card:hover { background: #0d0d1a; }
+.post-card-tag { font-size: .7rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: rgba(255,255,255,.3); }
+.post-card-title { font-family: 'Barlow Condensed', sans-serif; font-size: 1.4rem; font-weight: 900; line-height: 1.1; letter-spacing: -.01em; }
+.post-card-excerpt { font-size: .875rem; line-height: 1.6; color: rgba(255,255,255,.5); flex: 1; }
+.post-card-date { font-size: .75rem; color: rgba(255,255,255,.25); }
+.post-card-coming {
+  display: flex; flex-direction: column; gap: .5rem; justify-content: center; align-items: flex-start;
+  opacity: .5;
+}
+.post-card-coming .post-card-title { color: rgba(255,255,255,.4); }
+.coming-badge { font-size: .7rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: rgba(255,255,255,.25); border: 1px solid rgba(255,255,255,.1); padding: .2rem .6rem; border-radius: 100px; }
+
+/* ── ARTICLE PAGE ── */
+.article-section { background: var(--white); color: var(--ink); }
+.article-header {
+  max-width: 760px; margin: 0 auto;
+  padding: 7rem clamp(1.5rem, 4vw, 3rem) 3rem;
+  border-bottom: 1px solid rgba(8,8,15,.08);
+}
+.article-meta { display: flex; align-items: center; gap: 1rem; margin-bottom: 2rem; flex-wrap: wrap; }
+.article-tag { font-size: .7rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; background: rgba(26,53,255,.08); color: var(--blue); border: 1px solid rgba(26,53,255,.2); padding: .25rem .75rem; border-radius: 100px; }
+.article-date { font-size: .8rem; color: rgba(8,8,15,.4); }
+.article-h1 { font-family: 'Barlow Condensed', sans-serif; font-size: clamp(2.5rem, 7vw, 5rem); font-weight: 900; line-height: .95; letter-spacing: -.02em; margin-bottom: 1.5rem; }
+.article-lead { font-size: clamp(1.05rem, 2vw, 1.25rem); line-height: 1.7; color: rgba(8,8,15,.65); }
+.article-body {
+  max-width: 760px; margin: 0 auto;
+  padding: 3rem clamp(1.5rem, 4vw, 3rem) 6rem;
+}
+.article-body h2 { font-family: 'Barlow Condensed', sans-serif; font-size: clamp(1.75rem, 4vw, 2.75rem); font-weight: 900; letter-spacing: -.01em; margin: 3rem 0 1rem; line-height: 1.1; }
+.article-body p { font-size: 1.05rem; line-height: 1.8; color: rgba(8,8,15,.75); margin-bottom: 1.5em; }
+.article-body p strong { color: var(--ink); font-weight: 700; }
+.article-body blockquote { border-left: 3px solid var(--blue); padding-left: 1.5rem; margin: 2.5rem 0; font-size: 1.15rem; font-style: italic; color: rgba(8,8,15,.65); line-height: 1.65; }
+.article-body ul { margin: 0 0 1.5em 1.25em; display: flex; flex-direction: column; gap: .6em; }
+.article-body li { font-size: 1.05rem; line-height: 1.7; color: rgba(8,8,15,.75); }
+.article-divider { border: none; border-top: 1px solid rgba(8,8,15,.08); margin: 2.5rem 0; }
+.article-author { display: flex; align-items: center; gap: 1rem; padding-top: 2rem; }
+.author-avatar { width: 44px; height: 44px; border-radius: 50%; background: var(--blue); display: flex; align-items: center; justify-content: center; font-family: 'Barlow Condensed', sans-serif; font-size: 1.1rem; font-weight: 900; color: var(--white); flex-shrink: 0; }
+.author-name { font-size: .9rem; font-weight: 700; color: var(--ink); }
+.author-role { font-size: .8rem; color: rgba(8,8,15,.45); }
+
+/* ── BACK BUTTON ── */
+.back-link { display: inline-flex; align-items: center; gap: .4rem; font-size: .875rem; font-weight: 600; color: rgba(255,255,255,.5); text-decoration: none; padding: .5rem 0; transition: color .15s; }
+.back-link:hover { color: var(--white); }
+.article-back { background: var(--white); padding: 2rem clamp(1.5rem, 4vw, 3rem) 0; max-width: 760px; margin: 0 auto; }
+.article-back .back-link { color: rgba(8,8,15,.4); }
+.article-back .back-link:hover { color: var(--ink); }
+
+/* ── FOOTER ── */
+footer { border-top: 1px solid rgba(255,255,255,.06); background: var(--ink); color: var(--white); }
+.foot-inner { max-width: 1080px; margin: 0 auto; padding: 2rem 1.5rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
+.foot-logo { font-family: 'Barlow Condensed', sans-serif; font-size: 1.25rem; font-weight: 900; text-transform: uppercase; letter-spacing: .02em; color: var(--white); text-decoration: none; }
+.foot-links { display: flex; gap: 1.5rem; }
+.foot-links a { font-size: .8125rem; color: rgba(255,255,255,.3); text-decoration: none; transition: color .15s; }
+.foot-links a:hover { color: rgba(255,255,255,.7); }
+.foot-cr { font-size: .8125rem; color: rgba(255,255,255,.25); }
+
+/* ── REVEAL ── */
+.reveal { opacity: 0; transform: translateY(20px); transition: opacity .7s, transform .7s; }
+.reveal.on { opacity: 1; transform: translateY(0); }
+
+/* ── MOBILE ── */
+@media (max-width: 900px) {
+  .feat-card { grid-template-columns: 1fr; }
+  .feat-img { min-height: 200px; }
+  .posts-grid { grid-template-columns: 1fr; }
+}
+@media (max-width: 768px) {
+  nav { width: calc(100% - 2rem); }
+  .nav-links { display: none; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="logo" href="/">Labnormally</a>
+  <ul class="nav-links">
+    <li><a href="/#mission">Misión</a></li>
+    <li><a href="/#how">Proceso</a></li>
+    <li><a href="/#cases">Casos</a></li>
+    <li><a href="/blog" class="active" style="color:var(--white)">Blog</a></li>
+    <li><a href="/quien-soy">Yo</a></li>
+  </ul>
+  <a class="nav-cta" href="mailto:hola@ibid.co">
+    Hablemos
+    <svg width="13" height="13" viewBox="0 0 13 13" fill="none" aria-hidden="true">
+      <path d="M2 6.5h9M8 3l3.5 3.5L8 10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </a>
+</nav>
+
+<main>
+
+  <!-- BLOG INDEX -->
+  <div id="blog-index">
+
+    <!-- Hero -->
+    <div class="blog-hero">
+      <p class="blog-overline reveal">Blog</p>
+      <h1 class="blog-h1 reveal" style="transition-delay:.1s">Ideas sobre software<br>y negocios reales.</h1>
+      <p class="blog-tagline reveal" style="transition-delay:.2s">Sin tendencias de moda, sin lenguaje de startup. Lo que aprendemos construyendo software para problemas concretos.</p>
+    </div>
+
+    <!-- Featured -->
+    <div class="featured-wrap">
+      <p class="feat-label reveal">Artículo destacado</p>
+      <a class="feat-card reveal" href="#article-1" id="read-article" style="transition-delay:.1s" aria-label="Leer: El software más simple suele ser el más valioso">
+        <div class="feat-img" aria-hidden="true">
+          <p class="feat-img-text">Menos<br>es<br>más.</p>
+        </div>
+        <div class="feat-body">
+          <div>
+            <div class="feat-meta">
+              <span class="feat-tag">Filosofía</span>
+              <span class="feat-date">26 jul 2026</span>
+            </div>
+            <h2 class="feat-title">El software más simple suele ser el más valioso</h2>
+            <p class="feat-excerpt">Por qué casi todo el software de gestión está sobrediseñado, qué pasa cuando alguien se atreve a construir lo mínimo que funciona de verdad, y cómo eso cambia la ecuación para el usuario.</p>
+          </div>
+          <p class="feat-read">
+            Leer artículo
+            <svg class="feat-arrow" width="14" height="14" viewBox="0 0 13 13" fill="none" aria-hidden="true">
+              <path d="M2 6.5h9M8 3l3.5 3.5L8 10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </p>
+        </div>
+      </a>
+    </div>
+
+    <!-- Posts Grid -->
+    <div class="posts-wrap">
+      <p class="posts-label reveal">Próximamente</p>
+      <div class="posts-grid reveal" style="transition-delay:.1s">
+        <div class="post-card post-card-coming">
+          <span class="coming-badge">Próximamente</span>
+          <p class="post-card-tag">Negocios</p>
+          <p class="post-card-title">Cómo leer un negocio ganadero desde los datos</p>
+          <p class="post-card-excerpt">Lo que las finanzas me enseñaron sobre producción animal y cómo eso cambió lo que construimos en Hato iA.</p>
+        </div>
+        <div class="post-card post-card-coming">
+          <span class="coming-badge">Próximamente</span>
+          <p class="post-card-tag">Tecnología</p>
+          <p class="post-card-title">Por qué no usamos IA generativa para todo</p>
+          <p class="post-card-excerpt">Cuándo tiene sentido usar modelos de lenguaje y cuándo una regla determinista hace el trabajo mejor y más barato.</p>
+        </div>
+        <div class="post-card post-card-coming">
+          <span class="coming-badge">Próximamente</span>
+          <p class="post-card-tag">Producto</p>
+          <p class="post-card-title">El error que casi mató a TopNodo en su primer mes</p>
+          <p class="post-card-excerpt">Construimos la feature equivocada primero. Aquí está lo que aprendimos sobre el orden en que se construye un producto de inventario.</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ARTICLE 1 (hidden by default, shown when clicking featured) -->
+  <div id="article-1" class="article-section" style="display:none">
+
+    <div class="article-back">
+      <a class="back-link" href="#" id="back-to-blog">
+        <svg width="14" height="14" viewBox="0 0 13 13" fill="none" aria-hidden="true">
+          <path d="M11 6.5H2M5 10L1.5 6.5 5 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        Volver al blog
+      </a>
+    </div>
+
+    <article>
+      <header class="article-header">
+        <div class="article-meta">
+          <span class="article-tag">Filosofía</span>
+          <time class="article-date" datetime="2026-07-26">26 de julio de 2026</time>
+          <span class="article-date">· 6 min de lectura</span>
+        </div>
+        <h1 class="article-h1">El software más simple suele ser el más valioso</h1>
+        <p class="article-lead">Por qué casi todo el software de gestión está sobrediseñado, qué pasa cuando alguien se atreve a construir lo mínimo que funciona de verdad, y cómo eso cambia la ecuación para el usuario.</p>
+      </header>
+
+      <div class="article-body">
+
+        <p>Cuando un ganadero me describió cómo llevaba el control de su hato, esperaba encontrar algo primitivo. Lo que encontré fue más sofisticado de lo que imaginaba: un cuaderno con una lógica propia, columnas inventadas, abreviaciones que solo él entendía, pero que funcionaban. Había construido su propio sistema de información con lo que tenía.</p>
+
+        <p>El problema no era que careciera de método. El problema era que ese método no escalaba, no le avisaba cuando una vaca empezaba a producir menos, no le decía en qué mes del año tendría más terneros disponibles. La información existía. Simplemente no estaba en la forma correcta.</p>
+
+        <p>Eso me enseñó algo fundamental sobre el software: <strong>el usuario ya resolvió el problema de alguna forma.</strong> Tu trabajo como constructor no es reemplazarlo con algo más complejo — es encontrar la forma más simple de darle exactamente lo que le falta.</p>
+
+        <h2>El problema de la complejidad innecesaria</h2>
+
+        <p>Existe una tendencia persistente en la industria del software a confundir complejidad con valor. Los sistemas más grandes, con más módulos, con más configuraciones, parecen más profesionales. Los decks de ventas los muestran como prueba de robustez.</p>
+
+        <p>La realidad es diferente. La mayoría del software de gestión empresarial tiene una tasa de adopción de características de entre el 20% y el 30%. El usuario aprende lo que necesita para hacer su trabajo y el resto desaparece. El otro 70% o 80% de features no solo es dinero desperdiciado — es ruido activo que hace más lento al usuario y más caro el mantenimiento.</p>
+
+        <blockquote>El software más valioso es el que alguien abre todos los días, el que no requiere manual, el que hace exactamente lo que promete y nada más.</blockquote>
+
+        <p>Esa frase no es una aspiración filosófica. Es una métrica. Si el usuario no lo abre todos los días, no es que no lo necesite — es que el software no lo resolvió suficientemente bien.</p>
+
+        <h2>Lo que significa construir lo mínimo que funciona</h2>
+
+        <p>Hay una diferencia importante entre "mínimo" en el sentido de incompleto y "mínimo" en el sentido de preciso. El mínimo que funciona no es un prototipo. Es una solución que hace una cosa extremadamente bien — sin que el usuario tenga que pensar en el software mientras la hace.</p>
+
+        <p>Cuando construimos Hato iA, la primera versión tenía tres funciones: registrar ordeño, registrar un evento reproductivo y ver el historial de una vaca. Eso era todo. No había módulos de inventario de medicamentos, ni proyecciones financieras, ni integración con básculas. Tampoco las necesitábamos todavía.</p>
+
+        <p>Lo que sí tenía era que funcionaba desde el celular con señal de 2G, en 30 segundos por vaca, por un operario que nunca había usado un software en su vida. Esa restricción — que no fuera el dueño sino el operario quien lo usara — determinó cada decisión de diseño.</p>
+
+        <ul>
+          <li>Sin texto donde alcanzara un número.</li>
+          <li>Sin confirmaciones innecesarias.</li>
+          <li>Sin pantallas de configuración que el usuario nunca iba a tocar.</li>
+          <li>Sin onboarding de cinco pasos.</li>
+        </ul>
+
+        <p>El resultado fue un sistema que el operario aprendió a usar en 10 minutos. No porque los operarios sean menos capaces — sino porque ese es el estándar real de usabilidad. Si requiere más de 10 minutos, el diseño falló.</p>
+
+        <h2>La trampa del cliente que pide más features</h2>
+
+        <p>Hay un momento en el ciclo de vida de todo producto donde el cliente empieza a pedir cosas. "¿Pueden agregar un módulo de nómina?" "¿Y si pudiéramos exportar a Excel?" "¿Qué tal una app para el veterinario?"</p>
+
+        <p>Esas peticiones son señales, no órdenes. A veces revelan un problema real. Más seguido revelan que el usuario encontró una forma de usar el producto que no anticipamos, y que hay algo más profundo que resolver.</p>
+
+        <p>El trabajo del constructor es distinguir entre las dos cosas. Agregar la feature que el cliente pide es fácil. Entender <strong>por qué</strong> la está pidiendo — y construir la solución correcta para ese problema subyacente — es lo que separa el software que funciona del software que se abandona.</p>
+
+        <p>En Labnormally tenemos una regla: antes de construir una feature nueva, tenemos que poder explicar cuántas veces por semana la va a usar el cliente principal. Si la respuesta es "una vez al mes" o "cuando se acuerde", probablemente no es lo que más necesita hoy.</p>
+
+        <h2>Por qué esto importa para los negocios pequeños</h2>
+
+        <p>Las empresas grandes tienen la capacidad de absorber software complejo. Tienen equipos de IT, tiempo de capacitación, presupuestos de implementación. El software genérico está diseñado para ese mercado.</p>
+
+        <p>El ganadero, el médico en consultorio privado, el dueño del estudio de yoga — no tienen nada de eso. Tienen 20 minutos en la mañana y un celular. Si el software no funciona en ese contexto, no funciona.</p>
+
+        <p>Esa restricción es lo que me apasiona de construir para ese mercado. No es una limitación — es una disciplina de diseño. Cada decisión que tomas tiene consecuencias inmediatas y verificables. El software o lo usa todos los días o no lo usa. No hay término medio.</p>
+
+        <hr class="article-divider">
+
+        <p>El software más simple suele ser el más valioso no porque la simplicidad sea un fin en sí misma. Sino porque la simplicidad es evidencia de que alguien entendió el problema de verdad.</p>
+
+        <p>Entender el problema de verdad requiere tiempo. Requiere observar cómo el usuario resuelve el problema hoy. Requiere construir, entregar, medir y corregir. No se puede hacer desde lejos.</p>
+
+        <p>Eso es lo que intentamos hacer en Labnormally. No siempre lo logramos a la primera. Pero es el estándar al que apuntamos.</p>
+
+        <div class="article-author">
+          <div class="author-avatar" aria-hidden="true">L</div>
+          <div>
+            <p class="author-name">Labnormally</p>
+            <p class="author-role">Bogotá, Colombia · <a href="mailto:hola@ibid.co" style="color:inherit">hola@ibid.co</a></p>
+          </div>
+        </div>
+
+      </div>
+    </article>
+
+  </div>
+
+</main>
+
+<footer class="s-dark">
+  <div class="foot-inner">
+    <a class="foot-logo" href="/">Labnormally</a>
+    <div class="foot-links">
+      <a href="/">Inicio</a>
+      <a href="/quien-soy">Quién soy</a>
+      <a href="mailto:hola@ibid.co">Contacto</a>
+    </div>
+    <span class="foot-cr">© 2026 Labnormally.</span>
+  </div>
+</footer>
+
+<script>
+// Reveal animations
+const revObs = new IntersectionObserver(es => es.forEach(e => {
+  if (e.isIntersecting) { e.target.classList.add('on'); revObs.unobserve(e.target); }
+}), { threshold: .1 });
+document.querySelectorAll('.reveal').forEach(el => revObs.observe(el));
+
+// Article toggle
+const blogIndex  = document.getElementById('blog-index');
+const article1   = document.getElementById('article-1');
+const readBtn    = document.getElementById('read-article');
+const backBtn    = document.getElementById('back-to-blog');
+
+function showArticle(e) {
+  e.preventDefault();
+  blogIndex.style.display = 'none';
+  article1.style.display  = 'block';
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+  history.pushState(null, '', '/blog/software-simple');
+}
+function showIndex(e) {
+  e.preventDefault();
+  article1.style.display  = 'none';
+  blogIndex.style.display = 'block';
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+  history.pushState(null, '', '/blog');
+}
+
+if (readBtn) readBtn.addEventListener('click', showArticle);
+if (backBtn) backBtn.addEventListener('click', showIndex);
+
+// Handle browser back/forward
+window.addEventListener('popstate', () => {
+  if (location.pathname.endsWith('/blog')) {
+    article1.style.display  = 'none';
+    blogIndex.style.display = 'block';
+  } else {
+    blogIndex.style.display = 'none';
+    article1.style.display  = 'block';
+  }
+});
+</script>
+</body>
+</html>

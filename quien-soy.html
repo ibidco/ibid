@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Quién soy — Labnormally</title>
+<meta name="description" content="10 años en finanzas analizando negocios. Los últimos cuatro construyendo software para los problemas que aprendí a ver. Esta es mi historia.">
+<link rel="canonical" href="https://labnormally.com/quien-soy">
+<meta property="og:title" content="Quién soy — Labnormally">
+<meta property="og:description" content="10 años en finanzas analizando negocios. Los últimos cuatro construyendo software para los problemas que aprendí a ver.">
+<meta property="og:url" content="https://labnormally.com/quien-soy">
+<meta property="og:type" content="profile">
+<meta property="og:image" content="https://labnormally.com/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Quién soy — Labnormally">
+<meta name="twitter:description" content="10 años en finanzas analizando negocios. Los últimos cuatro construyendo software para los problemas que aprendí a ver.">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Fundador de Labnormally",
+  "url": "https://labnormally.com/quien-soy",
+  "worksFor": {
+    "@type": "Organization",
+    "name": "Labnormally",
+    "url": "https://labnormally.com"
+  },
+  "description": "10 años en finanzas analizando negocios. Los últimos construyendo software para los problemas que aprendí a ver.",
+  "knowsAbout": ["Software development", "Finance", "Business technology", "Livestock management", "Retail technology", "Health records"],
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Bogotá",
+    "addressCountry": "CO"
+  }
+}
+</script>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --blue:      #1A35FF;
+  --blue-dark: #1228CC;
+  --ink:       #08080F;
+  --white:     #FFFFFF;
+  --gray:      #F4F4F6;
+}
+html { font-size: 16px; scroll-behavior: smooth; overflow-x: hidden; }
+body { font-family: 'Inter', sans-serif; background: var(--ink); color: var(--white); overflow-x: hidden; }
+
+/* ── NAV ── */
+nav {
+  position: fixed;
+  top: 1rem; left: 50%;
+  transform: translateX(-50%);
+  z-index: 200;
+  width: calc(100% - 3rem);
+  max-width: 1080px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: .75rem 1.25rem;
+  background: rgba(8,8,15,.72);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255,255,255,.1);
+  border-radius: 100px;
+  transition: background .4s, border-color .4s;
+}
+.logo {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 1.375rem; font-weight: 900;
+  letter-spacing: .06em; text-transform: uppercase;
+  color: var(--white); text-decoration: none;
+}
+.nav-links { display: flex; gap: .125rem; list-style: none; }
+.nav-links a {
+  font-size: .875rem; font-weight: 500;
+  color: rgba(255,255,255,.6);
+  text-decoration: none;
+  padding: .375rem .875rem; border-radius: 100px;
+  transition: background .15s, color .15s;
+}
+.nav-links a:hover { background: rgba(255,255,255,.1); color: var(--white); }
+.nav-links a.active { color: var(--white); }
+.nav-cta {
+  font-size: .875rem; font-weight: 600;
+  color: var(--white); background: var(--blue);
+  text-decoration: none;
+  padding: .5rem 1.25rem; border-radius: 100px;
+  display: flex; align-items: center; gap: .375rem;
+  transition: opacity .2s;
+}
+.nav-cta:hover { opacity: .85; }
+
+/* ── SECTIONS ── */
+.s-dark  { background: var(--ink);   color: var(--white); position: relative; }
+.s-white { background: var(--white); color: var(--ink);   position: relative; }
+.s-gray  { background: var(--gray);  color: var(--ink);   position: relative; }
+
+/* ── HERO ── */
+.qs-hero {
+  min-height: 100vh;
+  display: flex; flex-direction: column;
+  justify-content: flex-end;
+  padding: 0 clamp(1.5rem, 6vw, 6rem) clamp(4rem, 10vh, 8rem);
+  position: relative;
+  overflow: hidden;
+}
+.qs-hero::before {
+  content: '';
+  position: absolute; top: -30%; right: -10%;
+  width: 700px; height: 700px;
+  background: radial-gradient(ellipse, rgba(26,53,255,.18) 0%, transparent 65%);
+  pointer-events: none;
+}
+.qs-overline {
+  font-size: .8125rem; font-weight: 700;
+  letter-spacing: .12em; text-transform: uppercase;
+  color: rgba(255,255,255,.4);
+  margin-bottom: 1.5rem;
+}
+.qs-h1 {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: clamp(3rem, 9vw, 8rem);
+  font-weight: 900; line-height: .95;
+  letter-spacing: -.01em;
+  max-width: 14ch;
+  margin-bottom: 2rem;
+}
+.qs-h1 em { font-style: normal; color: #FFE033; }
+.qs-tagline {
+  font-size: clamp(1.05rem, 2.2vw, 1.35rem);
+  color: rgba(255,255,255,.6);
+  max-width: 52ch;
+  line-height: 1.65;
+}
+.scroll-hint {
+  position: absolute; bottom: 2.5rem; right: clamp(1.5rem, 6vw, 6rem);
+  font-size: .75rem; letter-spacing: .1em; text-transform: uppercase;
+  color: rgba(255,255,255,.25);
+  display: flex; align-items: center; gap: .5rem;
+  writing-mode: vertical-rl;
+}
+.scroll-hint::after {
+  content: '';
+  display: block; width: 1px; height: 3rem;
+  background: rgba(255,255,255,.15);
+}
+
+/* ── CONTENT SECTIONS ── */
+.content-wrap {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 6rem clamp(1.5rem, 4vw, 3rem);
+}
+.content-wrap.wide {
+  max-width: 1080px;
+}
+
+.section-label {
+  font-size: .75rem; font-weight: 700;
+  letter-spacing: .12em; text-transform: uppercase;
+  color: rgba(255,255,255,.3);
+  margin-bottom: 1.5rem;
+}
+.s-white .section-label { color: rgba(8,8,15,.35); }
+.s-gray  .section-label { color: rgba(8,8,15,.35); }
+
+.act-num {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: clamp(5rem, 14vw, 12rem);
+  font-weight: 900; line-height: 1;
+  letter-spacing: -.02em;
+  color: rgba(255,255,255,.04);
+  position: absolute; top: 3rem; right: 3rem;
+  user-select: none;
+}
+.s-white .act-num  { color: rgba(8,8,15,.04); }
+.s-gray  .act-num  { color: rgba(8,8,15,.04); }
+
+.act-title {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: 900; line-height: 1.05;
+  letter-spacing: -.01em;
+  margin-bottom: 2rem;
+}
+
+.body-text {
+  font-size: clamp(1rem, 1.8vw, 1.125rem);
+  line-height: 1.75;
+  color: rgba(255,255,255,.72);
+}
+.s-white .body-text { color: rgba(8,8,15,.7); }
+.s-gray  .body-text { color: rgba(8,8,15,.7); }
+
+.body-text + .body-text { margin-top: 1.25em; }
+
+.body-text strong { color: inherit; font-weight: 700; opacity: .95; }
+
+.pull-quote {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: clamp(1.5rem, 3.5vw, 2.5rem);
+  font-weight: 800; line-height: 1.2;
+  letter-spacing: -.01em;
+  border-left: 3px solid var(--blue);
+  padding-left: 1.5rem;
+  margin: 3rem 0;
+  color: var(--white);
+}
+.s-white .pull-quote { color: var(--ink); }
+
+/* ── PRODUCTS GRID ── */
+.products-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 1px;
+  background: rgba(255,255,255,.08);
+  border: 1px solid rgba(255,255,255,.08);
+  border-radius: 12px;
+  overflow: hidden;
+  margin-top: 3rem;
+}
+.prod-cell {
+  background: var(--ink);
+  padding: 2rem;
+  display: flex; flex-direction: column; gap: .75rem;
+  transition: background .2s;
+}
+.prod-cell:hover { background: #0f0f1a; }
+.prod-label {
+  font-size: .75rem; font-weight: 700;
+  letter-spacing: .1em; text-transform: uppercase;
+  color: rgba(255,255,255,.3);
+}
+.prod-name {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 1.5rem; font-weight: 900;
+  letter-spacing: -.01em;
+}
+.prod-desc {
+  font-size: .9rem; line-height: 1.55;
+  color: rgba(255,255,255,.55);
+  flex: 1;
+}
+.prod-link {
+  font-size: .8125rem; font-weight: 600;
+  color: var(--blue);
+  text-decoration: none;
+  display: inline-flex; align-items: center; gap: .35rem;
+  margin-top: .25rem;
+  transition: gap .15s;
+}
+.prod-link:hover { gap: .6rem; }
+.prod-tag {
+  display: inline-flex; align-items: center; gap: .4rem;
+  font-size: .7rem; font-weight: 700;
+  letter-spacing: .08em; text-transform: uppercase;
+  color: rgba(255,255,255,.4);
+}
+.prod-dot { width: 6px; height: 6px; border-radius: 50%; background: #33FF66; display: inline-block; }
+
+/* ── VALUES ROW ── */
+.val-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 2rem;
+  margin-top: 3rem;
+}
+.val-item { display: flex; flex-direction: column; gap: .75rem; }
+.val-num  { font-family: 'Barlow Condensed', sans-serif; font-size: .875rem; font-weight: 700; letter-spacing: .1em; color: rgba(8,8,15,.25); }
+.val-ttl  { font-size: 1.05rem; font-weight: 700; color: var(--ink); }
+.val-dsc  { font-size: .9rem; line-height: 1.6; color: rgba(8,8,15,.6); }
+
+/* ── CTA SECTION ── */
+.cta-section {
+  padding: 8rem clamp(1.5rem, 6vw, 6rem);
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.cta-section::before {
+  content: '';
+  position: absolute; top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  width: 600px; height: 400px;
+  background: radial-gradient(ellipse, rgba(26,53,255,.2) 0%, transparent 70%);
+  pointer-events: none;
+}
+.cta-h2 {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: clamp(2.5rem, 7vw, 6rem);
+  font-weight: 900; line-height: .95;
+  letter-spacing: -.01em;
+  margin-bottom: 1.5rem;
+  position: relative;
+}
+.cta-sub {
+  font-size: 1.05rem; color: rgba(255,255,255,.55);
+  margin-bottom: 2.5rem; max-width: 46ch; margin-left: auto; margin-right: auto;
+  position: relative;
+}
+.btn-primary {
+  display: inline-flex; align-items: center; gap: .5rem;
+  background: var(--blue); color: var(--white);
+  font-size: 1rem; font-weight: 700;
+  padding: .875rem 2rem; border-radius: 100px;
+  text-decoration: none;
+  transition: opacity .2s;
+  position: relative;
+}
+.btn-primary:hover { opacity: .85; }
+
+/* ── FOOTER ── */
+footer { border-top: 1px solid rgba(255,255,255,.06); }
+.foot-inner {
+  max-width: 1080px; margin: 0 auto; padding: 2rem 1.5rem;
+  display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;
+}
+.foot-logo { font-family: 'Barlow Condensed', sans-serif; font-size: 1.25rem; font-weight: 900; text-transform: uppercase; letter-spacing: .02em; color: var(--white); text-decoration: none; }
+.foot-links { display: flex; gap: 1.5rem; }
+.foot-links a { font-size: .8125rem; color: rgba(255,255,255,.3); text-decoration: none; transition: color .15s; }
+.foot-links a:hover { color: rgba(255,255,255,.7); }
+.foot-cr { font-size: .8125rem; color: rgba(255,255,255,.25); }
+
+/* ── REVEAL ── */
+.reveal { opacity: 0; transform: translateY(20px); transition: opacity .7s, transform .7s; }
+.reveal.on { opacity: 1; transform: translateY(0); }
+
+/* ── MOBILE ── */
+@media (max-width: 768px) {
+  nav { width: calc(100% - 2rem); }
+  .nav-links { display: none; }
+  .val-row { grid-template-columns: 1fr; }
+  .act-num { display: none; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="logo" href="/">Labnormally</a>
+  <ul class="nav-links">
+    <li><a href="/#mission">Misión</a></li>
+    <li><a href="/#how">Proceso</a></li>
+    <li><a href="/#cases">Casos</a></li>
+    <li><a href="/blog" class="active">Blog</a></li>
+    <li><a href="/quien-soy" class="active" style="color:var(--white)">Yo</a></li>
+  </ul>
+  <a class="nav-cta" href="mailto:hola@ibid.co">
+    Hablemos
+    <svg width="13" height="13" viewBox="0 0 13 13" fill="none" aria-hidden="true">
+      <path d="M2 6.5h9M8 3l3.5 3.5L8 10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </a>
+</nav>
+
+<main>
+
+  <!-- HERO -->
+  <div class="qs-hero s-dark">
+    <p class="qs-overline">Quién soy</p>
+    <h1 class="qs-h1">Diez años leyendo negocios.<br><em>Los últimos, construyéndolos.</em></h1>
+    <p class="qs-tagline">Vine de las finanzas. Aprendí a ver los problemas de los negocios desde adentro. En algún punto decidí que entenderlos no era suficiente — había que resolverlos.</p>
+    <span class="scroll-hint" aria-hidden="true">scroll</span>
+  </div>
+
+  <!-- ACT 1: FINANZAS -->
+  <div class="s-dark" style="position:relative; border-top: 1px solid rgba(255,255,255,.06);">
+    <span class="act-num" aria-hidden="true">01</span>
+    <div class="content-wrap">
+      <p class="section-label reveal">El principio</p>
+      <h2 class="act-title reveal">Los años en finanzas.</h2>
+      <p class="body-text reveal" style="transition-delay:.1s">
+        Pasé una década trabajando en el sector financiero colombiano. Analicé balances, flujos de caja, estructuras de capital. Aprendí a leer un negocio como se lee un electrocardiograma: los números te dicen dónde está el problema antes de que el dueño lo note.
+      </p>
+      <p class="body-text reveal" style="transition-delay:.2s">
+        Ese tiempo me enseñó algo que todavía me guía: los negocios que sobreviven no son los que tienen mejores ideas — son los que tienen información correcta en el momento correcto. El ganadero que sabe qué vaca va a caer en producción antes de que pase. El médico que sabe cuántos pacientes perdió este mes y por qué. El retailer que sabe qué SKU se va a agotar en 48 horas.
+      </p>
+      <p class="body-text reveal" style="transition-delay:.3s">
+        El problema es que esa información casi nunca existía de forma usable. Estaba en cuadernos, en hojas de Excel que nadie actualizaba, en reportes que llegaban cuando ya era demasiado tarde.
+      </p>
+      <div class="pull-quote reveal" style="transition-delay:.4s">
+        "Los negocios no fallan por falta de trabajo duro. Fallan por tomar decisiones con información de semanas de retraso."
+      </div>
+    </div>
+  </div>
+
+  <!-- ACT 2: LA TRANSICIÓN -->
+  <div class="s-white" style="position:relative;">
+    <span class="act-num" aria-hidden="true">02</span>
+    <div class="content-wrap">
+      <p class="section-label reveal">El giro</p>
+      <h2 class="act-title reveal">Cuando la tecnología cambió las reglas.</h2>
+      <p class="body-text reveal" style="transition-delay:.1s">
+        En algún momento de la última década, la infraestructura tecnológica se democratizó por completo. Bases de datos en tiempo real. Despliegues instantáneos en la nube. Interfaces que funcionan en el celular de un trabajador de campo. Cosas que antes costaban millones de dólares y requerían equipos de 20 ingenieros hoy se pueden hacer en semanas, solas o con un equipo pequeño.
+      </p>
+      <p class="body-text reveal" style="transition-delay:.2s">
+        El problema dejó de ser la tecnología. El problema pasó a ser: <strong>¿quién se toma el trabajo de aplicarla bien en los problemas correctos?</strong>
+      </p>
+      <p class="body-text reveal" style="transition-delay:.3s">
+        Una asesoría de tecnología te dice qué deberías hacer. Una agencia de desarrollo te construye lo que le pides. Pero nadie con experiencia real en el negocio, con skin in the game, se sienta a entender el problema desde adentro y construye la solución que funciona de verdad.
+      </p>
+      <p class="body-text reveal" style="transition-delay:.4s">
+        Decidí que ese alguien podía ser yo. Así nació Labnormally.
+      </p>
+    </div>
+  </div>
+
+  <!-- ACT 3: LO QUE CONSTRUÍ -->
+  <div class="s-dark" style="position:relative; border-top: 1px solid rgba(255,255,255,.06);">
+    <span class="act-num" aria-hidden="true">03</span>
+    <div class="content-wrap wide">
+      <p class="section-label reveal" style="padding: 0 clamp(1.5rem, 4vw, 3rem);">Lo que construí</p>
+      <h2 class="act-title reveal" style="padding: 0 clamp(1.5rem, 4vw, 3rem);">Seis productos. Seis problemas reales.</h2>
+      <p class="body-text reveal" style="padding: 0 clamp(1.5rem, 4vw, 3rem); max-width: 58ch; transition-delay:.1s">
+        No elegí los sectores por tendencia. Los elegí porque encontré personas con un dolor concreto que la tecnología podía resolver — y estuve dispuesto a entender ese dolor de cerca antes de escribir una línea de código.
+      </p>
+      <div class="products-grid reveal" style="transition-delay:.2s; margin: 3rem clamp(1.5rem, 4vw, 3rem) 0;">
+        <div class="prod-cell">
+          <span class="prod-tag"><span class="prod-dot"></span>Live</span>
+          <p class="prod-label">Ganadería · Colombia</p>
+          <p class="prod-name">Hato iA</p>
+          <p class="prod-desc">Gestión ganadera desde el celular. Producción, reproducción y salud — sin escritorio, sin capacitación.</p>
+          <a class="prod-link" href="https://hatoia.labnormally.com/" target="_blank" rel="noopener">hatoia.labnormally.com <svg width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M2 10L10 2M10 2H5M10 2v5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        </div>
+        <div class="prod-cell">
+          <span class="prod-tag"><span class="prod-dot"></span>Live</span>
+          <p class="prod-label">Retail · Omnicanal</p>
+          <p class="prod-name">TopNodo</p>
+          <p class="prod-desc">Sistema operativo de inventario para retail con múltiples canales. Una sola fuente de verdad.</p>
+          <a class="prod-link" href="https://topnodo.com" target="_blank" rel="noopener">topnodo.com <svg width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M2 10L10 2M10 2H5M10 2v5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        </div>
+        <div class="prod-cell">
+          <span class="prod-tag"><span class="prod-dot"></span>Live</span>
+          <p class="prod-label">Salud · Colombia</p>
+          <p class="prod-name">HCE Colombia</p>
+          <p class="prod-desc">Historia clínica electrónica en la nube. Registro, fotos antes/después y firma digital con validez legal.</p>
+          <a class="prod-link" href="https://hceweb.labnormally.com" target="_blank" rel="noopener">hceweb.labnormally.com <svg width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M2 10L10 2M10 2H5M10 2v5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        </div>
+        <div class="prod-cell">
+          <span class="prod-tag"><span class="prod-dot"></span>Live</span>
+          <p class="prod-label">Bienestar · Colombia · España</p>
+          <p class="prod-name">Tulutes</p>
+          <p class="prod-desc">Reservas para estudios de yoga, pilates y fisioterapia. El estudio listo para operar en menos de una hora.</p>
+          <a class="prod-link" href="https://tulutes.labnormally.com/" target="_blank" rel="noopener">tulutes.labnormally.com <svg width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M2 10L10 2M10 2H5M10 2v5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        </div>
+        <div class="prod-cell">
+          <span class="prod-tag"><span class="prod-dot"></span>Live</span>
+          <p class="prod-label">Finanzas · Energía · Colombia</p>
+          <p class="prod-name">Labnormally Quant</p>
+          <p class="prod-desc">Tres monitores especializados de datos financieros y energéticos colombianos. Fuentes oficiales, actualización automática.</p>
+          <a class="prod-link" href="https://quant.labnormally.com" target="_blank" rel="noopener">quant.labnormally.com <svg width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M2 10L10 2M10 2H5M10 2v5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        </div>
+        <div class="prod-cell">
+          <span class="prod-tag"><span class="prod-dot"></span>Live</span>
+          <p class="prod-label">Civic tech · Colombia</p>
+          <p class="prod-name">ElijoVotar</p>
+          <p class="prod-desc">Match electoral para las presidenciales 2026. Ideas primero, nombres al final. 17.343 quizzes completados.</p>
+          <a class="prod-link" href="https://elijovotar.com" target="_blank" rel="noopener">elijovotar.com <svg width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M2 10L10 2M10 2H5M10 2v5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ACT 4: CÓMO TRABAJO -->
+  <div class="s-gray" style="position:relative;">
+    <span class="act-num" aria-hidden="true">04</span>
+    <div class="content-wrap">
+      <p class="section-label reveal">Cómo trabajo</p>
+      <h2 class="act-title reveal">Tres principios que no negocio.</h2>
+      <div class="val-row">
+        <div class="val-item reveal" style="transition-delay:.1s">
+          <p class="val-num">01</p>
+          <p class="val-ttl">Simplicidad radical</p>
+          <p class="val-dsc">La solución más simple que funciona. Si el usuario necesita capacitación para usarlo, el problema es mío. Ni una pantalla de más, ni un formulario que no aporte nada.</p>
+        </div>
+        <div class="val-item reveal" style="transition-delay:.2s">
+          <p class="val-num">02</p>
+          <p class="val-ttl">Tecnología robusta</p>
+          <p class="val-dsc">No construyo prototipos disfrazados de producto. Lo que entrego escala, tiene copias de seguridad y funciona cuando llevan 500 personas al mismo tiempo.</p>
+        </div>
+        <div class="val-item reveal" style="transition-delay:.3s">
+          <p class="val-num">03</p>
+          <p class="val-ttl">Skin in the game</p>
+          <p class="val-dsc">Me involucro de verdad. No mando una propuesta y desaparezco. En varios casos soy también accionista o cliente del producto que construí.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CTA -->
+  <div class="s-dark cta-section">
+    <h2 class="cta-h2">¿Tienes un problema<br>que vale la pena resolver?</h2>
+    <p class="cta-sub">Si hay un dolor concreto en tu negocio y crees que la tecnología puede resolverlo, me interesa escucharlo.</p>
+    <a class="btn-primary" href="mailto:hola@ibid.co">
+      Escribeme
+      <svg width="14" height="14" viewBox="0 0 13 13" fill="none" aria-hidden="true">
+        <path d="M2 6.5h9M8 3l3.5 3.5L8 10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </a>
+  </div>
+
+</main>
+
+<footer class="s-dark">
+  <div class="foot-inner">
+    <a class="foot-logo" href="/">Labnormally</a>
+    <div class="foot-links">
+      <a href="/">Inicio</a>
+      <a href="/blog">Blog</a>
+      <a href="mailto:hola@ibid.co">Contacto</a>
+    </div>
+    <span class="foot-cr">© 2026 Labnormally.</span>
+  </div>
+</footer>
+
+<script>
+const revObs = new IntersectionObserver(es => es.forEach(e => {
+  if (e.isIntersecting) { e.target.classList.add('on'); revObs.unobserve(e.target); }
+}), { threshold: .1 });
+document.querySelectorAll('.reveal').forEach(el => revObs.observe(el));
+</script>
+</body>
+</html>

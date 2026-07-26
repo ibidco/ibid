@@ -3,14 +3,54 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Labnormally: soluciones tecnológicas extremadamente robustas, pero elegantemente simples. Sin burocracia, con skin in the game.">
-<title>Labnormally</title>
+<meta name="description" content="Labnormally construye software para problemas reales en ganadería, salud, retail y más. Soluciones robustas, brutalmente simples. Bogotá, Colombia.">
+<title>Labnormally — Software para problemas reales</title>
+<link rel="canonical" href="https://labnormally.com">
+<meta property="og:title" content="Labnormally — Software para problemas reales">
+<meta property="og:description" content="Construimos software para problemas concretos. Sin burocracia, sin complejidad innecesaria, con skin in the game.">
+<meta property="og:url" content="https://labnormally.com">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://labnormally.com/og.png">
+<meta property="og:locale" content="es_CO">
+<meta property="og:site_name" content="Labnormally">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Labnormally — Software para problemas reales">
+<meta name="twitter:description" content="Construimos software para problemas concretos. Sin burocracia, sin complejidad innecesaria, con skin in the game.">
+<meta name="twitter:image" content="https://labnormally.com/og.png">
+<link rel="alternate" hreflang="es" href="https://labnormally.com">
+<link rel="alternate" hreflang="en" href="https://labnormally.com">
+<link rel="alternate" hreflang="x-default" href="https://labnormally.com">
 <link rel="icon" href="/favicon.ico" sizes="any">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800;900&family=Inter:wght@400;500;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Labnormally",
+  "url": "https://labnormally.com",
+  "logo": "https://labnormally.com/favicon.svg",
+  "description": "Construimos software para problemas reales en ganadería, salud, retail, bienestar y finanzas. Bogotá, Colombia.",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Bogotá",
+    "addressCountry": "CO"
+  },
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "email": "hola@ibid.co",
+    "contactType": "customer service"
+  },
+  "sameAs": [],
+  "foundingLocation": {
+    "@type": "Place",
+    "name": "Bogotá, Colombia"
+  }
+}
+</script>
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -838,6 +878,8 @@
     <li><a href="#how" data-i18n="nav-process">Proceso</a></li>
     <li><a href="#values" data-i18n="nav-values">Valores</a></li>
     <li><a href="#cases" data-i18n="nav-cases">Casos</a></li>
+    <li><a href="/blog" data-i18n="nav-blog">Blog</a></li>
+    <li><a href="/quien-soy" data-i18n="nav-about">Yo</a></li>
   </ul>
   <a class="nav-cta" href="mailto:hola@ibid.co">
     <span data-i18n="nav-cta">Hablemos</span>
@@ -1185,7 +1227,12 @@
 
 <footer class="s-dark">
   <div class="foot-inner">
-    <span class="foot-logo">Labnormally</span>
+    <a class="foot-logo" href="/" style="text-decoration:none;color:var(--white)">Labnormally</a>
+    <nav aria-label="Footer" style="display:flex;gap:1.5rem;">
+      <a href="/blog" style="font-size:.8125rem;color:rgba(255,255,255,.3);text-decoration:none;transition:color .15s" onmouseover="this.style.color='rgba(255,255,255,.7)'" onmouseout="this.style.color='rgba(255,255,255,.3)'">Blog</a>
+      <a href="/quien-soy" style="font-size:.8125rem;color:rgba(255,255,255,.3);text-decoration:none;transition:color .15s" onmouseover="this.style.color='rgba(255,255,255,.7)'" onmouseout="this.style.color='rgba(255,255,255,.3)'">Quién soy</a>
+      <a href="mailto:hola@ibid.co" style="font-size:.8125rem;color:rgba(255,255,255,.3);text-decoration:none;transition:color .15s" onmouseover="this.style.color='rgba(255,255,255,.7)'" onmouseout="this.style.color='rgba(255,255,255,.3)'">Contacto</a>
+    </nav>
     <span class="foot-cr">© 2026 Labnormally.</span>
   </div>
 </footer>
@@ -1414,6 +1461,8 @@ const I18N = {
     'nav-process': 'Proceso',
     'nav-values':  'Valores',
     'nav-cases':   'Casos',
+    'nav-blog':    'Blog',
+    'nav-about':   'Yo',
     'nav-cta':     'Hablemos',
     'hero-h1':     '¿Suena raro<br>Labnormally?',
     'hero-tagline':'Lo sé, pero la idea es sencilla.',
@@ -1486,6 +1535,8 @@ const I18N = {
     'nav-process': 'Process',
     'nav-values':  'Values',
     'nav-cases':   'Cases',
+    'nav-blog':    'Blog',
+    'nav-about':   'Me',
     'nav-cta':     'Let\'s talk',
     'hero-h1':     'Sounds weird,<br>Labnormally?',
     'hero-tagline':'I know. But the idea is simple.',
