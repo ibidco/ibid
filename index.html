@@ -137,6 +137,22 @@
 
   .nav-cta:hover { opacity: .85; }
 
+  .lang-btn {
+    font-size: .8rem; font-weight: 600;
+    background: rgba(255,255,255,.1);
+    border: 1px solid rgba(255,255,255,.2);
+    color: rgba(255,255,255,.7);
+    border-radius: 100px;
+    padding: .375rem .875rem;
+    cursor: pointer;
+    transition: background .15s, color .15s, border-color .15s;
+    margin-left: .5rem;
+    letter-spacing: .04em;
+  }
+  .lang-btn:hover { background: rgba(255,255,255,.18); color: var(--white); }
+  nav.lnav .lang-btn { background: rgba(0,0,0,.07); border-color: rgba(0,0,0,.15); color: rgba(0,0,0,.6); }
+  nav.lnav .lang-btn:hover { background: rgba(0,0,0,.12); color: var(--ink); }
+
   /* ── SECTION TOKENS ── */
   .s-dark  { background: var(--ink);   color: var(--white); position: relative; z-index: 1; }
   .s-white { background: var(--white); color: var(--ink);   position: relative; z-index: 1; }
@@ -818,32 +834,33 @@
 <nav id="nav">
   <a class="logo" href="#">Labnormally</a>
   <ul class="nav-links">
-    <li><a href="#mission">Misión</a></li>
-    <li><a href="#how">Proceso</a></li>
-    <li><a href="#values">Valores</a></li>
-    <li><a href="#cases">Casos</a></li>
+    <li><a href="#mission" data-i18n="nav-mission">Misión</a></li>
+    <li><a href="#how" data-i18n="nav-process">Proceso</a></li>
+    <li><a href="#values" data-i18n="nav-values">Valores</a></li>
+    <li><a href="#cases" data-i18n="nav-cases">Casos</a></li>
   </ul>
   <a class="nav-cta" href="mailto:hola@ibid.co">
-    Hablemos
+    <span data-i18n="nav-cta">Hablemos</span>
     <svg width="13" height="13" viewBox="0 0 13 13" fill="none" aria-hidden="true">
       <path d="M2 6.5h9M8 3l3.5 3.5L8 10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
     </svg>
   </a>
+  <button class="lang-btn" id="lang-toggle" aria-label="Switch language">EN</button>
 </nav>
 
 <main>
 
   <!-- HERO: dark -->
   <div class="hero s-dark">
-    <h1 class="hero-headline">¿Suena raro<br>Labnormally?</h1>
-    <p class="hero-tagline">Lo sé, pero la idea es sencilla.</p>
+    <h1 class="hero-headline" data-i18n-html="hero-h1">¿Suena raro<br>Labnormally?</h1>
+    <p class="hero-tagline" data-i18n="hero-tagline">Lo sé, pero la idea es sencilla.</p>
   </div>
 
   <!-- MISSION: white -->
   <div class="s-white" id="mission">
     <div class="mission-inner">
-      <p class="sec-label reveal">Misión</p>
-      <p class="karaoke" id="kt" aria-label="Resolver problemas reales creando herramientas brutalmente simples."></p>
+      <p class="sec-label reveal" data-i18n="label-mission">Misión</p>
+      <p class="karaoke" id="kt"></p>
     </div>
   </div>
 
@@ -853,7 +870,7 @@
     <canvas id="proc-canvas" aria-hidden="true"></canvas>
 
     <div class="proc-header">
-      <p class="sec-label reveal">Proceso</p>
+      <p class="sec-label reveal" data-i18n="label-process">Proceso</p>
     </div>
 
     <div class="proc-diagram reveal" style="transition-delay:.2s">
@@ -895,20 +912,20 @@
         <line x1="400" y1="162" x2="400" y2="167" stroke="#08080F" stroke-width="0.9"/>
         <line x1="400" y1="193" x2="400" y2="198" stroke="#08080F" stroke-width="0.9"/>
         <text x="400" y="103" text-anchor="middle" font-family="Barlow Condensed,sans-serif" font-size="13" font-weight="700" letter-spacing="3"   fill="rgba(8,8,15,0.35)">01</text>
-        <text x="400" y="124" text-anchor="middle" font-family="Barlow Condensed,sans-serif" font-size="20" font-weight="700" letter-spacing="2"   fill="#08080F">IDENTIFICAMOS</text>
+        <text x="400" y="124" text-anchor="middle" font-family="Barlow Condensed,sans-serif" font-size="20" font-weight="700" letter-spacing="2"   fill="#08080F" id="proc-n1">IDENTIFICAMOS</text>
 
         <!-- ── NODE 2 — PROPONEMOS — 3 o'clock (560, 340) ── -->
         <circle cx="560" cy="340" r="44" fill="#FFE033" stroke="#08080F" stroke-width="2" filter="url(#cs)"/>
         <polygon points="560,325 574,340 560,355 546,340" fill="none" stroke="#08080F" stroke-width="0.9"/>
         <text x="614" y="332" text-anchor="start" font-family="Barlow Condensed,sans-serif" font-size="13" font-weight="700" letter-spacing="3"   fill="rgba(8,8,15,0.35)">02</text>
-        <text x="614" y="353" text-anchor="start" font-family="Barlow Condensed,sans-serif" font-size="20" font-weight="700" letter-spacing="2"   fill="#08080F">PROPONEMOS</text>
+        <text x="614" y="353" text-anchor="start" font-family="Barlow Condensed,sans-serif" font-size="20" font-weight="700" letter-spacing="2"   fill="#08080F" id="proc-n2">PROPONEMOS</text>
 
         <!-- ── NODE 3 — ITERAMOS — 6 o'clock (400, 500) ── -->
         <circle cx="400" cy="500" r="44" fill="#FFE033" stroke="#08080F" stroke-width="2" filter="url(#cs)"/>
         <path d="M389,500 A13,13 0 1,1 411,500" fill="none" stroke="#08080F" stroke-width="0.9" stroke-linecap="round"/>
         <polyline points="409,509 414,500 406,497" fill="none" stroke="#08080F" stroke-width="0.9" stroke-linecap="round" stroke-linejoin="round"/>
         <text x="400" y="562" text-anchor="middle" font-family="Barlow Condensed,sans-serif" font-size="13" font-weight="700" letter-spacing="3"   fill="rgba(8,8,15,0.35)">03</text>
-        <text x="400" y="583" text-anchor="middle" font-family="Barlow Condensed,sans-serif" font-size="20" font-weight="700" letter-spacing="2"   fill="#08080F">ITERAMOS</text>
+        <text x="400" y="583" text-anchor="middle" font-family="Barlow Condensed,sans-serif" font-size="20" font-weight="700" letter-spacing="2"   fill="#08080F" id="proc-n3">ITERAMOS</text>
 
         <!-- ── NODE 4 — AJUSTAMOS — 9 o'clock (240, 340) ── -->
         <circle cx="240" cy="340" r="44" fill="#FFE033" stroke="#08080F" stroke-width="2" filter="url(#cs)"/>
@@ -917,7 +934,7 @@
         <circle cx="248" cy="333" r="4.5" fill="#FFE033" stroke="#08080F" stroke-width="0.9"/>
         <circle cx="232" cy="347" r="4.5" fill="#FFE033" stroke="#08080F" stroke-width="0.9"/>
         <text x="186" y="332" text-anchor="end" font-family="Barlow Condensed,sans-serif" font-size="13" font-weight="700" letter-spacing="3"   fill="rgba(8,8,15,0.35)">04</text>
-        <text x="186" y="353" text-anchor="end" font-family="Barlow Condensed,sans-serif" font-size="20" font-weight="700" letter-spacing="2"   fill="#08080F">AJUSTAMOS</text>
+        <text x="186" y="353" text-anchor="end" font-family="Barlow Condensed,sans-serif" font-size="20" font-weight="700" letter-spacing="2"   fill="#08080F" id="proc-n4">AJUSTAMOS</text>
 
         <!-- Center dot -->
         <circle cx="400" cy="340" r="2.5" fill="rgba(8,8,15,0.2)"/>
@@ -931,11 +948,11 @@
   <!-- VALUES: light gray -->
   <div class="s-gray" id="values">
     <div class="values-inner">
-      <p class="sec-label reveal">Nuestros valores</p>
+      <p class="sec-label reveal" data-i18n="label-values">Nuestros valores</p>
       <div class="values-grid">
-        <div class="val-card" data-d="0"><p class="val-num">01</p><p class="val-ttl">Simplicidad radical</p><p class="val-dsc">La solución más simple que funciona. Sin complejidad innecesaria. Diseñado para que cualquiera lo use.</p></div>
-        <div class="val-card" data-d="1"><p class="val-num">02</p><p class="val-ttl">Tecnología robusta</p><p class="val-dsc">Construimos para durar y escalar. Solidez técnica al servicio de la simplicidad, no al revés.</p></div>
-        <div class="val-card" data-d="2"><p class="val-num">03</p><p class="val-ttl">Skin in the game</p><p class="val-dsc">Nos involucramos de verdad. Tu problema es nuestro problema. El éxito es compartido.</p></div>
+        <div class="val-card" data-d="0"><p class="val-num">01</p><p class="val-ttl" data-i18n="val01-ttl">Simplicidad radical</p><p class="val-dsc" data-i18n="val01-dsc">La solución más simple que funciona. Sin complejidad innecesaria. Diseñado para que cualquiera lo use.</p></div>
+        <div class="val-card" data-d="1"><p class="val-num">02</p><p class="val-ttl" data-i18n="val02-ttl">Tecnología robusta</p><p class="val-dsc" data-i18n="val02-dsc">Construimos para durar y escalar. Solidez técnica al servicio de la simplicidad, no al revés.</p></div>
+        <div class="val-card" data-d="2"><p class="val-num">03</p><p class="val-ttl" data-i18n="val03-ttl">Skin in the game</p><p class="val-dsc" data-i18n="val03-dsc">Nos involucramos de verdad. Tu problema es nuestro problema. El éxito es compartido.</p></div>
       </div>
     </div>
   </div>
@@ -945,7 +962,7 @@
     <div class="cases-inner">
       <div class="cases-carousel" style="margin-top:2rem;">
         <div class="carousel-header">
-          <p class="sec-label" style="margin:0">Casos de éxito</p>
+          <p class="sec-label" style="margin:0" data-i18n="label-cases">Casos de éxito</p>
           <p class="carousel-counter"><span id="cases-current">01</span> / 06</p>
         </div>
         <div class="carousel-progress"><div class="carousel-bar" id="cases-bar"></div></div>
@@ -960,27 +977,27 @@
                   <p class="case-name">Hato<br>iA</p>
                 </div>
                 <div>
-                  <p class="case-desc">Sistema de gestión ganadera para el productor colombiano. Registro de producción, reproducción y salud desde el celular. Sin capacitación, sin escritorio.</p>
+                  <p class="case-desc" data-i18n="c1-desc">Sistema de gestión ganadera para el productor colombiano. Registro de producción, reproducción y salud desde el celular. Sin capacitación, sin escritorio.</p>
                   <a class="case-link" href="https://hatoia.labnormally.com/" target="_blank" rel="noopener">hatoIA.com <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 10L10 2M10 2H5M10 2v5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
                 </div>
               </div>
               <div class="case-r">
                 <div>
-                  <p class="case-tagline">El problema que resuelve</p>
-                  <p class="case-prob">Los productores medianos toman decisiones con información de semanas de retraso. Vacas que se secan tarde, preñeces sin confirmar, caídas de producción que se detectan cuando ya llevan días ocurriendo.</p>
+                  <p class="case-tagline" data-i18n="case-tagline">El problema que resuelve</p>
+                  <p class="case-prob" data-i18n="c1-prob">Los productores medianos toman decisiones con información de semanas de retraso. Vacas que se secan tarde, preñeces sin confirmar, caídas de producción que se detectan cuando ya llevan días ocurriendo.</p>
                 </div>
                 <div class="case-feats">
-                  <div class="case-feat"><svg class="feat-ic" viewBox="0 0 18 18" fill="none"><path d="M9 1.5v15M1.5 9h15" stroke="white" stroke-width="1.5" stroke-linecap="round"/></svg>Registro de ordeño desde el celular: litros por vaca, alertas de caída automáticas.</div>
-                  <div class="case-feat"><svg class="feat-ic" viewBox="0 0 18 18" fill="none"><path d="M9 1.5v15M1.5 9h15" stroke="white" stroke-width="1.5" stroke-linecap="round"/></svg>Reproducción con fechas de parto, secado y preparto calculadas solas.</div>
-                  <div class="case-feat"><svg class="feat-ic" viewBox="0 0 18 18" fill="none"><path d="M9 1.5v15M1.5 9h15" stroke="white" stroke-width="1.5" stroke-linecap="round"/></svg>Ración de concentrado recomendada por animal según fase de lactancia.</div>
-                  <div class="case-feat"><svg class="feat-ic" viewBox="0 0 18 18" fill="none"><path d="M9 1.5v15M1.5 9h15" stroke="white" stroke-width="1.5" stroke-linecap="round"/></svg>Proyección de producción a 6 meses con bandas de confianza.</div>
+                  <div class="case-feat"><svg class="feat-ic" viewBox="0 0 18 18" fill="none"><path d="M9 1.5v15M1.5 9h15" stroke="white" stroke-width="1.5" stroke-linecap="round"/></svg><span data-i18n="c1f1">Registro de ordeño desde el celular: litros por vaca, alertas de caída automáticas.</span></div>
+                  <div class="case-feat"><svg class="feat-ic" viewBox="0 0 18 18" fill="none"><path d="M9 1.5v15M1.5 9h15" stroke="white" stroke-width="1.5" stroke-linecap="round"/></svg><span data-i18n="c1f2">Reproducción con fechas de parto, secado y preparto calculadas solas.</span></div>
+                  <div class="case-feat"><svg class="feat-ic" viewBox="0 0 18 18" fill="none"><path d="M9 1.5v15M1.5 9h15" stroke="white" stroke-width="1.5" stroke-linecap="round"/></svg><span data-i18n="c1f3">Ración de concentrado recomendada por animal según fase de lactancia.</span></div>
+                  <div class="case-feat"><svg class="feat-ic" viewBox="0 0 18 18" fill="none"><path d="M9 1.5v15M1.5 9h15" stroke="white" stroke-width="1.5" stroke-linecap="round"/></svg><span data-i18n="c1f4">Proyección de producción a 6 meses con bandas de confianza.</span></div>
                 </div>
               </div>
             </div>
             <div class="case-foot">
-              <span class="foot-item">Industria: <strong>Ganadería lechera</strong></span>
-              <span class="foot-item">Animales registrados: <strong>+200</strong></span>
-              <span class="foot-item">Función única: <strong>Proyección a 6 meses</strong></span>
+              <span class="foot-item" data-i18n-html="c1foot1">Industria: <strong>Ganadería lechera</strong></span>
+              <span class="foot-item" data-i18n-html="c1foot2">Animales registrados: <strong>+200</strong></span>
+              <span class="foot-item" data-i18n-html="c1foot3">Función única: <strong>Proyección a 6 meses</strong></span>
             </div>
           </div>
 
@@ -993,27 +1010,27 @@
                   <p class="case-name">Top<br>Nodo</p>
                 </div>
                 <div>
-                  <p class="case-desc">Sistema operativo de inventario para retail omnicanal. Una sola fuente de verdad para tiendas físicas, e-commerce, bodegas, ferias y consignación.</p>
+                  <p class="case-desc" data-i18n="c2-desc">Sistema operativo de inventario para retail omnicanal. Una sola fuente de verdad para tiendas físicas, e-commerce, bodegas, ferias y consignación.</p>
                   <a class="case-link" href="https://topnodo.com" target="_blank" rel="noopener">topnodo.com <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 10L10 2M10 2H5M10 2v5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
                 </div>
               </div>
               <div class="case-r">
                 <div>
-                  <p class="case-tagline">El problema que resuelve</p>
-                  <p class="case-prob">Los retailers con múltiples canales pierden dinero por inventario desactualizado: venden lo que no tienen, no reponen lo que se agota, y no saben dónde está cada ítem en tiempo real.</p>
+                  <p class="case-tagline" data-i18n="case-tagline">El problema que resuelve</p>
+                  <p class="case-prob" data-i18n="c2-prob">Los retailers con múltiples canales pierden dinero por inventario desactualizado: venden lo que no tienen, no reponen lo que se agota, y no saben dónde está cada ítem en tiempo real.</p>
                 </div>
                 <div class="case-feats">
-                  <div class="case-feat"><svg class="feat-ic" viewBox="0 0 18 18" fill="none"><path d="M9 1.5v15M1.5 9h15" stroke="white" stroke-width="1.5" stroke-linecap="round"/></svg>Trazabilidad completa: cada movimiento registrado con fecha, hora y responsable.</div>
-                  <div class="case-feat"><svg class="feat-ic" viewBox="0 0 18 18" fill="none"><path d="M9 1.5v15M1.5 9h15" stroke="white" stroke-width="1.5" stroke-linecap="round"/></svg>Dashboard centralizado por canal, tienda o período. Sin hojas de Excel.</div>
-                  <div class="case-feat"><svg class="feat-ic" viewBox="0 0 18 18" fill="none"><path d="M9 1.5v15M1.5 9h15" stroke="white" stroke-width="1.5" stroke-linecap="round"/></svg>Integración nativa con Shopify y WooCommerce para sincronización automática.</div>
-                  <div class="case-feat"><svg class="feat-ic" viewBox="0 0 18 18" fill="none"><path d="M9 1.5v15M1.5 9h15" stroke="white" stroke-width="1.5" stroke-linecap="round"/></svg>Alertas de stock bajo y tendencias por variante, en tiempo real.</div>
+                  <div class="case-feat"><svg class="feat-ic" viewBox="0 0 18 18" fill="none"><path d="M9 1.5v15M1.5 9h15" stroke="white" stroke-width="1.5" stroke-linecap="round"/></svg><span data-i18n="c2f1">Trazabilidad completa: cada movimiento registrado con fecha, hora y responsable.</span></div>
+                  <div class="case-feat"><svg class="feat-ic" viewBox="0 0 18 18" fill="none"><path d="M9 1.5v15M1.5 9h15" stroke="white" stroke-width="1.5" stroke-linecap="round"/></svg><span data-i18n="c2f2">Dashboard centralizado por canal, tienda o período. Sin hojas de Excel.</span></div>
+                  <div class="case-feat"><svg class="feat-ic" viewBox="0 0 18 18" fill="none"><path d="M9 1.5v15M1.5 9h15" stroke="white" stroke-width="1.5" stroke-linecap="round"/></svg><span data-i18n="c2f3">Integración nativa con Shopify y WooCommerce para sincronización automática.</span></div>
+                  <div class="case-feat"><svg class="feat-ic" viewBox="0 0 18 18" fill="none"><path d="M9 1.5v15M1.5 9h15" stroke="white" stroke-width="1.5" stroke-linecap="round"/></svg><span data-i18n="c2f4">Alertas de stock bajo y tendencias por variante, en tiempo real.</span></div>
                 </div>
               </div>
             </div>
             <div class="case-foot">
-              <span class="foot-item">Industria: <strong>Retail omnicanal</strong></span>
-              <span class="foot-item">Canales: <strong>Tienda física · Online · Consignación · Feria</strong></span>
-              <span class="foot-item">Integra con: <strong>Shopify · WooCommerce</strong></span>
+              <span class="foot-item" data-i18n-html="c2foot1">Industria: <strong>Retail omnicanal</strong></span>
+              <span class="foot-item" data-i18n-html="c2foot2">Canales: <strong>Tienda física · Online · Consignación · Feria</strong></span>
+              <span class="foot-item" data-i18n-html="c2foot3">Integra con: <strong>Shopify · WooCommerce</strong></span>
             </div>
           </div>
 
@@ -1026,27 +1043,27 @@
                   <p class="case-name">HCE<br>Colombia</p>
                 </div>
                 <div>
-                  <p class="case-desc">Historia clínica electrónica en la nube para médicos en consultorio privado. Registro clínico, fotos del antes y después, y firma digital con validez legal en un solo lugar.</p>
+                  <p class="case-desc" data-i18n="c3-desc">Historia clínica electrónica en la nube para médicos en consultorio privado. Registro clínico, fotos del antes y después, y firma digital con validez legal en un solo lugar.</p>
                   <a class="case-link" href="https://hceweb.labnormally.com" target="_blank" rel="noopener">hceweb.labnormally.com <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 10L10 2M10 2H5M10 2v5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
                 </div>
               </div>
               <div class="case-r">
                 <div>
-                  <p class="case-tagline">El problema que resuelve</p>
-                  <p class="case-prob">Los médicos llevan historias en Word, guardan fotos de pacientes en WhatsApp y firman documentos sin validez legal clara. Sin cumplimiento de la Res. 1995/1999, sin respaldo, sin trazabilidad.</p>
+                  <p class="case-tagline" data-i18n="case-tagline">El problema que resuelve</p>
+                  <p class="case-prob" data-i18n="c3-prob">Los médicos llevan historias en Word, guardan fotos de pacientes en WhatsApp y firman documentos sin validez legal clara. Sin cumplimiento de la Res. 1995/1999, sin respaldo, sin trazabilidad.</p>
                 </div>
                 <div class="case-feats">
-                  <div class="case-feat"><svg class="feat-ic" viewBox="0 0 18 18" fill="none"><path d="M9 1.5v15M1.5 9h15" stroke="white" stroke-width="1.5" stroke-linecap="round"/></svg>Historia clínica completa con CIE-10, plan de manejo y PDF listo para entregar al paciente.</div>
-                  <div class="case-feat"><svg class="feat-ic" viewBox="0 0 18 18" fill="none"><path d="M9 1.5v15M1.5 9h15" stroke="white" stroke-width="1.5" stroke-linecap="round"/></svg>Galería fotográfica de antes y después vinculada a cada consulta. Las fotos nunca salen por WhatsApp.</div>
-                  <div class="case-feat"><svg class="feat-ic" viewBox="0 0 18 18" fill="none"><path d="M9 1.5v15M1.5 9h15" stroke="white" stroke-width="1.5" stroke-linecap="round"/></svg>Firma digital con hash SHA-256 y sello de tiempo. Válida bajo la Ley 527 de 1999.</div>
-                  <div class="case-feat"><svg class="feat-ic" viewBox="0 0 18 18" fill="none"><path d="M9 1.5v15M1.5 9h15" stroke="white" stroke-width="1.5" stroke-linecap="round"/></svg>Más de 13.000 medicamentos del CUM de INVIMA y buscador de códigos CUPS integrados.</div>
+                  <div class="case-feat"><svg class="feat-ic" viewBox="0 0 18 18" fill="none"><path d="M9 1.5v15M1.5 9h15" stroke="white" stroke-width="1.5" stroke-linecap="round"/></svg><span data-i18n="c3f1">Historia clínica completa con CIE-10, plan de manejo y PDF listo para entregar al paciente.</span></div>
+                  <div class="case-feat"><svg class="feat-ic" viewBox="0 0 18 18" fill="none"><path d="M9 1.5v15M1.5 9h15" stroke="white" stroke-width="1.5" stroke-linecap="round"/></svg><span data-i18n="c3f2">Galería fotográfica de antes y después vinculada a cada consulta. Las fotos nunca salen por WhatsApp.</span></div>
+                  <div class="case-feat"><svg class="feat-ic" viewBox="0 0 18 18" fill="none"><path d="M9 1.5v15M1.5 9h15" stroke="white" stroke-width="1.5" stroke-linecap="round"/></svg><span data-i18n="c3f3">Firma digital con hash SHA-256 y sello de tiempo. Válida bajo la Ley 527 de 1999.</span></div>
+                  <div class="case-feat"><svg class="feat-ic" viewBox="0 0 18 18" fill="none"><path d="M9 1.5v15M1.5 9h15" stroke="white" stroke-width="1.5" stroke-linecap="round"/></svg><span data-i18n="c3f4">Más de 13.000 medicamentos del CUM de INVIMA y buscador de códigos CUPS integrados.</span></div>
                 </div>
               </div>
             </div>
             <div class="case-foot">
-              <span class="foot-item">Sector: <strong>Salud</strong></span>
-              <span class="foot-item">Especialidades: <strong>Dermatología · Cirugía estética · Medicina estética</strong></span>
-              <span class="foot-item">Mercado: <strong>Colombia</strong></span>
+              <span class="foot-item" data-i18n-html="c3foot1">Sector: <strong>Salud</strong></span>
+              <span class="foot-item" data-i18n-html="c3foot2">Especialidades: <strong>Dermatología · Cirugía estética · Medicina estética</strong></span>
+              <span class="foot-item" data-i18n-html="c3foot3">Mercado: <strong>Colombia</strong></span>
             </div>
           </div>
 
@@ -1059,26 +1076,26 @@
                   <p class="case-name">Tulutes</p>
                 </div>
                 <div>
-                  <p class="case-desc">Plataforma de reservas para estudios de bienestar. Yoga, pilates, fisioterapia, entrenamiento personal. El estudio listo para operar en menos de una hora.</p>
+                  <p class="case-desc" data-i18n="c4-desc">Plataforma de reservas para estudios de bienestar. Yoga, pilates, fisioterapia, entrenamiento personal. El estudio listo para operar en menos de una hora.</p>
                   <a class="case-link" href="https://tulutes.labnormally.com/" target="_blank" rel="noopener">tulutes.labnormally.com <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 10L10 2M10 2H5M10 2v5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
                 </div>
               </div>
               <div class="case-r">
                 <div>
-                  <p class="case-tagline">El problema que resuelve</p>
-                  <p class="case-prob">Los estudios pequeños gestionan reservas por WhatsApp y cobran por transferencia. Sin historial, sin datos, sin forma de saber qué clases llenan o cuántos clientes llevan un mes sin volver.</p>
+                  <p class="case-tagline" data-i18n="case-tagline">El problema que resuelve</p>
+                  <p class="case-prob" data-i18n="c4-prob">Los estudios pequeños gestionan reservas por WhatsApp y cobran por transferencia. Sin historial, sin datos, sin forma de saber qué clases llenan o cuántos clientes llevan un mes sin volver.</p>
                 </div>
                 <div class="case-feats">
-                  <div class="case-feat"><svg class="feat-ic" viewBox="0 0 18 18" fill="none"><path d="M9 1.5v15M1.5 9h15" stroke="white" stroke-width="1.5" stroke-linecap="round"/></svg>Clases grupales con horarios recurrentes y cupos que cierran solos cuando se llenan.</div>
-                  <div class="case-feat"><svg class="feat-ic" viewBox="0 0 18 18" fill="none"><path d="M9 1.5v15M1.5 9h15" stroke="white" stroke-width="1.5" stroke-linecap="round"/></svg>Citas individuales para fisioterapeutas, nutricionistas y entrenadores personales.</div>
-                  <div class="case-feat"><svg class="feat-ic" viewBox="0 0 18 18" fill="none"><path d="M9 1.5v15M1.5 9h15" stroke="white" stroke-width="1.5" stroke-linecap="round"/></svg>Dashboard con ocupación, retención de clientes y tendencia semanal de reservas.</div>
-                  <div class="case-feat"><svg class="feat-ic" viewBox="0 0 18 18" fill="none"><path d="M9 1.5v15M1.5 9h15" stroke="white" stroke-width="1.5" stroke-linecap="round"/></svg>Precio conversado, sin contrato. 15 días gratis sin tarjeta de crédito.</div>
+                  <div class="case-feat"><svg class="feat-ic" viewBox="0 0 18 18" fill="none"><path d="M9 1.5v15M1.5 9h15" stroke="white" stroke-width="1.5" stroke-linecap="round"/></svg><span data-i18n="c4f1">Clases grupales con horarios recurrentes y cupos que cierran solos cuando se llenan.</span></div>
+                  <div class="case-feat"><svg class="feat-ic" viewBox="0 0 18 18" fill="none"><path d="M9 1.5v15M1.5 9h15" stroke="white" stroke-width="1.5" stroke-linecap="round"/></svg><span data-i18n="c4f2">Citas individuales para fisioterapeutas, nutricionistas y entrenadores personales.</span></div>
+                  <div class="case-feat"><svg class="feat-ic" viewBox="0 0 18 18" fill="none"><path d="M9 1.5v15M1.5 9h15" stroke="white" stroke-width="1.5" stroke-linecap="round"/></svg><span data-i18n="c4f3">Dashboard con ocupación, retención de clientes y tendencia semanal de reservas.</span></div>
+                  <div class="case-feat"><svg class="feat-ic" viewBox="0 0 18 18" fill="none"><path d="M9 1.5v15M1.5 9h15" stroke="white" stroke-width="1.5" stroke-linecap="round"/></svg><span data-i18n="c4f4">Precio conversado, sin contrato. 15 días gratis sin tarjeta de crédito.</span></div>
                 </div>
               </div>
             </div>
             <div class="case-foot">
-              <span class="foot-item">Sectores: <strong>Bienestar · Fitness · Salud</strong></span>
-              <span class="foot-item">Mercado: <strong>Colombia · España</strong></span>
+              <span class="foot-item" data-i18n-html="c4foot1">Sectores: <strong>Bienestar · Fitness · Salud</strong></span>
+              <span class="foot-item" data-i18n-html="c4foot2">Mercado: <strong>Colombia · España</strong></span>
             </div>
           </div>
 
@@ -1091,27 +1108,27 @@
                   <p class="case-name">Labnormally<br>Quant</p>
                 </div>
                 <div>
-                  <p class="case-desc">Tres monitores especializados de datos financieros y energéticos colombianos. Fuentes oficiales, actualización automática, visualización lista para decidir.</p>
+                  <p class="case-desc" data-i18n="c5-desc">Tres monitores especializados de datos financieros y energéticos colombianos. Fuentes oficiales, actualización automática, visualización lista para decidir.</p>
                   <a class="case-link" href="https://quant.labnormally.com" target="_blank" rel="noopener">quant.labnormally.com <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 10L10 2M10 2H5M10 2v5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
                 </div>
               </div>
               <div class="case-r">
                 <div>
-                  <p class="case-tagline">El problema que resuelve</p>
-                  <p class="case-prob">Los equipos de análisis en Colombia pasan horas limpiando datos antes de poder decidir. PDFs de la SFC, reportes de XM y exports manuales de Excel que nadie mantiene actualizado. Análisis que deberían tomar minutos toman días.</p>
+                  <p class="case-tagline" data-i18n="case-tagline">El problema que resuelve</p>
+                  <p class="case-prob" data-i18n="c5-prob">Los equipos de análisis en Colombia pasan horas limpiando datos antes de poder decidir. PDFs de la SFC, reportes de XM y exports manuales de Excel que nadie mantiene actualizado. Análisis que deberían tomar minutos toman días.</p>
                 </div>
                 <div class="case-feats">
-                  <div class="case-feat"><svg class="feat-ic" viewBox="0 0 18 18" fill="none"><path d="M9 1.5v15M1.5 9h15" stroke="white" stroke-width="1.5" stroke-linecap="round"/></svg><strong>FiQuant</strong> — 1.170 fondos de inversión colombianos con 4.3M de puntos de datos históricos desde 2016.</div>
-                  <div class="case-feat"><svg class="feat-ic" viewBox="0 0 18 18" fill="none"><path d="M9 1.5v15M1.5 9h15" stroke="white" stroke-width="1.5" stroke-linecap="round"/></svg><strong>eQuant</strong> — Mercado eléctrico colombiano: precio bolsa, hidrología, generación y demanda desde 2009.</div>
-                  <div class="case-feat"><svg class="feat-ic" viewBox="0 0 18 18" fill="none"><path d="M9 1.5v15M1.5 9h15" stroke="white" stroke-width="1.5" stroke-linecap="round"/></svg><strong>bQuant</strong> — 41 entidades bancarias, 96 indicadores contables normalizados desde 2015.</div>
-                  <div class="case-feat"><svg class="feat-ic" viewBox="0 0 18 18" fill="none"><path d="M9 1.5v15M1.5 9h15" stroke="white" stroke-width="1.5" stroke-linecap="round"/></svg>Datos directos de la SFC y XM. Sin estimaciones, sin proxies, sin trabajo manual.</div>
+                  <div class="case-feat"><svg class="feat-ic" viewBox="0 0 18 18" fill="none"><path d="M9 1.5v15M1.5 9h15" stroke="white" stroke-width="1.5" stroke-linecap="round"/></svg><span data-i18n-html="c5f1"><strong>FiQuant</strong> — 1.170 fondos de inversión colombianos con 4.3M de puntos de datos históricos desde 2016.</span></div>
+                  <div class="case-feat"><svg class="feat-ic" viewBox="0 0 18 18" fill="none"><path d="M9 1.5v15M1.5 9h15" stroke="white" stroke-width="1.5" stroke-linecap="round"/></svg><span data-i18n-html="c5f2"><strong>eQuant</strong> — Mercado eléctrico colombiano: precio bolsa, hidrología, generación y demanda desde 2009.</span></div>
+                  <div class="case-feat"><svg class="feat-ic" viewBox="0 0 18 18" fill="none"><path d="M9 1.5v15M1.5 9h15" stroke="white" stroke-width="1.5" stroke-linecap="round"/></svg><span data-i18n-html="c5f3"><strong>bQuant</strong> — 41 entidades bancarias, 96 indicadores contables normalizados desde 2015.</span></div>
+                  <div class="case-feat"><svg class="feat-ic" viewBox="0 0 18 18" fill="none"><path d="M9 1.5v15M1.5 9h15" stroke="white" stroke-width="1.5" stroke-linecap="round"/></svg><span data-i18n="c5f4">Datos directos de la SFC y XM. Sin estimaciones, sin proxies, sin trabajo manual.</span></div>
                 </div>
               </div>
             </div>
             <div class="case-foot">
-              <span class="foot-item">Sectores: <strong>Fondos · Banca · Energía</strong></span>
-              <span class="foot-item">Datos históricos: <strong>5M+</strong></span>
-              <span class="foot-item">Mercado: <strong>Colombia</strong></span>
+              <span class="foot-item" data-i18n-html="c5foot1">Sectores: <strong>Fondos · Banca · Energía</strong></span>
+              <span class="foot-item" data-i18n-html="c5foot2">Datos históricos: <strong>5M+</strong></span>
+              <span class="foot-item" data-i18n-html="c5foot3">Mercado: <strong>Colombia</strong></span>
             </div>
           </div>
 
@@ -1124,27 +1141,27 @@
                   <p class="case-name">Elijo<br>Votar</p>
                 </div>
                 <div>
-                  <p class="case-desc">Match electoral para las presidenciales Colombia 2026. El ciudadano responde 12 afirmaciones sin ver ningún nombre — solo al final descubre su afinidad con cada candidato. Primero las ideas, luego los nombres.</p>
+                  <p class="case-desc" data-i18n="c6-desc">Match electoral para las presidenciales Colombia 2026. El ciudadano responde 12 afirmaciones sin ver ningún nombre — solo al final descubre su afinidad con cada candidato. Primero las ideas, luego los nombres.</p>
                   <a class="case-link" href="https://elijovotar.com" target="_blank" rel="noopener">elijovotar.com <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 10L10 2M10 2H5M10 2v5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
                 </div>
               </div>
               <div class="case-r">
                 <div>
-                  <p class="case-tagline">El problema que resuelve</p>
-                  <p class="case-prob">Los colombianos votan por nombre, por partido o por inercia. La polarización hace imposible comparar candidatos sin propaganda. ElijoVotar invierte el orden: ideas primero, nombres al final.</p>
+                  <p class="case-tagline" data-i18n="case-tagline">El problema que resuelve</p>
+                  <p class="case-prob" data-i18n="c6-prob">Los colombianos votan por nombre, por partido o por inercia. La polarización hace imposible comparar candidatos sin propaganda. ElijoVotar invierte el orden: ideas primero, nombres al final.</p>
                 </div>
                 <div class="case-feats">
-                  <div class="case-feat"><svg class="feat-ic" viewBox="0 0 18 18" fill="none"><path d="M9 1.5v15M1.5 9h15" stroke="white" stroke-width="1.5" stroke-linecap="round"/></svg>Quiz de afinidad con 12 preguntas sobre 6 temas. Algoritmo de match ponderado por importancia de cada tema.</div>
-                  <div class="case-feat"><svg class="feat-ic" viewBox="0 0 18 18" fill="none"><path d="M9 1.5v15M1.5 9h15" stroke="white" stroke-width="1.5" stroke-linecap="round"/></svg>Experiencia de swipe táctil, funciona con dedo o mouse. 17.343 quizzes completados con una tasa de completación del 54.6%.</div>
-                  <div class="case-feat"><svg class="feat-ic" viewBox="0 0 18 18" fill="none"><path d="M9 1.5v15M1.5 9h15" stroke="white" stroke-width="1.5" stroke-linecap="round"/></svg>Dashboard en tiempo real: distribución de respuestas, intención de voto, pregunta más divisiva y mayor consenso.</div>
-                  <div class="case-feat"><svg class="feat-ic" viewBox="0 0 18 18" fill="none"><path d="M9 1.5v15M1.5 9h15" stroke="white" stroke-width="1.5" stroke-linecap="round"/></svg>Mandato Ciudadano: documento histórico con los resultados agregados de 17.000 colombianos antes de la primera vuelta.</div>
+                  <div class="case-feat"><svg class="feat-ic" viewBox="0 0 18 18" fill="none"><path d="M9 1.5v15M1.5 9h15" stroke="white" stroke-width="1.5" stroke-linecap="round"/></svg><span data-i18n="c6f1">Quiz de afinidad con 12 preguntas sobre 6 temas. Algoritmo de match ponderado por importancia de cada tema.</span></div>
+                  <div class="case-feat"><svg class="feat-ic" viewBox="0 0 18 18" fill="none"><path d="M9 1.5v15M1.5 9h15" stroke="white" stroke-width="1.5" stroke-linecap="round"/></svg><span data-i18n="c6f2">Experiencia de swipe táctil, funciona con dedo o mouse. 17.343 quizzes completados con una tasa de completación del 54.6%.</span></div>
+                  <div class="case-feat"><svg class="feat-ic" viewBox="0 0 18 18" fill="none"><path d="M9 1.5v15M1.5 9h15" stroke="white" stroke-width="1.5" stroke-linecap="round"/></svg><span data-i18n="c6f3">Dashboard en tiempo real: distribución de respuestas, intención de voto, pregunta más divisiva y mayor consenso.</span></div>
+                  <div class="case-feat"><svg class="feat-ic" viewBox="0 0 18 18" fill="none"><path d="M9 1.5v15M1.5 9h15" stroke="white" stroke-width="1.5" stroke-linecap="round"/></svg><span data-i18n="c6f4">Mandato Ciudadano: documento histórico con los resultados agregados de 17.000 colombianos antes de la primera vuelta.</span></div>
                 </div>
               </div>
             </div>
             <div class="case-foot">
-              <span class="foot-item">Tipo: <strong>Civic tech</strong></span>
-              <span class="foot-item">Visitas: <strong>31.745</strong></span>
-              <span class="foot-item">Quizzes completados: <strong>17.343</strong></span>
+              <span class="foot-item" data-i18n-html="c6foot1">Tipo: <strong>Civic tech</strong></span>
+              <span class="foot-item" data-i18n-html="c6foot2">Visitas: <strong>31.745</strong></span>
+              <span class="foot-item" data-i18n-html="c6foot3">Quizzes completados: <strong>17.343</strong></span>
             </div>
           </div>
 
@@ -1390,15 +1407,194 @@ const rm = window.matchMedia("(prefers-reduced-motion:reduce)").matches;
 })();
 
 
+// ── LANGUAGE TOGGLE ──
+const I18N = {
+  es: {
+    'nav-mission': 'Misión',
+    'nav-process': 'Proceso',
+    'nav-values':  'Valores',
+    'nav-cases':   'Casos',
+    'nav-cta':     'Hablemos',
+    'hero-h1':     '¿Suena raro<br>Labnormally?',
+    'hero-tagline':'Lo sé, pero la idea es sencilla.',
+    'label-mission':'Misión',
+    'label-process':'Proceso',
+    'label-values': 'Nuestros valores',
+    'label-cases':  'Casos de éxito',
+    'karaoke':     'Resolver problemas reales creando herramientas brutalmente simples.',
+    'proc-n1': 'IDENTIFICAMOS', 'proc-n2': 'PROPONEMOS', 'proc-n3': 'ITERAMOS', 'proc-n4': 'AJUSTAMOS',
+    'val01-ttl':'Simplicidad radical', 'val01-dsc':'La solución más simple que funciona. Sin complejidad innecesaria. Diseñado para que cualquiera lo use.',
+    'val02-ttl':'Tecnología robusta',  'val02-dsc':'Construimos para durar y escalar. Solidez técnica al servicio de la simplicidad, no al revés.',
+    'val03-ttl':'Skin in the game',    'val03-dsc':'Nos involucramos de verdad. Tu problema es nuestro problema. El éxito es compartido.',
+    'case-tagline':'El problema que resuelve',
+    'c1-desc':'Sistema de gestión ganadera para el productor colombiano. Registro de producción, reproducción y salud desde el celular. Sin capacitación, sin escritorio.',
+    'c1-prob':'Los productores medianos toman decisiones con información de semanas de retraso. Vacas que se secan tarde, preñeces sin confirmar, caídas de producción que se detectan cuando ya llevan días ocurriendo.',
+    'c1f1':'Registro de ordeño desde el celular: litros por vaca, alertas de caída automáticas.',
+    'c1f2':'Reproducción con fechas de parto, secado y preparto calculadas solas.',
+    'c1f3':'Ración de concentrado recomendada por animal según fase de lactancia.',
+    'c1f4':'Proyección de producción a 6 meses con bandas de confianza.',
+    'c1foot1':'Industria: <strong>Ganadería lechera</strong>',
+    'c1foot2':'Animales registrados: <strong>+200</strong>',
+    'c1foot3':'Función única: <strong>Proyección a 6 meses</strong>',
+    'c2-desc':'Sistema operativo de inventario para retail omnicanal. Una sola fuente de verdad para tiendas físicas, e-commerce, bodegas, ferias y consignación.',
+    'c2-prob':'Los retailers con múltiples canales pierden dinero por inventario desactualizado: venden lo que no tienen, no reponen lo que se agota, y no saben dónde está cada ítem en tiempo real.',
+    'c2f1':'Trazabilidad completa: cada movimiento registrado con fecha, hora y responsable.',
+    'c2f2':'Dashboard centralizado por canal, tienda o período. Sin hojas de Excel.',
+    'c2f3':'Integración nativa con Shopify y WooCommerce para sincronización automática.',
+    'c2f4':'Alertas de stock bajo y tendencias por variante, en tiempo real.',
+    'c2foot1':'Industria: <strong>Retail omnicanal</strong>',
+    'c2foot2':'Canales: <strong>Tienda física · Online · Consignación · Feria</strong>',
+    'c2foot3':'Integra con: <strong>Shopify · WooCommerce</strong>',
+    'c3-desc':'Historia clínica electrónica en la nube para médicos en consultorio privado. Registro clínico, fotos del antes y después, y firma digital con validez legal en un solo lugar.',
+    'c3-prob':'Los médicos llevan historias en Word, guardan fotos de pacientes en WhatsApp y firman documentos sin validez legal clara. Sin cumplimiento de la Res. 1995/1999, sin respaldo, sin trazabilidad.',
+    'c3f1':'Historia clínica completa con CIE-10, plan de manejo y PDF listo para entregar al paciente.',
+    'c3f2':'Galería fotográfica de antes y después vinculada a cada consulta. Las fotos nunca salen por WhatsApp.',
+    'c3f3':'Firma digital con hash SHA-256 y sello de tiempo. Válida bajo la Ley 527 de 1999.',
+    'c3f4':'Más de 13.000 medicamentos del CUM de INVIMA y buscador de códigos CUPS integrados.',
+    'c3foot1':'Sector: <strong>Salud</strong>',
+    'c3foot2':'Especialidades: <strong>Dermatología · Cirugía estética · Medicina estética</strong>',
+    'c3foot3':'Mercado: <strong>Colombia</strong>',
+    'c4-desc':'Plataforma de reservas para estudios de bienestar. Yoga, pilates, fisioterapia, entrenamiento personal. El estudio listo para operar en menos de una hora.',
+    'c4-prob':'Los estudios pequeños gestionan reservas por WhatsApp y cobran por transferencia. Sin historial, sin datos, sin forma de saber qué clases llenan o cuántos clientes llevan un mes sin volver.',
+    'c4f1':'Clases grupales con horarios recurrentes y cupos que cierran solos cuando se llenan.',
+    'c4f2':'Citas individuales para fisioterapeutas, nutricionistas y entrenadores personales.',
+    'c4f3':'Dashboard con ocupación, retención de clientes y tendencia semanal de reservas.',
+    'c4f4':'Precio conversado, sin contrato. 15 días gratis sin tarjeta de crédito.',
+    'c4foot1':'Sectores: <strong>Bienestar · Fitness · Salud</strong>',
+    'c4foot2':'Mercado: <strong>Colombia · España</strong>',
+    'c5-desc':'Tres monitores especializados de datos financieros y energéticos colombianos. Fuentes oficiales, actualización automática, visualización lista para decidir.',
+    'c5-prob':'Los equipos de análisis en Colombia pasan horas limpiando datos antes de poder decidir. PDFs de la SFC, reportes de XM y exports manuales de Excel que nadie mantiene actualizado. Análisis que deberían tomar minutos toman días.',
+    'c5f1':'<strong>FiQuant</strong> — 1.170 fondos de inversión colombianos con 4.3M de puntos de datos históricos desde 2016.',
+    'c5f2':'<strong>eQuant</strong> — Mercado eléctrico colombiano: precio bolsa, hidrología, generación y demanda desde 2009.',
+    'c5f3':'<strong>bQuant</strong> — 41 entidades bancarias, 96 indicadores contables normalizados desde 2015.',
+    'c5f4':'Datos directos de la SFC y XM. Sin estimaciones, sin proxies, sin trabajo manual.',
+    'c5foot1':'Sectores: <strong>Fondos · Banca · Energía</strong>',
+    'c5foot2':'Datos históricos: <strong>5M+</strong>',
+    'c5foot3':'Mercado: <strong>Colombia</strong>',
+    'c6-desc':'Match electoral para las presidenciales Colombia 2026. El ciudadano responde 12 afirmaciones sin ver ningún nombre — solo al final descubre su afinidad con cada candidato. Primero las ideas, luego los nombres.',
+    'c6-prob':'Los colombianos votan por nombre, por partido o por inercia. La polarización hace imposible comparar candidatos sin propaganda. ElijoVotar invierte el orden: ideas primero, nombres al final.',
+    'c6f1':'Quiz de afinidad con 12 preguntas sobre 6 temas. Algoritmo de match ponderado por importancia de cada tema.',
+    'c6f2':'Experiencia de swipe táctil, funciona con dedo o mouse. 17.343 quizzes completados con una tasa de completación del 54.6%.',
+    'c6f3':'Dashboard en tiempo real: distribución de respuestas, intención de voto, pregunta más divisiva y mayor consenso.',
+    'c6f4':'Mandato Ciudadano: documento histórico con los resultados agregados de 17.000 colombianos antes de la primera vuelta.',
+    'c6foot1':'Tipo: <strong>Civic tech</strong>',
+    'c6foot2':'Visitas: <strong>31.745</strong>',
+    'c6foot3':'Quizzes completados: <strong>17.343</strong>',
+  },
+  en: {
+    'nav-mission': 'Mission',
+    'nav-process': 'Process',
+    'nav-values':  'Values',
+    'nav-cases':   'Cases',
+    'nav-cta':     'Let\'s talk',
+    'hero-h1':     'Sounds weird,<br>Labnormally?',
+    'hero-tagline':'I know. But the idea is simple.',
+    'label-mission':'Mission',
+    'label-process':'Process',
+    'label-values': 'Our values',
+    'label-cases':  'Success stories',
+    'karaoke':     'Solving real problems by building brutally simple tools.',
+    'proc-n1': 'WE IDENTIFY', 'proc-n2': 'WE PROPOSE', 'proc-n3': 'WE ITERATE', 'proc-n4': 'WE ADJUST',
+    'val01-ttl':'Radical simplicity', 'val01-dsc':'The simplest solution that works. No unnecessary complexity. Built so anyone can use it.',
+    'val02-ttl':'Robust technology',  'val02-dsc':'We build to last and to scale. Technical solidity in service of simplicity, not the other way around.',
+    'val03-ttl':'Skin in the game',   'val03-dsc':'We get genuinely involved. Your problem is our problem. Success is shared.',
+    'case-tagline':'The problem it solves',
+    'c1-desc':'Livestock management system for Colombian cattle producers. Production, reproduction, and health tracking from a smartphone. No training, no desktop required.',
+    'c1-prob':'Mid-size producers make decisions on information weeks out of date. Cows dried off late, unconfirmed pregnancies, production drops detected only after days of going unnoticed.',
+    'c1f1':'Daily milking log from the phone: liters per cow, automatic production-drop alerts.',
+    'c1f2':'Reproduction tracking with calculated calving, drying-off, and pre-calving dates.',
+    'c1f3':'Recommended concentrate ration per animal based on lactation stage.',
+    'c1f4':'6-month production forecast with confidence bands.',
+    'c1foot1':'Industry: <strong>Dairy farming</strong>',
+    'c1foot2':'Registered animals: <strong>+200</strong>',
+    'c1foot3':'Standout feature: <strong>6-month forecast</strong>',
+    'c2-desc':'Inventory operating system for omnichannel retail. One single source of truth for physical stores, e-commerce, warehouses, trade shows, and consignment.',
+    'c2-prob':'Retailers with multiple channels lose money to stale inventory: they sell what they don\'t have, fail to restock what runs out, and never know where each item is in real time.',
+    'c2f1':'Full traceability: every movement logged with date, time, and responsible party.',
+    'c2f2':'Centralized dashboard by channel, store, or period. No more spreadsheets.',
+    'c2f3':'Native integration with Shopify and WooCommerce for automatic sync.',
+    'c2f4':'Low-stock alerts and real-time variant-level trends.',
+    'c2foot1':'Industry: <strong>Omnichannel retail</strong>',
+    'c2foot2':'Channels: <strong>Physical · Online · Consignment · Trade show</strong>',
+    'c2foot3':'Integrates with: <strong>Shopify · WooCommerce</strong>',
+    'c3-desc':'Cloud-based electronic health record for private-practice physicians. Clinical notes, before-and-after photos, and legally valid digital signatures — all in one place.',
+    'c3-prob':'Doctors keep records in Word, store patient photos on WhatsApp, and sign documents without clear legal standing. No compliance, no backup, no audit trail.',
+    'c3f1':'Complete clinical record with ICD-10 codes, treatment plan, and patient-ready PDF.',
+    'c3f2':'Before-and-after photo gallery linked to each visit. Photos never leave the platform.',
+    'c3f3':'Digital signature with SHA-256 hash and timestamp. Valid under Colombia\'s Law 527 of 1999.',
+    'c3f4':'13,000+ drugs from INVIMA\'s CUM database and integrated CUPS code search.',
+    'c3foot1':'Sector: <strong>Healthcare</strong>',
+    'c3foot2':'Specialties: <strong>Dermatology · Aesthetic surgery · Aesthetic medicine</strong>',
+    'c3foot3':'Market: <strong>Colombia</strong>',
+    'c4-desc':'Booking platform for wellness studios. Yoga, pilates, physiotherapy, personal training. Studio ready to operate in under an hour.',
+    'c4-prob':'Small studios manage bookings over WhatsApp and collect payment by bank transfer. No history, no data, no way to know which classes fill up or how many clients have gone a month without returning.',
+    'c4f1':'Group classes with recurring schedules and spots that close automatically when full.',
+    'c4f2':'Individual appointments for physiotherapists, nutritionists, and personal trainers.',
+    'c4f3':'Dashboard with occupancy, client retention, and weekly booking trends.',
+    'c4f4':'Pay-as-you-go pricing, no contract. 15 days free, no credit card required.',
+    'c4foot1':'Sectors: <strong>Wellness · Fitness · Health</strong>',
+    'c4foot2':'Market: <strong>Colombia · Spain</strong>',
+    'c5-desc':'Three specialized monitors for Colombian financial and energy data. Official sources, automatic updates, visualization ready for decision-making.',
+    'c5-prob':'Analysis teams in Colombia spend hours cleaning data before they can decide. PDFs from the SFC, reports from XM, and manually maintained spreadsheets nobody keeps current. Analysis that should take minutes takes days.',
+    'c5f1':'<strong>FiQuant</strong> — 1,170 Colombian investment funds with 4.3M historical data points since 2016.',
+    'c5f2':'<strong>eQuant</strong> — Colombian electricity market: spot price, hydrology, generation, and demand since 2009.',
+    'c5f3':'<strong>bQuant</strong> — 41 banking entities, 96 normalized accounting indicators since 2015.',
+    'c5f4':'Direct data from SFC and XM. No estimates, no proxies, no manual work.',
+    'c5foot1':'Sectors: <strong>Funds · Banking · Energy</strong>',
+    'c5foot2':'Historical data: <strong>5M+</strong>',
+    'c5foot3':'Market: <strong>Colombia</strong>',
+    'c6-desc':'Electoral match platform for Colombia\'s 2026 presidential race. The voter answers 12 statements without seeing any names — only at the end do they discover their affinity with each candidate. Ideas first, names last.',
+    'c6-prob':'Colombians vote by name, by party, or out of habit. Polarization makes it impossible to compare candidates without propaganda. ElijoVotar reverses the order: ideas first, names last.',
+    'c6f1':'Affinity quiz with 12 questions on 6 topics. Weighted match algorithm based on how important each topic is to the user.',
+    'c6f2':'Swipe-based interface, works with touch or mouse. 17,343 quizzes completed with a 54.6% completion rate.',
+    'c6f3':'Real-time dashboard: answer distribution, voting intent, most divisive and most agreed-upon question.',
+    'c6f4':'Citizen Mandate: a historical document with the aggregated results of 17,000 Colombians before the first round.',
+    'c6foot1':'Type: <strong>Civic tech</strong>',
+    'c6foot2':'Visits: <strong>31,745</strong>',
+    'c6foot3':'Quizzes completed: <strong>17,343</strong>',
+  }
+};
+
+let currentLang = 'es';
+const langBtn = document.getElementById('lang-toggle');
+
+function setLang(lang) {
+  currentLang = lang;
+  document.documentElement.lang = lang;
+  langBtn.textContent = lang === 'es' ? 'EN' : 'ES';
+  const dict = I18N[lang];
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const k = el.dataset.i18n;
+    if (dict[k] !== undefined) el.textContent = dict[k];
+  });
+  document.querySelectorAll('[data-i18n-html]').forEach(el => {
+    const k = el.dataset.i18nHtml;
+    if (dict[k] !== undefined) el.innerHTML = dict[k];
+  });
+  ['proc-n1','proc-n2','proc-n3','proc-n4'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el && dict[id]) el.textContent = dict[id];
+  });
+  buildKaraoke(dict['karaoke']);
+}
+
+if (langBtn) langBtn.addEventListener('click', () => setLang(currentLang === 'es' ? 'en' : 'es'));
+
 // ── KARAOKE ──
-const txt = "Resolver problemas reales creando herramientas brutalmente simples.";
-const kt  = document.getElementById("kt");
-txt.split(" ").forEach((word, i, arr) => {
-  const s = document.createElement("span"); s.className="w"; s.textContent=word; kt.appendChild(s);
-  if (i<arr.length-1) kt.appendChild(document.createTextNode(" "));
-});
-const ws = kt.querySelectorAll(".w");
+let ws = [];
+const kt = document.getElementById("kt");
+function buildKaraoke(text) {
+  if (!kt) return;
+  kt.innerHTML = '';
+  text.split(" ").forEach((word, i, arr) => {
+    const s = document.createElement("span"); s.className="w"; s.textContent=word; kt.appendChild(s);
+    if (i<arr.length-1) kt.appendChild(document.createTextNode(" "));
+  });
+  ws = kt.querySelectorAll(".w");
+}
+buildKaraoke(I18N.es['karaoke']);
 function karaoke() {
+  if (!kt) return;
   const sec = kt.closest(".s-white");
   const top = sec.getBoundingClientRect().top;
   const p   = Math.max(0, Math.min(1, (-top + window.innerHeight*.6) / (sec.offsetHeight*.7)));
